@@ -1,0 +1,485 @@
+/* ===========================================================
+   Dear Her — Article Template System
+   ------------------------------------------------------------
+   A reusable structure for every Dear Her article. Five layers:
+     1. Hero / cover      (.article-hero)
+     2. Reading area       (.article-reading)
+     3. Content blocks     (.article-block--*)
+     4. Secondary image    (.article-secondary)
+     5. Signoff            (.article-signoff)
+   ...plus a restrained post-article nav (.article-nav).
+
+   What changes per article: heroColor, heroBackgroundImage(+
+   opacity), the hero/secondary images, and the bodyBlocks data
+   (see article.js). What never changes: the layer structure,
+   type roles, and spacing rhythm below. Don't add one-off CSS
+   to a single article page — extend this file instead so every
+   article stays visually consistent.
+=========================================================== */
+
+:root {
+  --font-mono: "Space Mono", "Courier New", monospace;
+}
+
+/* Article hero backgrounds are always a saturated color, so the
+   nav needs to stay white until the header picks up its scrolled
+   (opaque) background — unlike dear-her.html, which sits on a
+   pale sky and needs dark nav text instead. */
+.article-page .site-header:not(.is-scrolled) {
+  color: var(--background-primary);
+}
+
+.article-page .site-header:not(.is-scrolled) .site-header__cta {
+  text-decoration-color: var(--background-primary);
+}
+
+.article-page .site-header.nav-open {
+  color: var(--text-primary);
+}
+
+/* -----------------------------------------------------------
+   Layer 1 — Article hero / cover
+   Required: eyebrow (DEAR HER / 00X), title, subtitle, meta,
+   one hero image. Two background layers only:
+     1. solid heroColor (dominant)
+     2. one faded square image, heroBackgroundImageOpacity low
+   No CSS grain/noise/pattern overlays — see .article-hero__bg.
+   Never place the title text on top of the hero photograph.
+----------------------------------------------------------- */
+.article-hero {
+  position: relative;
+  background: var(--hero-color, var(--season-primary-deep));
+  color: var(--background-primary);
+  overflow: hidden;
+}
+
+.article-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: var(--hero-bg-opacity, 0.1);
+  pointer-events: none;
+}
+
+/* Grain over the whole hero (not just the photo), from the shared
+   noise-overlay asset — rotated + blended so it reads as texture. */
+.article-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("asset/NOISE OVERLAY1.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.article-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(32px, 5vw, 72px);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(150px, 20vh, 200px) clamp(20px, 5vw, 64px) clamp(56px, 7vw, 80px);
+  flex-wrap: wrap;
+}
+
+.article-hero__text {
+  flex: 1 1 380px;
+  max-width: 640px;
+}
+
+.article-hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin: 0 0 16px;
+}
+
+.article-hero__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(4.2rem, 8.5vw, 7.2rem);
+  line-height: 0.96;
+  margin: 0;
+}
+
+.article-hero__divider {
+  width: 64px;
+  height: 2px;
+  background: var(--background-primary);
+  border: none;
+  margin: 28px 0 22px;
+}
+
+.article-hero__subtitle {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin: 32px 0 0;
+  max-width: 360px;
+}
+
+.article-hero__photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.article-hero__image {
+  position: relative;
+  width: clamp(240px, 26vw, 360px);
+  overflow: hidden;
+  margin-bottom: 44px;
+}
+
+.article-hero__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article-hero__meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 0;
+  align-items: center;
+  margin: 0;
+  text-align: center;
+}
+
+.article-hero__meta span:not(:last-child)::after {
+  content: "\2022";
+  margin: 0 10px;
+  opacity: 0.6;
+}
+
+/* -----------------------------------------------------------
+   Layer 2 — Reading area
+   Always the seasonal cream background, always a narrow
+   single column so long-form writing stays readable.
+----------------------------------------------------------- */
+.article-reading {
+  background: var(--background-primary);
+  padding: clamp(56px, 8vw, 88px) clamp(20px, 5vw, 64px) clamp(72px, 9vw, 100px);
+}
+
+.article-reading__inner {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* Fixed opening line — script font, same on every article.
+   Noticeable, but deliberately smaller than the hero title. */
+.article-opening {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 2.6rem);
+  color: var(--dearher-ink, var(--text-primary));
+  margin: 0 0 clamp(36px, 6vw, 52px);
+}
+
+/* -----------------------------------------------------------
+   Layer 3 — Content blocks
+   Typography roles:
+     Display  (League Spartan)   = personality: statements, quotes
+     Poppins                      = reading: body copy, captions
+     Space Mono                   = editorial metadata: dates, tags
+     Script   (Brittany Signature) = handwriting: opening/signoff/notes
+----------------------------------------------------------- */
+.article-block {
+  margin: 0 0 16px;
+}
+
+.article-block--paragraph {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+}
+
+.article-block--paragraph strong {
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* A short, isolated line with editorial/emotional weight —
+   "Yeah. I went there.", "Girl." — gets its own visual beat
+   instead of blending into the paragraph rhythm around it. */
+.article-block--emphasized {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin: clamp(18px, 3vw, 28px) 0;
+}
+
+.article-block--pull-quote {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+  line-height: 1.3;
+  color: var(--text-primary);
+  text-align: center;
+  margin: clamp(36px, 5vw, 52px) 0;
+}
+
+.article-block--statement {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.2;
+  color: var(--text-primary);
+  text-align: center;
+  margin: clamp(40px, 6vw, 60px) 0;
+}
+
+.article-block--statement .article-block__underline {
+  display: none;
+}
+
+.article-block--handwritten {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--dearher-ink, var(--text-primary));
+  text-align: center;
+  margin: 28px 0;
+}
+
+.article-block--spacer {
+  height: clamp(24px, 5vw, 48px);
+  margin: 0;
+}
+
+.article-block--image figure {
+  margin: clamp(36px, 5.5vw, 56px) auto;
+  max-width: 460px;
+}
+
+.article-block--image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article-block--image figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-top: 12px;
+  text-align: center;
+}
+
+.article-block--image.is-small figure {
+  max-width: 280px;
+}
+
+/* Editorial rhythm: alternate a candid image to the left of the
+   reading column and the paper scrap to the right, so a long
+   article doesn't read as one unbroken wall of text. */
+.article-block--image.is-left figure {
+  margin-left: calc(-1 * clamp(0px, 8vw, 90px));
+}
+
+.article-block--image.is-left figcaption,
+.article-block--image.is-right figcaption {
+  text-align: left;
+}
+
+.article-block--image.is-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.article-block--image.is-right figure {
+  margin-right: calc(-1 * clamp(0px, 8vw, 90px));
+}
+
+.article-block--image.is-right figcaption {
+  text-align: right;
+}
+
+/* One decorative "scrap" element — paper note, receipt, etc.
+   Each article should use at most one decorative family; this
+   block is where it lives when it needs to interrupt the text. */
+.article-block--scrap {
+  display: flex;
+  justify-content: center;
+  margin: clamp(40px, 6vw, 64px) 0;
+}
+
+.article-block--scrap.is-left {
+  justify-content: flex-start;
+}
+
+.article-block--scrap.is-right {
+  justify-content: flex-end;
+}
+
+.article-block--scrap img {
+  width: clamp(190px, 26vw, 240px);
+  height: auto;
+  display: block;
+}
+
+/* -----------------------------------------------------------
+   Layer 4 — Secondary image
+   Optional. One photo, relating to an emotional beat rather
+   than illustrating the text literally. Breaks the column.
+----------------------------------------------------------- */
+.article-secondary {
+  display: flex;
+  justify-content: flex-start;
+  margin: clamp(40px, 6vw, 64px) 0;
+}
+
+.article-secondary figure {
+  margin: 0;
+  max-width: 400px;
+}
+
+.article-secondary img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article-secondary figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-top: 12px;
+}
+
+/* -----------------------------------------------------------
+   Layer 5 — Signoff
+   Fixed component: "From," + "the girl who {ending}". Only the
+   ending text changes per article (see article.js / signoff).
+   The article should go quiet here — no images, no decoration.
+----------------------------------------------------------- */
+.article-signoff {
+  margin-top: clamp(40px, 5.5vw, 60px);
+}
+
+.article-signoff__from,
+.article-signoff__ending {
+  font-family: var(--font-script);
+  font-weight: 400;
+  color: var(--dearher-ink, var(--text-primary));
+  margin: 0;
+}
+
+.article-signoff__from {
+  font-size: 1.75rem;
+  margin-bottom: 2px;
+}
+
+.article-signoff__ending {
+  font-size: 1.9rem;
+}
+
+/* -----------------------------------------------------------
+   Post-article navigation
+   Sits well below the signoff, after real breathing room.
+   Stays quiet: category + prev/next + a small related list.
+   Any part is omitted entirely when there's no data for it yet
+   (e.g. a first article has no previous/next/related).
+----------------------------------------------------------- */
+.article-nav {
+  max-width: 620px;
+  margin: clamp(72px, 10vw, 110px) auto 0;
+  padding-top: clamp(28px, 4vw, 40px);
+  border-top: 1px solid rgba(63, 53, 45, 0.15);
+}
+
+.article-nav__category {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 20px;
+}
+
+.article-nav__links {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.article-nav__link {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.article-nav__link-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.article-nav__link--next {
+  text-align: right;
+  margin-left: auto;
+}
+
+.article-nav__fallback {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--brand-pink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+@media (max-width: 780px) {
+  .article-hero__image {
+    width: clamp(200px, 60vw, 320px);
+  }
+  .article-block--image.is-left figure,
+  .article-block--image.is-right figure {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .article-block--image.is-right {
+    justify-content: center;
+  }
+  .article-block--scrap.is-left,
+  .article-block--scrap.is-right {
+    justify-content: center;
+  }
+}
