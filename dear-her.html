@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=League+Spartan:wght@500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=50">
+<link rel="stylesheet" href="styles.css?v=51">
 </head>
 <body class="dear-her-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -96,17 +96,23 @@
       <p class="letters-intro__subtitle js-reveal" data-reveal>Letters about life, change, love, the things we never say out loud, and everything that lingers in between.</p>
     </div>
 
+    <!-- Filter toggle + full tag list hidden until there's more than one letter to filter.
+         To restore: uncomment the button below and the four extra pills in the list. -->
+    <!--
     <button type="button" class="letters-filter-toggle" id="filter-toggle" aria-expanded="false" aria-controls="letters-filters" aria-label="Filter letters by category">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
       Filter
     </button>
+    -->
 
-    <div class="letters-filters js-reveal" id="letters-filters" role="group" aria-label="Filter letters by category">
+    <div class="letters-filters" id="letters-filters" role="group" aria-label="Filter letters by category">
       <button type="button" class="letters-filter is-active">All Letters</button>
+      <!--
       <button type="button" class="letters-filter">Friendship</button>
       <button type="button" class="letters-filter">Life Lately</button>
       <button type="button" class="letters-filter">Love</button>
       <button type="button" class="letters-filter">Growing Pains</button>
+      -->
     </div>
 
     <div class="letters-featured" data-reveal-group data-reveal-stagger="120">
@@ -122,6 +128,7 @@
             <span class="letters-featured__meta">5 min read</span>
           </div>
         </li>
+        <!-- Items 02/03 are placeholders for future letters — hidden until those are real.
         <li class="letters-featured__item" data-image="asset/lemon picnic.png">
           <span class="letters-featured__num">02</span>
           <div class="letters-featured__body">
@@ -138,11 +145,15 @@
             <span class="letters-featured__meta">2 min read</span>
           </div>
         </li>
+        -->
       </ol>
     </div>
 
   </section>
 
+  <!-- "More letters" archive hidden until there's a real archive to show — placeholder
+       cards below are all fake ("We are all gonna die" x3). To restore: uncomment this
+       whole section.
   <section class="letters-more">
 
     <div class="letters-more__header" data-reveal-group data-reveal-stagger="120">
@@ -210,6 +221,7 @@
     </div>
 
   </section>
+  -->
 
 </main>
 
