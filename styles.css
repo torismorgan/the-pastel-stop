@@ -2426,7 +2426,7 @@ button {
 .events-intro__row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: clamp(24px, 4vw, 48px);
   flex-wrap: wrap;
 }
@@ -2434,11 +2434,12 @@ button {
 .events-intro__title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(3rem, 7.5vw, 5.6rem);
+  font-size: clamp(3.4rem, 8.5vw, 6.4rem);
   line-height: 1.02;
   color: #52AFF7;
   margin: 0;
-  max-width: 14ch;
+  max-width: 20ch;
+  white-space: nowrap;
 }
 
 .events-intro__subtitle {
@@ -2449,14 +2450,14 @@ button {
   color: var(--dearher-ink);
   max-width: 34ch;
   margin: 0;
-  text-align: right;
+  text-align: left;
 }
 
 .events-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: clamp(24px, 3.5vw, 36px);
+  margin-top: clamp(16px, 2.5vw, 24px);
 }
 
 .events-filter {
@@ -2488,9 +2489,9 @@ button {
 
 .events-featured {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.82fr 1fr;
   gap: clamp(32px, 5vw, 64px);
-  margin-top: clamp(40px, 6vw, 64px);
+  margin-top: clamp(28px, 4vw, 44px);
   align-items: center;
 }
 
@@ -2555,5 +2556,12 @@ button {
   }
   .events-featured {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .events-intro__title {
+    font-size: min(9.8vw, 3.2rem);
+    max-width: none;
   }
 }
