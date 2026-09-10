@@ -2436,7 +2436,7 @@ button {
   font-weight: 800;
   font-size: clamp(3rem, 7.5vw, 5.6rem);
   line-height: 1.02;
-  color: var(--dearher-ink);
+  color: #52AFF7;
   margin: 0;
   max-width: 14ch;
 }
@@ -2512,7 +2512,7 @@ button {
   font-weight: 800;
   font-size: clamp(2.4rem, 4.6vw, 3.6rem);
   line-height: 1.05;
-  color: var(--dearher-ink);
+  color: #52AFF7;
   margin: 0 0 20px;
 }
 
@@ -2541,7 +2541,7 @@ button {
   font-size: 0.85rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-primary);
+  color: var(--brand-pink);
 }
 
 @media (max-width: 900px) {
