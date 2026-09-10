@@ -2438,8 +2438,10 @@ button {
   line-height: 1.02;
   color: #52AFF7;
   margin: 0;
-  max-width: 20ch;
-  white-space: nowrap;
+}
+
+.events-intro__title-break {
+  display: block;
 }
 
 .events-intro__subtitle {
@@ -2562,6 +2564,8 @@ button {
 @media (max-width: 640px) {
   .events-intro__title {
     font-size: min(9.8vw, 3.2rem);
-    max-width: none;
+  }
+  .events-intro__title-break {
+    display: inline;
   }
 }
