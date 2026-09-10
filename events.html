@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=League+Spartan:wght@500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=57">
+<link rel="stylesheet" href="styles.css?v=58">
 </head>
 <body class="events-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -57,7 +57,37 @@
     </div>
   </section>
 
-  <!-- Rest of the Events page goes below this — hero only for now. -->
+  <section class="events-intro">
+
+    <div class="events-intro__row">
+      <h2 class="events-intro__title">find your<br>next stop.</h2>
+      <p class="events-intro__subtitle">A little look at what&rsquo;s coming next &mdash; events, gatherings, and moments worth showing up for.</p>
+    </div>
+
+    <!-- Filter pills simplified to one until there's more than one event to filter.
+         To restore: uncomment the three extra pills below. -->
+    <div class="events-filters">
+      <button type="button" class="events-filter is-active">Featured</button>
+      <!--
+      <button type="button" class="events-filter">All Events</button>
+      <button type="button" class="events-filter">Upcoming</button>
+      <button type="button" class="events-filter">Past</button>
+      -->
+    </div>
+
+    <div class="events-featured">
+      <div class="events-featured__image">
+        <img src="asset/last bloom post card.jpg" alt="A postcard collage for The Last Bloom of Summer: white parasols, tulips, lemons, and a photo from the event.">
+      </div>
+      <div class="events-featured__body">
+        <h3 class="events-featured__title">The Last Bloom<br>Of Summer</h3>
+        <p class="events-featured__meta">DINNER &bull; AUG 30 &bull; LETHBRIDGE, AB</p>
+        <p class="events-featured__desc">One last gathering to hold onto summer a little longer &mdash; good food, good company, and a night worth remembering.</p>
+        <a class="events-featured__link" href="#">SEE FULL RECAP</a>
+      </div>
+    </div>
+
+  </section>
 
 </main>
 
