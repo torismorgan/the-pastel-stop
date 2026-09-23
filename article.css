@@ -1,485 +1,949 @@
 /* ===========================================================
-   Dear Her — Article Template System
-   ------------------------------------------------------------
-   A reusable structure for every Dear Her article. Five layers:
-     1. Hero / cover      (.article-hero)
-     2. Reading area       (.article-reading)
-     3. Content blocks     (.article-block--*)
-     4. Secondary image    (.article-secondary)
-     5. Signoff            (.article-signoff)
-   ...plus a restrained post-article nav (.article-nav).
+   THE PASTEL STOP
+   DEAR HER — ARTICLE TEMPLATE SYSTEM
 
-   What changes per article: heroColor, heroBackgroundImage(+
-   opacity), the hero/secondary images, and the bodyBlocks data
-   (see article.js). What never changes: the layer structure,
-   type roles, and spacing rhythm below. Don't add one-off CSS
-   to a single article page — extend this file instead so every
-   article stays visually consistent.
+   TYPOGRAPHY
+   -----------------------------------------------------------
+   Display font          = article titles / major statements
+   Poppins               = body copy / readable UI
+   Space Mono            = metadata / captions / editorial details
+   Brittany Signature    = handwriting / Dear her / signoff
+
+   ARTICLE STRUCTURE
+   -----------------------------------------------------------
+   1. Hero / cover
+   2. Reading area
+   3. Flexible article blocks
+   4. Optional secondary image / scrap
+   5. Signoff
+   6. Post-article navigation
+
+   IMPORTANT:
+   Do NOT create one-off CSS for individual articles.
+   Change article data/variables instead.
+=========================================================== */
+
+
+/* ===========================================================
+   FONT
+=========================================================== */
+
+@font-face {
+  font-family: "Brittany Signature";
+  src: url("asset/fonts/BrittanySignature.woff2") format("woff2"),
+       url("asset/fonts/BrittanySignature.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ===========================================================
+   ARTICLE VARIABLES
 =========================================================== */
 
 :root {
+  --font-ui: "Poppins", sans-serif;
   --font-mono: "Space Mono", "Courier New", monospace;
+  --font-script: "Brittany Signature", cursive;
+
+  /* Keep your existing TPS display font variable */
+  --font-display: "League Spartan", sans-serif;
+
+  --article-cream: #FFFFF1;
+  --article-text: #3F352D;
+  --article-secondary-text: #716A64;
+
+  --hero-color: #2879BD;
+
+  /*
+    IMPORTANT:
+    This is a SQUARE image used as subtle surface detail.
+    It will TILE instead of stretching across the hero.
+  */
+  --hero-texture: url("asset/dear-her/001/background-square.png");
+
+  /* Keep subtle */
+  --hero-texture-opacity: 0.07;
+
+  /*
+    Size of EACH repeated square.
+    Smaller = finer texture.
+    Larger = more spacious texture.
+  */
+  --hero-texture-size: 400px;
+
+  /* Handwriting/accent color inside cream reading area */
+  --dearher-ink: #2879BD;
 }
 
-/* Article hero backgrounds are always a saturated color, so the
-   nav needs to stay white until the header picks up its scrolled
-   (opaque) background — unlike dear-her.html, which sits on a
-   pale sky and needs dark nav text instead. */
+
+/* ===========================================================
+   GLOBAL ARTICLE PAGE
+=========================================================== */
+
+.article-page {
+  margin: 0;
+  padding: 0;
+  background: var(--article-cream);
+  color: var(--article-text);
+}
+
+
+/* Header should remain light over the colored hero */
+
 .article-page .site-header:not(.is-scrolled) {
-  color: var(--background-primary);
+  color: #FFFFF1;
 }
 
-.article-page .site-header:not(.is-scrolled) .site-header__cta {
-  text-decoration-color: var(--background-primary);
-}
 
-.article-page .site-header.nav-open {
-  color: var(--text-primary);
-}
+/* ===========================================================
+   1. ARTICLE HERO / COVER
+=========================================================== */
 
-/* -----------------------------------------------------------
-   Layer 1 — Article hero / cover
-   Required: eyebrow (DEAR HER / 00X), title, subtitle, meta,
-   one hero image. Two background layers only:
-     1. solid heroColor (dominant)
-     2. one faded square image, heroBackgroundImageOpacity low
-   No CSS grain/noise/pattern overlays — see .article-hero__bg.
-   Never place the title text on top of the hero photograph.
------------------------------------------------------------ */
 .article-hero {
   position: relative;
-  background: var(--hero-color, var(--season-primary-deep));
-  color: var(--background-primary);
+  isolation: isolate;
+
+  background-color: var(--hero-color);
+
+  color: #FFFFF1;
+
   overflow: hidden;
 }
 
-.article-hero__bg {
+
+/* -----------------------------------------------------------
+   HERO BACKGROUND IMAGE
+
+   DO NOT:
+   - use <img object-fit="cover">
+   - stretch the square image
+   - scale one image across the entire hero
+   - add a second noise overlay
+
+   DO:
+   - repeat the square image
+   - use low opacity
+   - let the solid color dominate
+----------------------------------------------------------- */
+
+.article-hero__texture {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: var(--hero-bg-opacity, 0.1);
+
+  z-index: 0;
+
+  background-image: var(--hero-texture);
+
+  background-repeat: repeat;
+
+  background-size:
+    var(--hero-texture-size)
+    var(--hero-texture-size);
+
+  background-position: center;
+
+  opacity: var(--hero-texture-opacity);
+
+  /*
+    Soft-light makes the image feel embedded in the color
+    instead of sitting visibly on top.
+  */
+  mix-blend-mode: soft-light;
+
   pointer-events: none;
 }
 
-/* Grain over the whole hero (not just the photo), from the shared
-   noise-overlay asset — rotated + blended so it reads as texture. */
-.article-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("asset/NOISE OVERLAY1.png");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.2;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
+
+/* -----------------------------------------------------------
+   HERO INNER LAYOUT
+----------------------------------------------------------- */
 
 .article-hero__inner {
   position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: clamp(32px, 5vw, 72px);
-  max-width: 1280px;
+  z-index: 2;
+
+  width: min(100% - 40px, 1280px);
+
   margin: 0 auto;
-  padding: clamp(150px, 20vh, 200px) clamp(20px, 5vw, 64px) clamp(56px, 7vw, 80px);
-  flex-wrap: wrap;
+
+  padding:
+    clamp(128px, 16vh, 170px)
+    0
+    clamp(60px, 8vw, 88px);
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(250px, 360px);
+
+  align-items: center;
+
+  gap: clamp(56px, 8vw, 120px);
 }
+
+
+/* -----------------------------------------------------------
+   HERO LEFT
+----------------------------------------------------------- */
 
 .article-hero__text {
-  flex: 1 1 380px;
-  max-width: 640px;
+  max-width: 620px;
 }
+
 
 .article-hero__eyebrow {
+  margin: 0 0 34px;
+
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
+  font-weight: 400;
+
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.85;
-  margin: 0 0 16px;
+
+  opacity: 0.9;
 }
 
+
 .article-hero__title {
+  margin: 0 0 44px;
+
+  max-width: 8ch;
+
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(4.2rem, 8.5vw, 7.2rem);
+
+  font-size: clamp(3.7rem, 6.5vw, 5.8rem);
+
   line-height: 0.96;
-  margin: 0;
+
+  letter-spacing: -0.035em;
+
+  text-transform: lowercase;
 }
+
 
 .article-hero__divider {
   width: 64px;
   height: 2px;
-  background: var(--background-primary);
-  border: none;
-  margin: 28px 0 22px;
+
+  margin: 0 0 38px;
+
+  border: 0;
+
+  background: #FFFFF1;
 }
 
+
 .article-hero__subtitle {
+  margin: 0;
+
+  max-width: 39ch;
+
   font-family: var(--font-mono);
+  font-size: 0.78rem;
   font-weight: 400;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  opacity: 0.85;
-  margin: 32px 0 0;
-  max-width: 360px;
+
+  line-height: 1.7;
+
+  letter-spacing: 0.02em;
+
+  opacity: 0.92;
 }
+
+
+/* -----------------------------------------------------------
+   HERO RIGHT
+----------------------------------------------------------- */
 
 .article-hero__photo {
   display: flex;
   flex-direction: column;
+
   align-items: center;
-  flex-shrink: 0;
+
+  width: 100%;
 }
+
 
 .article-hero__image {
   position: relative;
-  width: clamp(240px, 26vw, 360px);
-  overflow: hidden;
-  margin-bottom: 44px;
+
+  width: 100%;
+  max-width: 340px;
+
+  margin-bottom: 28px;
 }
+
 
 .article-hero__image img {
+  display: block;
+
   width: 100%;
   height: auto;
-  display: block;
+
+  object-fit: contain;
 }
 
-.article-hero__meta {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  opacity: 0.85;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px 0;
-  align-items: center;
-  margin: 0;
-  text-align: center;
-}
-
-.article-hero__meta span:not(:last-child)::after {
-  content: "\2022";
-  margin: 0 10px;
-  opacity: 0.6;
-}
 
 /* -----------------------------------------------------------
-   Layer 2 — Reading area
-   Always the seasonal cream background, always a narrow
-   single column so long-form writing stays readable.
+   HERO METADATA
 ----------------------------------------------------------- */
-.article-reading {
-  background: var(--background-primary);
-  padding: clamp(56px, 8vw, 88px) clamp(20px, 5vw, 64px) clamp(72px, 9vw, 100px);
+
+.article-hero__meta {
+  width: 100%;
+
+  margin: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.67rem;
+  font-weight: 400;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+
+  line-height: 1.5;
+
+  opacity: 0.88;
 }
 
+
+.article-hero__meta span:not(:last-child)::after {
+  content: "•";
+
+  margin: 0 12px;
+
+  opacity: 0.75;
+}
+
+
+/* ===========================================================
+   2. ARTICLE READING AREA
+=========================================================== */
+
+.article-reading {
+  background: var(--article-cream);
+
+  padding:
+    clamp(60px, 8vw, 92px)
+    clamp(22px, 5vw, 64px)
+    clamp(80px, 10vw, 120px);
+}
+
+
 .article-reading__inner {
-  max-width: 620px;
+  width: min(100%, 680px);
+
   margin: 0 auto;
 }
 
-/* Fixed opening line — script font, same on every article.
-   Noticeable, but deliberately smaller than the hero title. */
+
+/* ===========================================================
+   DEAR HER OPENING
+=========================================================== */
+
 .article-opening {
+  margin: 0 0 clamp(36px, 6vw, 54px);
+
   font-family: var(--font-script);
   font-weight: 400;
-  font-size: clamp(2rem, 4.5vw, 2.6rem);
-  color: var(--dearher-ink, var(--text-primary));
-  margin: 0 0 clamp(36px, 6vw, 52px);
+
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+
+  color: var(--dearher-ink);
+
+  line-height: 1;
 }
 
-/* -----------------------------------------------------------
-   Layer 3 — Content blocks
-   Typography roles:
-     Display  (League Spartan)   = personality: statements, quotes
-     Poppins                      = reading: body copy, captions
-     Space Mono                   = editorial metadata: dates, tags
-     Script   (Brittany Signature) = handwriting: opening/signoff/notes
------------------------------------------------------------ */
+
+/* ===========================================================
+   3. ARTICLE BODY BLOCKS
+=========================================================== */
+
 .article-block {
-  margin: 0 0 16px;
+  margin: 0 0 26px;
 }
+
+
+/* -----------------------------------------------------------
+   NORMAL PARAGRAPH
+----------------------------------------------------------- */
 
 .article-block--paragraph {
   font-family: var(--font-ui);
-  font-weight: 400;
+
   font-size: 1rem;
-  line-height: 1.65;
-  color: var(--text-primary);
-}
-
-.article-block--paragraph strong {
-  font-weight: 700;
-  font-style: italic;
-}
-
-/* A short, isolated line with editorial/emotional weight —
-   "Yeah. I went there.", "Girl." — gets its own visual beat
-   instead of blending into the paragraph rhythm around it. */
-.article-block--emphasized {
-  font-family: var(--font-ui);
   font-weight: 400;
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--text-primary);
-  margin: clamp(18px, 3vw, 28px) 0;
+
+  line-height: 1.8;
+
+  color: var(--article-text);
 }
 
-.article-block--pull-quote {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
-  line-height: 1.3;
-  color: var(--text-primary);
-  text-align: center;
-  margin: clamp(36px, 5vw, 52px) 0;
-}
 
-.article-block--statement {
-  font-family: var(--font-script);
-  font-weight: 400;
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  line-height: 1.2;
-  color: var(--text-primary);
-  text-align: center;
-  margin: clamp(40px, 6vw, 60px) 0;
-}
-
-.article-block--statement .article-block__underline {
-  display: none;
-}
-
-.article-block--handwritten {
-  font-family: var(--font-script);
-  font-weight: 400;
-  font-size: 1.5rem;
-  color: var(--dearher-ink, var(--text-primary));
-  text-align: center;
-  margin: 28px 0;
-}
-
-.article-block--spacer {
-  height: clamp(24px, 5vw, 48px);
+.article-block--paragraph p {
   margin: 0;
 }
 
-.article-block--image figure {
-  margin: clamp(36px, 5.5vw, 56px) auto;
-  max-width: 460px;
+
+.article-block--paragraph strong {
+  font-weight: 700;
 }
 
-.article-block--image img {
-  width: 100%;
-  height: auto;
-  display: block;
+
+.article-block--paragraph em {
+  font-style: italic;
 }
 
-.article-block--image figcaption {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-top: 12px;
+
+/* -----------------------------------------------------------
+   EMPHASIZED SHORT LINE
+
+   Examples:
+   Yeah. I went there.
+   Girl.
+   Not perfect, but good.
+----------------------------------------------------------- */
+
+.article-block--emphasized {
+  margin:
+    clamp(28px, 4vw, 42px)
+    0;
+
+  font-family: var(--font-ui);
+
+  font-size: 1.06rem;
+  font-weight: 600;
+
+  font-style: italic;
+
+  color: var(--article-text);
+}
+
+
+/* -----------------------------------------------------------
+   PULL QUOTE
+----------------------------------------------------------- */
+
+.article-block--pull-quote {
+  margin:
+    clamp(44px, 6vw, 64px)
+    0;
+
+  font-family: var(--font-display);
+
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  text-align: center;
+
+  color: var(--article-text);
+}
+
+
+/* -----------------------------------------------------------
+   LARGE STATEMENT
+
+   Example:
+   We're going to be okay.
+----------------------------------------------------------- */
+
+.article-block--statement {
+  margin:
+    clamp(64px, 9vw, 96px)
+    0;
+
   text-align: center;
 }
 
-.article-block--image.is-small figure {
-  max-width: 280px;
+
+.article-block--statement-text {
+  margin: 0;
+
+  font-family: var(--font-display);
+
+  font-size: clamp(2rem, 4.4vw, 3rem);
+
+  font-weight: 700;
+
+  line-height: 1.15;
+
+  color: var(--dearher-ink);
 }
 
-/* Editorial rhythm: alternate a candid image to the left of the
-   reading column and the paper scrap to the right, so a long
-   article doesn't read as one unbroken wall of text. */
+
+.article-block__underline {
+  display: block;
+
+  width: 92px;
+  height: 2px;
+
+  margin: 22px auto 0;
+
+  background: var(--dearher-ink);
+}
+
+
+/* -----------------------------------------------------------
+   HANDWRITTEN NOTE
+----------------------------------------------------------- */
+
+.article-block--handwritten {
+  margin: 34px 0;
+
+  font-family: var(--font-script);
+
+  font-size: 1.8rem;
+
+  line-height: 1;
+
+  text-align: center;
+
+  color: var(--dearher-ink);
+}
+
+
+/* -----------------------------------------------------------
+   SPACER
+----------------------------------------------------------- */
+
+.article-block--spacer {
+  height: clamp(28px, 5vw, 52px);
+
+  margin: 0;
+}
+
+
+/* ===========================================================
+   ARTICLE IMAGE BLOCK
+=========================================================== */
+
+.article-block--image {
+  margin:
+    clamp(44px, 7vw, 70px)
+    0;
+}
+
+
+.article-block--image figure {
+  width: min(100%, 470px);
+
+  margin: 0;
+}
+
+
+.article-block--image img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+}
+
+
+.article-block--image figcaption {
+  margin-top: 12px;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.69rem;
+
+  letter-spacing: 0.05em;
+
+  line-height: 1.5;
+
+  text-transform: uppercase;
+
+  color: var(--article-secondary-text);
+}
+
+
+/* Editorial offset */
+
 .article-block--image.is-left figure {
-  margin-left: calc(-1 * clamp(0px, 8vw, 90px));
+  margin-left: clamp(-90px, -7vw, 0px);
 }
 
-.article-block--image.is-left figcaption,
-.article-block--image.is-right figcaption {
-  text-align: left;
-}
 
 .article-block--image.is-right {
   display: flex;
+
   justify-content: flex-end;
 }
 
+
 .article-block--image.is-right figure {
-  margin-right: calc(-1 * clamp(0px, 8vw, 90px));
+  margin-right: clamp(-90px, -7vw, 0px);
 }
 
-.article-block--image.is-right figcaption {
-  text-align: right;
-}
 
-/* One decorative "scrap" element — paper note, receipt, etc.
-   Each article should use at most one decorative family; this
-   block is where it lives when it needs to interrupt the text. */
+/* ===========================================================
+   SCRAP / PAPER NOTE
+=========================================================== */
+
 .article-block--scrap {
   display: flex;
+
   justify-content: center;
-  margin: clamp(40px, 6vw, 64px) 0;
+
+  margin:
+    clamp(46px, 7vw, 72px)
+    0;
 }
+
 
 .article-block--scrap.is-left {
   justify-content: flex-start;
 }
 
+
 .article-block--scrap.is-right {
   justify-content: flex-end;
 }
 
+
 .article-block--scrap img {
-  width: clamp(190px, 26vw, 240px);
-  height: auto;
   display: block;
+
+  width: clamp(180px, 25vw, 235px);
+
+  height: auto;
 }
 
-/* -----------------------------------------------------------
-   Layer 4 — Secondary image
-   Optional. One photo, relating to an emotional beat rather
-   than illustrating the text literally. Breaks the column.
------------------------------------------------------------ */
+
+/* ===========================================================
+   4. SECONDARY IMAGE
+=========================================================== */
+
 .article-secondary {
   display: flex;
+
   justify-content: flex-start;
-  margin: clamp(40px, 6vw, 64px) 0;
+
+  margin:
+    clamp(48px, 7vw, 74px)
+    0;
 }
+
 
 .article-secondary figure {
+  width: min(100%, 440px);
+
   margin: 0;
-  max-width: 400px;
 }
+
 
 .article-secondary img {
+  display: block;
+
   width: 100%;
   height: auto;
-  display: block;
 }
+
 
 .article-secondary figcaption {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
   margin-top: 12px;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.68rem;
+
+  line-height: 1.5;
+
+  letter-spacing: 0.05em;
+
+  text-transform: uppercase;
+
+  color: var(--article-secondary-text);
 }
 
-/* -----------------------------------------------------------
-   Layer 5 — Signoff
-   Fixed component: "From," + "the girl who {ending}". Only the
-   ending text changes per article (see article.js / signoff).
-   The article should go quiet here — no images, no decoration.
------------------------------------------------------------ */
+
+/* ===========================================================
+   5. SIGNOFF
+=========================================================== */
+
 .article-signoff {
-  margin-top: clamp(40px, 5.5vw, 60px);
+  margin-top:
+    clamp(72px, 10vw, 110px);
 }
+
 
 .article-signoff__from,
 .article-signoff__ending {
-  font-family: var(--font-script);
-  font-weight: 400;
-  color: var(--dearher-ink, var(--text-primary));
   margin: 0;
+
+  font-family: var(--font-script);
+
+  font-weight: 400;
+
+  color: var(--dearher-ink);
 }
+
 
 .article-signoff__from {
-  font-size: 1.75rem;
-  margin-bottom: 2px;
-}
+  margin-bottom: 4px;
 
-.article-signoff__ending {
   font-size: 1.9rem;
 }
 
-/* -----------------------------------------------------------
-   Post-article navigation
-   Sits well below the signoff, after real breathing room.
-   Stays quiet: category + prev/next + a small related list.
-   Any part is omitted entirely when there's no data for it yet
-   (e.g. a first article has no previous/next/related).
------------------------------------------------------------ */
-.article-nav {
-  max-width: 620px;
-  margin: clamp(72px, 10vw, 110px) auto 0;
-  padding-top: clamp(28px, 4vw, 40px);
-  border-top: 1px solid rgba(63, 53, 45, 0.15);
+
+.article-signoff__ending {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+
+  line-height: 1.1;
 }
 
-.article-nav__category {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin: 0 0 20px;
+
+/* ===========================================================
+   6. POST ARTICLE NAVIGATION
+=========================================================== */
+
+.article-nav {
+  width: min(100%, 680px);
+
+  margin:
+    clamp(90px, 12vw, 130px)
+    auto
+    0;
+
+  padding-top:
+    clamp(30px, 5vw, 44px);
+
+  border-top:
+    1px solid rgba(63, 53, 45, 0.16);
 }
+
+
+.article-nav__category {
+  margin: 0 0 24px;
+
+  font-family: var(--font-mono);
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.07em;
+
+  text-transform: uppercase;
+
+  color: var(--article-secondary-text);
+}
+
 
 .article-nav__links {
   display: flex;
+
   justify-content: space-between;
-  gap: 24px;
+
+  gap: 28px;
+
   flex-wrap: wrap;
 }
 
+
 .article-nav__link {
   font-family: var(--font-ui);
-  font-size: 0.85rem;
-  color: var(--text-primary);
+
+  font-size: 0.86rem;
+
+  color: var(--article-text);
+
+  text-decoration: none;
 }
+
 
 .article-nav__link-label {
   display: block;
+
+  margin-bottom: 7px;
+
   font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.06em;
+
+  font-size: 0.64rem;
+
+  letter-spacing: 0.07em;
+
   text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
+
+  color: var(--article-secondary-text);
 }
+
 
 .article-nav__link--next {
-  text-align: right;
   margin-left: auto;
+
+  text-align: right;
 }
 
-.article-nav__fallback {
-  font-family: var(--font-ui);
-  font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--brand-pink);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 5px;
-}
 
-@media (max-width: 780px) {
-  .article-hero__image {
-    width: clamp(200px, 60vw, 320px);
+/* ===========================================================
+   TABLET
+=========================================================== */
+
+@media (max-width: 900px) {
+
+  .article-hero__inner {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(220px, 300px);
+
+    gap: 50px;
   }
+
+
+  .article-hero__title {
+    font-size:
+      clamp(3.2rem, 7.8vw, 5rem);
+  }
+
+}
+
+
+/* ===========================================================
+   MOBILE
+=========================================================== */
+
+@media (max-width: 700px) {
+
+  :root {
+    --hero-texture-size: 280px;
+  }
+
+
+  .article-hero__inner {
+    width: min(100% - 36px, 560px);
+
+    grid-template-columns: 1fr;
+
+    padding:
+      118px
+      0
+      58px;
+
+    gap: 50px;
+  }
+
+
+  .article-hero__text {
+    max-width: none;
+  }
+
+
+  .article-hero__eyebrow {
+    margin-bottom: 26px;
+  }
+
+
+  .article-hero__title {
+    font-size:
+      clamp(3.1rem, 14vw, 4.8rem);
+
+    max-width: 7ch;
+
+    margin-bottom: 34px;
+  }
+
+
+  .article-hero__divider {
+    margin-bottom: 28px;
+  }
+
+
+  .article-hero__subtitle {
+    max-width: 34ch;
+  }
+
+
+  .article-hero__photo {
+    align-items: flex-start;
+  }
+
+
+  .article-hero__image {
+    width: min(78vw, 320px);
+
+    margin-bottom: 22px;
+  }
+
+
+  .article-hero__meta {
+    justify-content: flex-start;
+
+    font-size: 0.62rem;
+  }
+
+
+  .article-reading {
+    padding:
+      54px
+      22px
+      78px;
+  }
+
+
+  .article-reading__inner {
+    width: 100%;
+  }
+
+
   .article-block--image.is-left figure,
   .article-block--image.is-right figure {
     margin-left: 0;
     margin-right: 0;
   }
+
+
   .article-block--image.is-right {
     justify-content: center;
   }
+
+
   .article-block--scrap.is-left,
   .article-block--scrap.is-right {
     justify-content: center;
   }
+
+
+  .article-secondary {
+    justify-content: center;
+  }
+
+
+  .article-signoff {
+    margin-top: 76px;
+  }
+
+}
+
+
+/* ===========================================================
+   REDUCED MOTION
+=========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+
 }
