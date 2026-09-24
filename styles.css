@@ -2240,6 +2240,21 @@ button {
   color: var(--text-primary);
 }
 
+.about-around__item--soon:hover,
+.about-around__item--soon:focus-visible { background: transparent; transform: none; }
+.about-around__item--soon:hover h3 { color: var(--text-primary); }
+.about-around__item--soon:hover p { color: var(--text-secondary); }
+.about-around__soon {
+  display: inline-block;
+  margin-left: 4px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-pink);
+}
+
 .about-around__statement {
   flex: 1 1 320px;
   font-family: var(--font-display);
