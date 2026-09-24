@@ -3857,11 +3857,12 @@ button {
   display: block;
   padding: 0;
   margin: 0 0 12px;
-  font-size: 0.95rem;
-  letter-spacing: 0.06em;
+  font-size: 0.84rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.story__hint { margin: 0 0 18px; font-size: 0.74rem; line-height: 1.6; color: var(--story-soft); }
+.story__hint { margin: 0 0 18px; font-size: 0.7rem; line-height: 1.6; color: var(--story-soft); }
 
 .story__box { position: relative; }
 .story__textarea {
