@@ -1222,6 +1222,13 @@ button {
   .site-footer__top > :nth-child(4) {
     grid-column: 1 / -1;
   }
+  /* centred on phones */
+  .site-footer__col { align-items: center; text-align: center; }
+  .site-footer__socials { justify-content: center; }
+  .site-footer__newsletter { text-align: center; }
+  .site-footer__newsletter h3 { margin-left: auto; margin-right: auto; }
+  .site-footer__checkbox { justify-content: center; text-align: left; }
+  .site-footer__bottom { justify-content: center; text-align: center; }
 }
 
 @media (max-width: 560px) {
