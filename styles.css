@@ -2482,7 +2482,7 @@ button {
 .events-hero__photo {
   display: block;
   /* shrinks between tablet and desktop so the overhanging postcard always stays on screen */
-  width: min(600px, calc(59vw - 34px));
+  width: min(600px, calc(76vw - 42px));
   height: auto;
   box-shadow: 0 30px 60px -20px rgba(35, 31, 32, 0.35);
 }
@@ -2495,6 +2495,12 @@ button {
   height: auto;
   transform: rotate(-6deg);
   filter: drop-shadow(0 18px 30px rgba(35, 31, 32, 0.3));
+}
+
+/* Tablet and small laptops: keep the photo big and centre the photo + postcard as one group
+   (the postcard hangs off the right), so the card fits without shrinking the picture. */
+@media (min-width: 641px) and (max-width: 1100px) {
+  .events-hero__frame { translate: -16% 0; }
 }
 
 @media (max-width: 640px) {
@@ -3435,9 +3441,9 @@ button {
 .join-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(63, 53, 45, 0.45);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
+  background: rgba(63, 53, 45, 0.42);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   opacity: 0;
   transition: opacity 240ms var(--ease-editorial);
 }
@@ -3445,9 +3451,10 @@ button {
 .join-modal__dialog {
   position: relative;
   display: grid;
-  grid-template-columns: 0.94fr 1.06fr;
-  width: min(1100px, 82vw);
-  height: min(640px, 80svh);
+  --jm-h: min(640px, calc(100svh - 32px));
+  grid-template-columns: calc(var(--jm-h) * 2 / 3) 1fr;   /* photo column = the photo's own 2:3 shape, so nothing is cropped */
+  width: min(1100px, 100%);
+  height: var(--jm-h);
   background: var(--background-primary);
   box-shadow: 0 40px 90px -30px rgba(35, 31, 32, 0.7);
   overflow: hidden;
@@ -3579,17 +3586,16 @@ button {
 }
 
 @media (max-width: 760px) {
-  /* Mobile: a floating card (about 80% of the screen) with the page dimmed and blurred behind it.
-     Big photo on top, sign-up panel underneath. */
-  .join-modal { padding: 6vw; align-items: center; }
+  /* Mobile: full-screen card. Big photo on top (all three faces), sign-up panel underneath. */
+  .join-modal { padding: 0; align-items: stretch; }
   .join-modal__dialog {
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(190px, 1fr) auto;
+    grid-template-rows: minmax(150px, 1fr) auto;
     width: 100%;
-    max-width: 440px;
-    height: auto;
-    max-height: 82svh;
-    margin: 0 auto;
+    max-width: none;
+    height: 100svh;
+    max-height: none;
+    margin: 0;
     transform: translateY(24px);
   }
   .join-modal__media img { object-position: 50% 8%; }
