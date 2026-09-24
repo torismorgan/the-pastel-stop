@@ -2992,6 +2992,32 @@ button {
 }
 
 /* 4. The night, pinned up — scrapbook, varied treatments */
+/* 7. Polaroid grid — 3 across, 5 down */
+.rc-polas {
+  background-color: var(--background-primary);
+  background-image: var(--grain);
+  padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px) clamp(80px, 11vw, 140px);
+}
+.rc-polas__label { text-align: center; margin-bottom: clamp(40px, 6vw, 72px); }
+.rc-polas__grid {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 4vw, 56px) clamp(16px, 3.4vw, 48px);
+  justify-items: center;
+}
+.rc-polas__item { margin: 0; width: 100%; max-width: 338px; }
+.rc-polas__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 14px 28px -16px rgba(35, 31, 32, 0.4);
+}
+@media (max-width: 640px) {
+  .rc-polas__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 .recap-wall {
   background: var(--recap-wall);
   padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px) clamp(80px, 11vw, 140px);
