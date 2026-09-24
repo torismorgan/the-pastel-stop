@@ -3635,6 +3635,9 @@ button {
   background-image: var(--grain);
 }
 
+/* everything real sits above the grain layer, so only the brown background is grainy */
+.pause-hero > * { z-index: 1; }
+
 .pause-hero__eyebrow {
   position: absolute;
   left: 8.7%;
@@ -3651,7 +3654,7 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 5;
+  z-index: 0;
   pointer-events: none;
   background: url("asset/grain-tile.jpg") 0 0 / 600px 600px repeat;
   mix-blend-mode: overlay;
@@ -3774,7 +3777,7 @@ button {
     align-items: stretch;
     padding: 132px 24px 34px;
   }
-  .pause-hero__eyebrow, .pause-hero__note, .pause-hero__tag { position: static; }
+  .pause-hero__eyebrow, .pause-hero__note, .pause-hero__tag { position: relative; }
   .pause-file { position: relative; left: auto; top: auto; }
   .pause-hero__eyebrow { font-size: 0.72rem; margin: 0 0 22px; }
   .pause-file {
@@ -3893,8 +3896,9 @@ button {
 .story__option:hover { border-color: var(--story-ink); }
 .story__option input, .story__consent input { position: absolute; opacity: 0; width: 1px; height: 1px; }
 .story__dot { flex: none; width: 20px; height: 20px; border: 1.5px solid var(--story-ink); border-radius: 50%; display: grid; place-items: center; }
-.story__dot::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--story-ink); transform: scale(0); transition: transform 160ms var(--ease-editorial); }
+.story__dot::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--brand-pink); transform: scale(0); transition: transform 160ms var(--ease-editorial); }
 .story__option:has(input:checked) { background: rgba(63, 23, 14, 0.07); border-color: var(--story-ink); }
+.story__option input:checked + .story__dot { border-color: var(--brand-pink); }
 .story__option input:checked + .story__dot::after { transform: scale(1); }
 .story__option:has(input:focus-visible), .story__consent:has(input:focus-visible) .story__check { outline: 2px solid var(--story-ink); outline-offset: 3px; }
 
@@ -3932,7 +3936,23 @@ button {
 .story__done:focus { outline: none; }
 .story__title--done { margin-bottom: 22px; }
 .story__done-copy { max-width: 52ch; margin: 0 0 30px; font-size: 0.95rem; line-height: 1.75; }
-.story__back { font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--story-ink); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.story__back, .story__crumb {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--story-ink);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  transition: color 200ms var(--ease-editorial);
+}
+/* "deeper" on hover: heavier type, thicker line, darker ink */
+.story__back:focus-visible, .story__crumb:focus-visible { font-weight: 700; text-decoration-thickness: 2px; color: #24090A; }
+@media (hover: hover) {
+  .story__back:hover, .story__crumb:hover { font-weight: 700; text-decoration-thickness: 2px; color: #24090A; }
+}
+.story__crumb { font-size: inherit; letter-spacing: inherit; text-decoration: none; }
+.story__crumb:hover, .story__crumb:focus-visible { text-decoration: underline; }
 
 @media (max-width: 900px) {
   .story__holes { display: none; }
@@ -3942,7 +3962,7 @@ button {
   .story { padding-top: 104px; }
   .story__top { margin-bottom: 26px; }
   .story__options { grid-template-columns: 1fr; gap: 10px; }
-  .story__textarea { min-height: 220px; padding: 18px 18px 42px; font-size: 0.9rem; }
+  .story__textarea { min-height: 150px; padding: 14px 16px 38px; font-size: 0.88rem; line-height: 1.6; }
   .story__submit { align-items: stretch; }
   .story__button { width: 100%; }
 }
