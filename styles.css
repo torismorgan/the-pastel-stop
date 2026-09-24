@@ -471,7 +471,7 @@ button {
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   color: #FFFFFF;
-  margin: 0 0 26px;
+  margin: 0 0 clamp(52px, 5.6vw, 72px);
 }
 
 .hero__eyebrow strong {
@@ -574,7 +574,7 @@ button {
 
 @media (max-width: 900px) {
   .hero__eyebrow {
-    margin-bottom: 38px;
+    margin-bottom: 56px;
   }
   .hero__script {
     margin-bottom: 8px;
@@ -595,7 +595,7 @@ button {
     max-width: 100%;
   }
   .hero__eyebrow {
-    margin-bottom: 26px;
+    margin-bottom: 46px;
   }
   .hero__script {
     margin-bottom: 8px;

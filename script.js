@@ -114,6 +114,7 @@
     var manualAdvance = function (fn) {
       stopAutoplay();
       fn();
+      startAutoplay(); // restart the timer so the next auto-advance is a full 7s after a click
     };
 
     dots.forEach(function (dot) {
@@ -167,6 +168,7 @@
 
     startAutoplay();
     hero.addEventListener("mouseenter", stopAutoplay);
+    hero.addEventListener("mouseleave", startAutoplay);
   }
 
   /* -------------------------------------------------
