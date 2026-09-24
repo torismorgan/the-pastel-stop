@@ -2795,9 +2795,9 @@ button {
 
 /* 4. Script heading over short mono blocks */
 .rc-list {
-  background-color: var(--background-primary);
+  background-color: var(--recap-butter);
   background-image: var(--grain);
-  padding: clamp(80px, 12vw, 170px) clamp(20px, 5vw, 64px) clamp(80px, 12vw, 170px);
+  padding: clamp(56px, 8vw, 110px) clamp(20px, 5vw, 64px) clamp(56px, 8vw, 110px);
 }
 .rc-list__title, .rc-list__grid { max-width: 820px; margin-left: auto; margin-right: auto; }
 .rc-list__title {
@@ -2820,9 +2820,9 @@ button {
 
 /* 2. Love letter — small story moment, big cream field */
 .rc-letter {
-  background-color: var(--background-primary);
+  background-color: var(--recap-butter);
   background-image: var(--grain);
-  padding: clamp(96px, 15vw, 210px) clamp(20px, 5vw, 64px) clamp(72px, 11vw, 150px);
+  padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px) clamp(56px, 8vw, 104px);
 }
 .rc-letter__grid {
   max-width: 1000px;

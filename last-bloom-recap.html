@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=League+Spartan:wght@500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=97">
+<link rel="stylesheet" href="styles.css?v=99">
 </head>
 <body class="recap-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -57,7 +57,7 @@
     </div>
   </section>
 
-  <!-- 3. Love letter — heading over a small photo, text beside it -->
+  <!-- 2. Love letter — heading over a small photo, text beside it -->
   <section class="rc-letter">
     <div class="rc-letter__grid">
       <h2 class="rc-letter__title js-reveal">one last little love letter to summer.</h2>
@@ -68,19 +68,18 @@
     </div>
   </section>
 
-  <!-- 3. Split: small photo left, large photo right with a clipped paper card -->
-  <section class="rc-split">
-    <div class="rc-split__left">
-      <figure class="rc-split__small js-reveal js-reveal--scale">
-        <img src="asset/last-summer/ls-06.jpg" width="1050" height="1400" loading="lazy" alt="Two friends hugging and laughing close to the camera.">
+  <!-- 3. Photo band with envelope, Polaroid and paper card -->
+  <section class="rc-cluster">
+    <img class="rc-cluster__bg" src="asset/last-summer/venue bkg.jpg" width="787" height="1400" loading="lazy" alt="" aria-hidden="true">
+    <div class="rc-cluster__stage">
+      <img class="rc-cluster__env js-reveal" src="asset/envelope-cutout.png" width="422" height="531" loading="lazy" alt="">
+      <figure class="rc-cluster__polaroid js-reveal js-reveal--scale">
+        <img src="asset/last-summer/ls-09.jpg" width="1050" height="1400" loading="lazy" alt="Two friends leaning in for a selfie with a white parasol.">
       </figure>
-    </div>
-    <div class="rc-split__right">
-      <img class="rc-split__bg" src="asset/last-summer/ls-24.jpg" width="787" height="1400" loading="lazy" alt="Dessert and drink tables set up beside tall windows.">
-      <div class="rc-split__card js-reveal js-reveal--scale">
-        <div class="rc-split__item"><h3>What</h3><p>A Pastel Stop dinner to hold onto summer a little longer.</p></div>
-        <div class="rc-split__item"><h3>When</h3><p>August 30, 2026</p></div>
-        <div class="rc-split__item"><h3>Where</h3><p>Lethbridge, AB</p></div>
+      <div class="rc-cluster__card js-reveal js-reveal--scale">
+        <span class="rc-cluster__date">August 30, 2026</span>
+        <span class="rc-cluster__script">summer, one last time.</span>
+        <span class="rc-cluster__sign">The Pastel Stop</span>
       </div>
     </div>
   </section>
@@ -96,18 +95,19 @@
     </div>
   </section>
 
-  <!-- 5. Photo band with envelope, Polaroid and paper card -->
-  <section class="rc-cluster">
-    <img class="rc-cluster__bg" src="asset/last-summer/venue bkg.jpg" width="787" height="1400" loading="lazy" alt="" aria-hidden="true">
-    <div class="rc-cluster__stage">
-      <img class="rc-cluster__env js-reveal" src="asset/envelope-cutout.png" width="422" height="531" loading="lazy" alt="">
-      <figure class="rc-cluster__polaroid js-reveal js-reveal--scale">
-        <img src="asset/last-summer/ls-09.jpg" width="1050" height="1400" loading="lazy" alt="Two friends leaning in for a selfie with a white parasol.">
+  <!-- 5. Split: small photo left, large photo right with a clipped paper card -->
+  <section class="rc-split">
+    <div class="rc-split__left">
+      <figure class="rc-split__small js-reveal js-reveal--scale">
+        <img src="asset/last-summer/ls-06.jpg" width="1050" height="1400" loading="lazy" alt="Two friends hugging and laughing close to the camera.">
       </figure>
-      <div class="rc-cluster__card js-reveal js-reveal--scale">
-        <span class="rc-cluster__date">August 30, 2026</span>
-        <span class="rc-cluster__script">summer, one last time.</span>
-        <span class="rc-cluster__sign">The Pastel Stop</span>
+    </div>
+    <div class="rc-split__right">
+      <img class="rc-split__bg" src="asset/last-summer/ls-24.jpg" width="787" height="1400" loading="lazy" alt="Dessert and drink tables set up beside tall windows.">
+      <div class="rc-split__card js-reveal js-reveal--scale">
+        <div class="rc-split__item"><h3>What</h3><p>A Pastel Stop dinner to hold onto summer a little longer.</p></div>
+        <div class="rc-split__item"><h3>When</h3><p>August 30, 2026</p></div>
+        <div class="rc-split__item"><h3>Where</h3><p>Lethbridge, AB</p></div>
       </div>
     </div>
   </section>
