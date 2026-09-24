@@ -365,3 +365,233 @@
   );
   io.observe(grid);
 })();
+
+/* -------------------------------------------------
+   "Join the Stop" signup modal (every page)
+   - Any "Join the Stop" link opens it right away.
+   - It also opens once on its own, after the visitor has seen 2+ pages this
+     visit AND scrolled ~38% down the page. Only once per visit, and never again
+     after they sign up.
+------------------------------------------------- */
+(function () {
+  "use strict";
+
+  /* Where sign-ups are sent. Leave empty until an email service (Mailchimp, Klaviyo,
+     Formspree, etc.) is connected: with it empty the form only shows the success
+     message and nothing is stored anywhere. */
+  var SIGNUP_ENDPOINT = "";
+
+  var SCROLL_TRIGGER = 0.38;
+  var MIN_PAGES = 2;
+  var CLOSE_MS = 240;
+
+  function storage(kind) {
+    try { return window[kind]; } catch (e) { return null; }
+  }
+  function read(kind, key) {
+    try { var s = storage(kind); return s ? s.getItem(key) : null; } catch (e) { return null; }
+  }
+  function write(kind, key, value) {
+    try { var s = storage(kind); if (s) s.setItem(key, value); } catch (e) {}
+  }
+
+  var K_PAGES = "tps_pageviews";
+  var K_AUTO_SHOWN = "tps_join_auto_shown";
+  var K_JOINED = "tps_joined";
+
+  /* count this page view for the current visit */
+  var pageViews = (parseInt(read("sessionStorage", K_PAGES), 10) || 0) + 1;
+  write("sessionStorage", K_PAGES, String(pageViews));
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var root = document.createElement("div");
+  root.className = "join-modal";
+  root.id = "join-modal";
+  root.hidden = true;
+  root.innerHTML =
+    '<div class="join-modal__backdrop" data-join-close></div>' +
+    '<div class="join-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="join-modal-title" tabindex="-1">' +
+      '<button class="join-modal__close" type="button" aria-label="Close" data-join-close>&times;</button>' +
+      '<div class="join-modal__media"><img src="asset/waitlist-photo.jpg" alt="" width="1024" height="1536"></div>' +
+      '<div class="join-modal__panel">' +
+        '<div class="join-modal__state" data-state="form">' +
+          '<h2 class="join-modal__title" id="join-modal-title">join the stop.</h2>' +
+          '<p class="join-modal__kicker">come sit with us.</p>' +
+          '<p class="join-modal__body">stories, events, little life updates &mdash; and whatever we&rsquo;re figuring out in between.</p>' +
+          '<form class="join-modal__form" novalidate>' +
+            '<label class="visually-hidden" for="join-modal-email">Email address</label>' +
+            '<input class="join-modal__input" id="join-modal-email" type="email" name="email" placeholder="your email" autocomplete="email" inputmode="email" required>' +
+            '<p class="join-modal__error" role="alert" hidden></p>' +
+            '<button class="join-modal__submit" type="submit">Save me a seat &rarr;</button>' +
+          '</form>' +
+          '<p class="join-modal__note">no spam. just the good stuff. &hearts;</p>' +
+        '</div>' +
+        '<div class="join-modal__state" data-state="success" hidden>' +
+          '<h2 class="join-modal__title">you&rsquo;re in.</h2>' +
+          '<p class="join-modal__kicker">saved you a seat.</p>' +
+          '<p class="join-modal__body">thank you for joining the stop. keep an eye on your inbox &mdash; stories, events and little life updates are on their way.</p>' +
+          '<p class="join-modal__note">see you at the next stop. &hearts;</p>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(root);
+
+  var dialog = root.querySelector(".join-modal__dialog");
+  var form = root.querySelector(".join-modal__form");
+  var input = root.querySelector(".join-modal__input");
+  var errorEl = root.querySelector(".join-modal__error");
+  var submitBtn = root.querySelector(".join-modal__submit");
+  var formState = root.querySelector('[data-state="form"]');
+  var successState = root.querySelector('[data-state="success"]');
+  var lastFocus = null;
+  var closeTimer = null;
+  var isOpen = false;
+
+  function focusables() {
+    return Array.prototype.slice.call(
+      dialog.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])')
+    ).filter(function (el) { return !el.disabled && el.offsetParent !== null; });
+  }
+
+  function open() {
+    if (isOpen) return;
+    isOpen = true;
+    clearTimeout(closeTimer);
+    lastFocus = document.activeElement;
+    root.hidden = false;
+    document.documentElement.classList.add("join-modal-open");
+    // next frame so the fade/scale transition plays
+    requestAnimationFrame(function () {
+      root.classList.add("is-open");
+    });
+    var coarse = window.matchMedia("(pointer: coarse)").matches;
+    var showingForm = !formState.hidden;
+    setTimeout(function () {
+      (showingForm && !coarse ? input : dialog).focus();
+    }, reduceMotion ? 0 : 60);
+  }
+
+  function close() {
+    if (!isOpen) return;
+    isOpen = false;
+    root.classList.remove("is-open");
+    document.documentElement.classList.remove("join-modal-open");
+    closeTimer = setTimeout(function () {
+      root.hidden = true;
+      if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+    }, reduceMotion ? 0 : CLOSE_MS);
+  }
+
+  /* close: x button, click outside, Escape */
+  root.addEventListener("click", function (e) {
+    if (e.target.closest("[data-join-close]")) close();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!isOpen) return;
+    if (e.key === "Escape") {
+      e.preventDefault();
+      close();
+    } else if (e.key === "Tab") {
+      var els = focusables();
+      if (!els.length) return;
+      var first = els[0], last = els[els.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === dialog)) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+  });
+
+  /* manual trigger: any "Join the Stop" link or [data-join-modal] element */
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("a, button");
+    if (!el || el.closest(".join-modal")) return;
+    var isJoinLink =
+      el.hasAttribute("data-join-modal") ||
+      (el.tagName === "A" &&
+        /join the stop/i.test(el.textContent) &&
+        (!el.getAttribute("href") || el.getAttribute("href") === "#"));
+    if (!isJoinLink) return;
+    e.preventDefault();
+    open();
+  });
+
+  /* submit */
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.hidden = !msg;
+    input.setAttribute("aria-invalid", msg ? "true" : "false");
+  }
+  function showSuccess() {
+    write("localStorage", K_JOINED, "1");
+    formState.hidden = true;
+    successState.hidden = false;
+    dialog.focus();
+  }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = input.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      showError("please enter a valid email.");
+      input.focus();
+      return;
+    }
+    showError("");
+    submitBtn.disabled = true;
+    var label = submitBtn.innerHTML;
+    submitBtn.textContent = "Saving\u2026";
+
+    if (!SIGNUP_ENDPOINT) {
+      if (window.console) console.warn("[TPS] Signup form is not connected to an email service yet: nothing was saved.");
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = label;
+      showSuccess();
+      return;
+    }
+    fetch(SIGNUP_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ email: email, source: location.pathname })
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("bad status");
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = label;
+        showSuccess();
+      })
+      .catch(function () {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = label;
+        showError("something went wrong. please try again.");
+      });
+  });
+  input.addEventListener("input", function () { if (!errorEl.hidden) showError(""); });
+
+  /* automatic discovery popup */
+  var alreadyJoined = read("localStorage", K_JOINED) === "1";
+  var alreadyShown = read("sessionStorage", K_AUTO_SHOWN) === "1";
+  if (!alreadyJoined && !alreadyShown && pageViews >= MIN_PAGES) {
+    var ticking = false;
+    var onScroll = function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        var doc = document.documentElement;
+        var range = doc.scrollHeight - window.innerHeight;
+        if (range < 300) return; // page too short to measure engagement
+        var progress = (window.pageYOffset || doc.scrollTop) / range;
+        if (progress >= SCROLL_TRIGGER && !isOpen) {
+          write("sessionStorage", K_AUTO_SHOWN, "1");
+          window.removeEventListener("scroll", onScroll);
+          var nav = document.getElementById("mobile-nav");
+          if (nav && nav.classList.contains("is-open")) return;
+          open();
+        }
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+})();
