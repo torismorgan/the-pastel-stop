@@ -464,10 +464,12 @@
     ).filter(function (el) { return !el.disabled && el.offsetParent !== null; });
   }
 
-  function open() {
+  // auto = popped up by itself (smaller card on phones); a tap on "Join the Stop" opens it full-size
+  function open(auto) {
     if (isOpen) return;
     isOpen = true;
     clearTimeout(closeTimer);
+    root.classList.toggle("is-auto", auto === true);
     lastFocus = document.activeElement;
     root.hidden = false;
     document.documentElement.classList.add("join-modal-open");
@@ -600,7 +602,7 @@
           window.removeEventListener("scroll", onScroll);
           var nav = document.getElementById("mobile-nav");
           if (nav && nav.classList.contains("is-open")) return;
-          open();
+          open(true);
         }
       });
     };
