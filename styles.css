@@ -978,14 +978,6 @@ button {
   margin: 0;
 }
 
-@media (max-width: 640px) {
-  .site-footer__tagline {
-    font-size: clamp(2.3rem, 10.5vw, 2.9rem);
-    line-height: 1.08;
-    text-wrap: balance;
-  }
-}
-
 .site-footer__top {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1.2fr;
@@ -1023,6 +1015,13 @@ button {
   color: var(--text-primary);
   opacity: 0.85;
   width: fit-content;
+}
+
+@media (max-width: 640px) {
+  /* mobile only: quieter link columns so the tagline leads */
+  .site-footer__col h3,
+  .site-footer__newsletter h3 { font-size: 0.8rem; }
+  .site-footer__col a { font-size: 0.72rem; }
 }
 
 .site-footer__col a:hover,
