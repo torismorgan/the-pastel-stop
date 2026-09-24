@@ -2618,8 +2618,6 @@ button {
   background: var(--background-primary);
 }
 
-.recap-page .site-header:not(.is-scrolled) { color: var(--text-primary); }
-.recap-page .site-header:not(.is-scrolled) .site-header__cta { text-decoration-color: var(--text-primary); }
 
 .recap-eyebrow {
   font-family: var(--font-mono);
@@ -2656,6 +2654,16 @@ button {
   height: auto;
   z-index: 1;
   filter: drop-shadow(0 14px 22px rgba(8, 56, 84, 0.28));
+}
+/* light shade behind the yellow header so the nav stays readable on the pale sky */
+.rc-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 140px;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(8, 56, 84, 0.3) 0%, rgba(8, 56, 84, 0) 100%);
+  pointer-events: none;
 }
 .rc-hero::after {
   content: "";
