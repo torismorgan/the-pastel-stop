@@ -3580,10 +3580,9 @@ button {
   .join-modal__kicker { font-size: 1.1rem; margin-bottom: 12px; }
   .join-modal__body { font-size: 0.95rem; margin-bottom: 20px; }
   .join-modal__form { align-items: stretch; gap: 12px; }
-  .join-modal__input { border-radius: 8px; padding: 15px 16px; font-size: 1rem; }
+  .join-modal__input { padding: 15px 16px; font-size: 1rem; }
   .join-modal__submit {
     width: 100%;
-    border-radius: 8px;
     padding: 16px 20px;
     font-size: 0.95rem;
     letter-spacing: 0.08em;

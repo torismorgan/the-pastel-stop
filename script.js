@@ -425,7 +425,7 @@
             '<p class="join-modal__error" role="alert" hidden></p>' +
             '<button class="join-modal__submit" type="submit">Save me a seat &rarr;</button>' +
           '</form>' +
-          '<p class="join-modal__note">no spam. just the good stuff. &hearts;</p>' +
+          '<p class="join-modal__note">no spam. just the good stuff.</p>' +
         '</div>' +
         '<div class="join-modal__state" data-state="success" hidden>' +
           '<h2 class="join-modal__title">you&rsquo;re in.</h2>' +
