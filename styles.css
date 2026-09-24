@@ -1441,8 +1441,8 @@ button {
      opened it rises up above the envelope (into the sky) instead of being hidden behind it.
      The hero is taller to make room. Desktop/tablet are unchanged. */
   .letter-hero {
-    height: 100svh;
-    min-height: 720px;
+    height: 90svh;
+    min-height: 640px;
   }
   .envelope {
     width: clamp(300px, 94vw, 440px);
@@ -1454,11 +1454,12 @@ button {
     clip-path: inset(-70% 0 var(--letter-reveal-boundary) 0);
   }
   .letter-hero__stage {
-    padding-top: 160px;
+    padding-top: 120px;
     padding-bottom: 50px;
   }
+  /* stops as soon as the last line ("This is our safe space.") clears the front flap */
   .envelope.is-open .envelope__letter {
-    top: -35%;
+    top: -25%;
   }
   .letter__title {
     font-size: 2rem;

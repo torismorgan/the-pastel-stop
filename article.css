@@ -96,6 +96,11 @@
   color: #FFFFF1;
 }
 
+/* no yellow underline on the header link over the blue hero */
+.article-page .site-header:not(.is-scrolled) .site-header__cta {
+  text-decoration-color: currentColor;
+}
+
 
 /* ===========================================================
    1. ARTICLE HERO / COVER
@@ -226,7 +231,7 @@
   font-family: var(--font-display);
   font-weight: 800;
 
-  font-size: clamp(3.7rem, 6.5vw, 5.8rem);
+  font-size: clamp(4.4rem, 8.2vw, 7.2rem);
 
   line-height: 0.96;
 
@@ -251,10 +256,10 @@
 .article-hero__subtitle {
   margin: 0;
 
-  max-width: 39ch;
+  max-width: 48ch;
 
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 400;
 
   line-height: 1.7;
