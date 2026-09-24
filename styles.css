@@ -2782,7 +2782,7 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 55%;
+  object-position: 50% 45%;
   filter: saturate(0.85);
 }
 .rc-split__card {
@@ -2816,14 +2816,14 @@ button {
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-primary);
+  color: var(--dearher-ink);
   margin: 0 0 6px;
 }
 .rc-split__item p, .rc-list__item p {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   line-height: 1.8;
-  color: var(--text-primary);
+  color: var(--dearher-ink);
   margin: 0;
 }
 
