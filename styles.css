@@ -3842,10 +3842,11 @@ button {
 
 .story__title {
   margin: 0;
-  font-weight: 400;
-  font-size: clamp(2.3rem, 5.6vw, 4.3rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 6.4vw, 4.9rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
   text-transform: lowercase;
 }
 .story-hand { display: block; width: clamp(150px, 16vw, 250px); height: auto; margin: 4px 0 0 2px; color: var(--story-ink); }
