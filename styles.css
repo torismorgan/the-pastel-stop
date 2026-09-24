@@ -3524,7 +3524,7 @@ button {
   padding: clamp(16px, 2.2vw, 24px) clamp(16px, 2.2vw, 26px);
 }
 .join-modal__input::placeholder { color: rgba(63, 53, 45, 0.5); }
-.join-modal__input:focus-visible { outline: 3px solid var(--brand-pink); outline-offset: 2px; }
+.join-modal__input:focus, .join-modal__input:focus-visible { outline: none; box-shadow: 0 0 0 1px var(--text-primary); }
 .join-modal__input[aria-invalid="true"] { border-color: #B23A5E; }
 .join-modal__error {
   width: 100%;
@@ -3550,7 +3550,7 @@ button {
   transition: background 200ms var(--ease-editorial);
 }
 .join-modal__submit:hover, .join-modal__submit:focus-visible { background: #57493F; }
-.join-modal__submit:focus-visible { outline: 3px solid var(--brand-pink); outline-offset: 3px; }
+.join-modal__submit:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 3px; }
 .join-modal__submit:disabled { opacity: 0.7; cursor: default; }
 
 .join-modal__note {
