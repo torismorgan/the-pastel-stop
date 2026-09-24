@@ -2505,13 +2505,12 @@ button {
   aspect-ratio: 5 / 4;
 }
 
-/* Pink sticker-style tag: sits on the image's right edge, crossing it horizontally */
+/* Pink tag in the image's top-left corner, level */
 .events-featured__badge {
   position: absolute;
-  top: 74%;
-  right: calc(-1 * clamp(12px, 2vw, 26px));
+  top: 0;
+  left: 0;
   z-index: 2;
-  rotate: -5deg;
   font-family: var(--font-ui);
   font-weight: 700;
   font-size: 0.85rem;
@@ -2519,9 +2518,8 @@ button {
   text-transform: uppercase;
   color: #FFFFFF;
   background: var(--brand-pink);
-  border-radius: 999px;
-  padding: 9px 20px;
-  box-shadow: 0 8px 16px -6px rgba(35, 31, 32, 0.4);
+  border-radius: 8px 0 14px 0;
+  padding: 10px 20px;
 }
 
 .events-featured__image img {
@@ -2559,26 +2557,22 @@ button {
 }
 
 .events-featured__link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+  display: inline-block;
   font-family: var(--font-ui);
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--brand-pink);
-  border: 2px solid var(--brand-pink);
-  border-radius: 999px;
-  padding: 12px 24px;
-  transition: background 220ms var(--ease-editorial), color 220ms var(--ease-editorial);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transform-origin: left center;
+  transition: scale 220ms var(--ease-editorial);
 }
-.events-featured__link span { display: inline-block; transition: transform 220ms var(--ease-editorial); }
-.events-featured__link:focus-visible { background: var(--brand-pink); color: #FFFFFF; }
-.events-featured__link:focus-visible span { transform: translateX(5px); }
+.events-featured__link:focus-visible { scale: 1.08; }
 @media (hover: hover) {
-  .events-featured__link:hover { background: var(--brand-pink); color: #FFFFFF; }
-  .events-featured__link:hover span { transform: translateX(5px); }
+  .events-featured__link:hover { scale: 1.08; }
 }
 
 @media (max-width: 900px) {
