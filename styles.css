@@ -3646,6 +3646,18 @@ button {
   text-transform: uppercase;
 }
 
+/* grain over the whole page: a seamless tile made from our noise texture, kept faint */
+.pause-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: url("asset/grain-tile.jpg") 0 0 / 600px 600px repeat;
+  mix-blend-mode: overlay;
+  opacity: 0.32;
+}
+
 /* the paper: everything inside is sized in cqw so it scales as one piece */
 .pause-file {
   position: absolute;
@@ -3666,7 +3678,7 @@ button {
 .pause-file__title {
   position: absolute;
   left: 17.8cqw;
-  top: 50.4%;
+  top: 53.2%;
   margin: 0;
   font-weight: 400;
   font-size: 6.5cqw;
@@ -3679,7 +3691,7 @@ button {
 .pause-file__sub {
   position: absolute;
   left: 17.8cqw;
-  top: 59.2%;
+  top: 61.4%;
   margin: 0;
   font-size: 2.2cqw;
   line-height: 1.4;
@@ -3689,7 +3701,7 @@ button {
 .pause-file__copy {
   position: absolute;
   left: 19.9cqw;
-  top: 69.6%;
+  top: 71%;
   margin: 0;
   font-size: 2.2cqw;
   line-height: 1.62;
@@ -3714,15 +3726,21 @@ button {
 }
 .pause-hero__link {
   font-family: "Space Mono", "Courier New", monospace;
-  font-size: clamp(0.72rem, 0.98vw, 0.95rem);
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--pause-cream);
   text-decoration: underline;
-  text-underline-offset: 5px;
-  text-decoration-thickness: 1px;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 2px;
+  transform-origin: left center;
+  transition: scale 220ms var(--ease-editorial);
 }
-.pause-hero__link:hover, .pause-hero__link:focus-visible { text-decoration-thickness: 2px; }
+.pause-hero__link:focus-visible { scale: 1.08; }
+@media (hover: hover) {
+  .pause-hero__link:hover { scale: 1.08; }
+}
 
 .pause-hero__tag {
   position: absolute;
@@ -3757,6 +3775,6 @@ button {
   }
   .pause-hero__note { margin: 36px 0 0; gap: 18px; }
   .pause-hand { width: min(62vw, 270px); }
-  .pause-hero__link { font-size: 0.8rem; }
-  .pause-hero__tag { margin-top: auto; padding-top: 44px; font-size: 0.66rem; }
+  .pause-hero__link { font-size: 1.05rem; }
+  .pause-hero__tag { margin-top: auto; padding-top: 44px; font-size: 0.66rem; text-align: center; }
 }
