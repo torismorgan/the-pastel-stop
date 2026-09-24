@@ -2615,7 +2615,18 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 50%;
+  object-position: 50% 49.5%;
+}
+/* Stamp sits on top, centred, at the same size it had inside the old one-piece hero image (391 of 1366 wide, scaled to cover the section) */
+.rc-hero__stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: max(28.62vw, calc(var(--rc-h) * 0.509));
+  height: auto;
+  z-index: 1;
+  filter: drop-shadow(0 14px 22px rgba(8, 56, 84, 0.28));
 }
 .rc-hero::after {
   content: "";
@@ -3266,7 +3277,7 @@ button {
   .rc-hero { height: 560px; }
   .rc-cluster__date, .rc-cluster__sign { font-size: 3.1cqw; }
   .rc-cluster__script { font-size: 7.4cqw; }
-  .rc-hero__img { object-position: 50% 100%; }
+  .rc-hero__stamp { width: 58vw; top: 54%; }
   .recap-bloom { padding-top: 56px; padding-bottom: 72px; }
   .bloom-row { font-size: 27vw; }
   .bloom-row:nth-child(n+8) { display: block; }
