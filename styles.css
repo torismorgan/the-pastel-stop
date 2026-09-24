@@ -464,6 +464,13 @@ button {
 .hero__slide--2 .hero__content {
   justify-content: center;
   max-width: 720px;
+  /* keep the text block clear of the logo/header on every screen size */
+  padding-top: clamp(104px, 15vh, 170px);
+}
+
+@media (min-width: 1200px) {
+  /* on wide screens let "The Last Bloom" sit on one line instead of two */
+  .hero__slide--2 .hero__content { max-width: 980px; }
 }
 
 .hero__eyebrow {
@@ -481,7 +488,7 @@ button {
 .hero__script {
   font-family: var(--font-script);
   font-weight: 400;
-  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-size: clamp(3rem, min(8vw, 12vh), 6rem);
   color: var(--season-soft);
   margin: 0 0 8px;
   line-height: 1;
@@ -507,7 +514,7 @@ button {
 .hero__display-main {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(3.2rem, 9vw, 6.8rem);
+  font-size: clamp(3.2rem, min(9vw, 11vh), 6.4rem);
   color: var(--season-soft);
   line-height: 0.9;
 }
@@ -587,7 +594,7 @@ button {
 @media (max-width: 640px) {
   .hero {
     height: 72svh;
-    min-height: 480px;
+    min-height: 540px;
   }
   .hero__slide--1 .hero__content,
   .hero__slide--2 .hero__content {
