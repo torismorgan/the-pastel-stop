@@ -3112,7 +3112,7 @@ button {
 .recap-quiet {
   background-color: var(--background-primary);
   background-image: var(--grain);
-  padding: clamp(96px, 14vw, 200px) clamp(20px, 5vw, 64px);
+  padding: clamp(64px, 9vw, 128px) clamp(20px, 5vw, 64px);
 }
 .recap-quiet__col { max-width: 340px; margin: 0 auto; text-align: center; }
 .recap-quiet__photo { margin: 0; }
