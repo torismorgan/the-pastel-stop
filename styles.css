@@ -1437,19 +1437,28 @@ button {
 }
 
 @media (max-width: 640px) {
+  /* Mobile: the letter is taller than the space above the envelope's front flap, so once
+     opened it rises up above the envelope (into the sky) instead of being hidden behind it.
+     The hero is taller to make room. Desktop/tablet are unchanged. */
   .letter-hero {
-    height: 82svh;
-    min-height: 540px;
+    height: 100svh;
+    min-height: 720px;
   }
   .envelope {
     width: clamp(300px, 94vw, 440px);
+    overflow: visible;
     --letter-reveal-boundary: 15%;
   }
+  .envelope__letter-clip {
+    overflow: visible;
+    clip-path: inset(-70% 0 var(--letter-reveal-boundary) 0);
+  }
   .letter-hero__stage {
-    padding-top: clamp(64px, 12vh, 100px);
+    padding-top: 160px;
+    padding-bottom: 50px;
   }
   .envelope.is-open .envelope__letter {
-    top: 2%;
+    top: -35%;
   }
   .letter__title {
     font-size: 2rem;
