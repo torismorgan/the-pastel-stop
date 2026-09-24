@@ -343,7 +343,7 @@
   }
 })();
 
-/* Recap page: polaroids appear one by one, wiggle, then settle (hover takes over) */
+/* Recap page: polaroids appear one by one (hover takes over after) */
 (function () {
   var grid = document.querySelector("[data-pola-anim]");
   if (!grid) return;
