@@ -3176,7 +3176,7 @@ button {
   grid-template-columns: repeat(12, 1fr);
   align-items: center;
 }
-.rc-close__photo { grid-column: 2 / span 3; margin: 0; }
+.rc-close__photo { grid-column: 2 / span 4; margin: 0; }
 .rc-close__photo img {
   display: block;
   width: 100%;
