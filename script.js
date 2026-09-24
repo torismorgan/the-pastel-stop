@@ -342,3 +342,24 @@
     });
   }
 })();
+
+/* Recap page: polaroids appear one by one, wiggle, then settle (hover takes over) */
+(function () {
+  var grid = document.querySelector("[data-pola-anim]");
+  if (!grid) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+  var items = grid.querySelectorAll(".rc-polas__item");
+  items.forEach(function (el, i) { el.style.setProperty("--i", i); });
+  grid.style.setProperty("--n", items.length);
+  grid.classList.add("is-armed");
+  var io = new IntersectionObserver(
+    function (entries) {
+      if (entries[0].isIntersecting) {
+        grid.classList.add("is-playing");
+        io.disconnect();
+      }
+    },
+    { threshold: 0.12 }
+  );
+  io.observe(grid);
+})();
