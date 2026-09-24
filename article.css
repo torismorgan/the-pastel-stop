@@ -128,6 +128,16 @@
    - let the solid color dominate
 ----------------------------------------------------------- */
 
+.article-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .article-hero__texture {
   position: absolute;
   inset: 0;

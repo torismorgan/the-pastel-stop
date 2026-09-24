@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=League+Spartan:wght@500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=149">
+<link rel="stylesheet" href="styles.css?v=150">
 </head>
 <body class="dear-her-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -105,19 +105,21 @@
     </button>
     -->
 
+    <!-- "All Letters" pill hidden until there's more than one letter. To restore: uncomment the block below.
     <div class="letters-filters" id="letters-filters" role="group" aria-label="Filter letters by category">
       <button type="button" class="letters-filter is-active">All Letters</button>
-      <!--
       <button type="button" class="letters-filter">Friendship</button>
       <button type="button" class="letters-filter">Life Lately</button>
       <button type="button" class="letters-filter">Love</button>
       <button type="button" class="letters-filter">Growing Pains</button>
-      -->
     </div>
+    -->
 
     <div class="letters-featured" data-reveal-group data-reveal-stagger="120">
       <div class="letters-featured__image js-reveal js-reveal--scale" data-reveal>
-        <img id="letters-featured-img" src="asset/IMAGE FOR TITLE PAGE.png" alt="">
+        <a class="letters-featured__imagelink" href="article-001.html" tabindex="-1" aria-hidden="true">
+          <img id="letters-featured-img" src="asset/IMAGE FOR TITLE PAGE.png" alt="">
+        </a>
       </div>
       <ol class="letters-featured__list js-reveal" data-reveal>
         <li class="letters-featured__item is-active" data-image="asset/IMAGE FOR TITLE PAGE.png" style="--item-accent:#2978CC;">
