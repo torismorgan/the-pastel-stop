@@ -3712,7 +3712,7 @@ button {
 .pause-hero__note {
   position: absolute;
   left: 8.1%;
-  bottom: 2.6%;
+  bottom: 7.5%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -3746,7 +3746,7 @@ button {
 .pause-hero__tag {
   position: absolute;
   right: 10.5%;
-  bottom: 2.4%;
+  bottom: 7.5%;
   margin: 0;
   font-family: "Space Mono", "Courier New", monospace;
   font-size: clamp(0.6rem, 0.8vw, 0.78rem);
