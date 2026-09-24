@@ -3057,22 +3057,15 @@ button {
   line-height: 1;
   color: var(--text-primary);
 }
-/* Sequence: pop in one by one (stop-motion), wiggle side to side, then rest. Hover takes over after. */
+/* Pop in one by one (stop-motion). Hover reaction below. */
 .rc-polas__grid.is-armed .rc-polas__item { opacity: 0; }
 .rc-polas__grid.is-playing .rc-polas__item {
-  animation:
-    pola-pop 420ms steps(5, end) calc(var(--i) * 170ms) both,
-    pola-wiggle 380ms ease-in-out calc(var(--n) * 170ms + 500ms + var(--i) * 40ms) 6;
+  animation: pola-pop 420ms steps(5, end) calc(var(--i) * 170ms) both;
 }
 @keyframes pola-pop {
   0%   { opacity: 0; scale: 0.82; rotate: -5deg; }
   40%  { opacity: 1; scale: 1.06; rotate: 3deg; }
   100% { opacity: 1; scale: 1; rotate: 0deg; }
-}
-@keyframes pola-wiggle {
-  0%, 100% { rotate: 0deg; }
-  25%  { rotate: -2.4deg; }
-  75%  { rotate: 2.4deg; }
 }
 @media (hover: hover) {
   .rc-polas__item { position: relative; }
