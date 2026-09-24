@@ -1212,10 +1212,15 @@ button {
   }
 }
 
-/* phones and small windows: the footer stacks in rows instead of two side-by-side columns */
+/* phones and small windows: Explore and Official share the first row; Follow Along and Join the Stop each get their own full-width row below */
 @media (max-width: 760px) {
   .site-footer__top {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 34px 20px;
+  }
+  .site-footer__top > :nth-child(3),
+  .site-footer__top > :nth-child(4) {
+    grid-column: 1 / -1;
   }
 }
 
