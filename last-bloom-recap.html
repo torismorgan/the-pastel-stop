@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=League+Spartan:wght@500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=82">
+<link rel="stylesheet" href="styles.css?v=90">
 </head>
 <body class="recap-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -47,35 +47,50 @@
 
 <main id="main">
 
-  <section class="recap-hero">
-    <div class="recap-hero__inner">
-      <div class="recap-hero__text js-reveal">
-        <p class="recap-eyebrow">A Pastel Stop Event</p>
-        <h1 class="recap-hero__title">Last Bloom<br>Of Summer</h1>
-        <p class="recap-hero__meta">August 30, 2026 &middot; Lethbridge, AB</p>
-      </div>
-      <div class="recap-hero__art">
-        <img class="recap-hero__photo" src="asset/last-summer/ls-01.jpg" width="1050" height="1400" alt="A guest in a pale yellow dress laughing beside the Last Bloom Of Summer welcome sign.">
-        <img class="recap-hero__postcard" src="asset/last bloom post card.jpg" width="2000" height="1600" alt="A postcard collage for the event with parasols, tulips and lemons.">
-      </div>
+  <!-- 1. Quiet opening -->
+  <section class="rc-open">
+    <p class="rc-label">A Pastel Stop Event</p>
+    <h1 class="rc-open__title">Last Bloom<br>of Summer</h1>
+    <figure class="rc-open__photo js-reveal js-reveal--scale">
+      <img src="asset/last-summer/ls-02.jpg" width="1050" height="1400" alt="A guest in a pale blue halter dress holding a white parasol beside the welcome sign.">
+    </figure>
+    <div class="rc-open__meta">
+      <span class="rc-label">August 30, 2026</span>
+      <span class="rc-label">Lethbridge, AB</span>
     </div>
   </section>
 
-  <section class="recap-intro">
-    <div class="recap-intro__grid">
-      <div class="recap-intro__text">
-        <h2 class="recap-intro__title js-reveal">one last little love letter to summer.</h2>
-        <p class="recap-intro__copy js-reveal">Good food, new faces, pretty moments, and memories we&rsquo;ll probably talk about long after the season ends.</p>
-      </div>
-      <figure class="recap-intro__big js-reveal js-reveal--scale">
-        <img src="asset/last-summer/ls-10.jpg" width="1050" height="1400" loading="lazy" alt="Two friends in yellow dresses leaning in together and smiling.">
-      </figure>
-      <figure class="recap-intro__small js-reveal js-reveal--scale">
+  <!-- 2. Full-width ocean + stamp break -->
+  <section class="rc-ocean">
+    <img src="asset/hero last bloom.png" width="1366" height="768" alt="A Last Bloom Of Summer postage stamp floating over a wide turquoise ocean, captioned 'summer, one last time.'">
+  </section>
+
+  <!-- 3. Love letter — small story moment, lots of cream -->
+  <section class="rc-letter">
+    <div class="rc-letter__grid">
+      <h2 class="rc-letter__title js-reveal">one last little love letter to summer.</h2>
+      <figure class="rc-letter__photo js-reveal js-reveal--scale">
         <img src="asset/last-summer/ls-15.jpg" width="1050" height="1400" loading="lazy" alt="A centerpiece of yellow gerbera daisies, lemons and blueberries on a blue table runner.">
       </figure>
+      <p class="rc-letter__copy js-reveal">Good food, new faces, pretty moments, and memories we&rsquo;ll probably talk about long after the season ends.</p>
     </div>
   </section>
 
+  <!-- 4. Sparse asymmetric photos + handwritten observations -->
+  <section class="rc-scatter">
+    <div class="rc-scatter__grid">
+      <figure class="rc-scatter__a js-reveal js-reveal--scale">
+        <img src="asset/last-summer/ls-01.jpg" width="1050" height="1400" loading="lazy" alt="A guest in a pale yellow dress laughing beside the welcome sign.">
+      </figure>
+      <p class="rc-scatter__note rc-scatter__note--a js-reveal">the best kind of crowd.</p>
+      <figure class="rc-scatter__b js-reveal js-reveal--scale">
+        <img src="asset/last-summer/ls-06.jpg" width="1050" height="1400" loading="lazy" alt="Two friends hugging and laughing close to the camera.">
+      </figure>
+      <p class="rc-scatter__note rc-scatter__note--b js-reveal">good food, better company.</p>
+    </div>
+  </section>
+
+  <!-- 5. LAST BLOOM typography band (the one bold interruption) -->
   <section class="recap-bloom" aria-label="Last Bloom">
     <div class="recap-bloom__type" aria-hidden="true">
       <div class="bloom-row" style="--shift:-6%"><span>LAST BLOOM</span> <span>LAST BLOOM</span> <span>LAST BLOOM</span> <span>LAST BLOOM</span></div>
@@ -90,7 +105,7 @@
     </div>
     <div class="recap-bloom__photos">
       <figure class="bloom-photo bloom-photo--a js-reveal js-reveal--scale">
-        <img src="asset/last-summer/ls-02.jpg" width="1050" height="1400" loading="lazy" alt="A guest in a pale blue halter dress holding a white parasol beside the sign.">
+        <img src="asset/last-summer/ls-10.jpg" width="1050" height="1400" loading="lazy" alt="Two friends in yellow dresses leaning in together and smiling.">
       </figure>
       <figure class="bloom-photo bloom-photo--b js-reveal js-reveal--scale">
         <img src="asset/last-summer/ls-17.jpg" width="1050" height="1400" loading="lazy" alt="The Last Bloom Of Summer welcome sign, striped yellow and white and wrapped in lemons.">
@@ -102,6 +117,7 @@
     <p class="bloom-hand js-reveal">one more night of summer. &hearts;</p>
   </section>
 
+  <!-- 6. The night, pinned up — the expressive scrapbook moment -->
   <section class="recap-wall" aria-label="Photos from the night">
     <p class="recap-eyebrow recap-wall__label js-reveal">The night, pinned up</p>
     <div class="recap-wall__grid">
@@ -112,7 +128,7 @@
         <figure class="wall-item wall-item--polaroid js-reveal js-reveal--scale" data-reveal style="--start:9;--span:4;--row:1;--lift:4rem;--tilt:3deg">
           <img src="asset/last-summer/ls-12.jpg" width="787" height="1400" loading="lazy" alt="A rose-petal drink in a ridged glass on a silver tray.">
         </figure>
-        <p class="wall-note js-reveal" data-reveal style="--start:8;--span:5;--row:2;--tilt:-3deg">good food, better company.</p>
+        <p class="wall-note js-reveal" data-reveal style="--start:7;--span:6;--row:2;--tilt:-3deg">the little things deserved their moment too.</p>
       </div>
 
       <div class="wall-comp" data-reveal-group data-reveal-stagger="160">
@@ -122,7 +138,6 @@
         <figure class="wall-item wall-item--plain js-reveal js-reveal--scale" data-reveal style="--start:7;--span:5;--row:1;--lift:7rem;--tilt:0deg">
           <img src="asset/last-summer/ls-23.jpg" width="787" height="1400" loading="lazy" alt="Two guests in yellow dresses sitting side by side, smiling.">
         </figure>
-        <p class="wall-note js-reveal" data-reveal style="--start:3;--span:4;--row:2;--tilt:2deg">the best kind of crowd.</p>
       </div>
 
       <div class="wall-comp" data-reveal-group data-reveal-stagger="160">
@@ -154,6 +169,7 @@
     </div>
   </section>
 
+  <!-- 7. Quiet editorial story -->
   <section class="recap-quiet">
     <div class="recap-quiet__col">
       <figure class="recap-quiet__photo recap-quiet__photo--small js-reveal js-reveal--scale">
@@ -167,17 +183,18 @@
     </div>
   </section>
 
-  <section class="recap-close">
-    <div class="recap-close__grid">
-      <figure class="recap-close__photo js-reveal js-reveal--scale">
+  <!-- 8. Minimal close -->
+  <section class="rc-close">
+    <div class="rc-close__grid">
+      <figure class="rc-close__photo js-reveal js-reveal--scale">
         <img src="asset/last-summer/ls-04.jpg" width="1050" height="1400" loading="lazy" alt="Two friends in blue and yellow dresses standing beside the welcome sign.">
       </figure>
-      <div class="recap-close__text">
-        <h2 class="recap-close__title js-reveal">until the next stop.</h2>
-        <p class="recap-close__copy js-reveal">Last Bloom was our little excuse to hold onto summer for one more night.</p>
-        <p class="recap-close__copy js-reveal">Thank you to everyone who pulled up a chair, met someone new, stayed a little longer, and made our first stop one worth remembering.</p>
-        <p class="recap-close__hand js-reveal">first stop down. see you at the next one. &hearts;</p>
-        <a class="recap-close__cta js-reveal" href="events.html">See what we&rsquo;re doing next <span aria-hidden="true">&rarr;</span></a>
+      <div class="rc-close__text">
+        <h2 class="rc-close__title js-reveal">until the next stop.</h2>
+        <p class="rc-close__copy js-reveal">Last Bloom was our little excuse to hold onto summer for one more night.</p>
+        <p class="rc-close__copy js-reveal">Thank you to everyone who pulled up a chair, met someone new, stayed a little longer, and made our first stop one worth remembering.</p>
+        <p class="rc-close__hand js-reveal">first stop down. see you at the next one. &hearts;</p>
+        <a class="rc-close__cta js-reveal" href="events.html">See what we&rsquo;re doing next <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
   </section>
