@@ -3849,7 +3849,7 @@ button {
   letter-spacing: -0.01em;
   text-transform: lowercase;
 }
-.story-hand { display: block; width: clamp(150px, 16vw, 250px); height: auto; margin: 4px 0 0 2px; color: var(--story-ink); }
+.story-hand { display: block; width: clamp(110px, 10.5vw, 165px); height: auto; margin: 4px 0 0 2px; color: var(--story-ink); }
 .story__intro { margin-bottom: clamp(30px, 4vw, 52px); }
 
 .story__field { margin: 0 0 clamp(30px, 4vw, 46px); padding: 0; border: 0; min-width: 0; }
@@ -3937,7 +3937,7 @@ button {
 .story__done:focus { outline: none; }
 .story__title--done { margin-bottom: 22px; }
 .story__done-copy { max-width: 52ch; margin: 0 0 30px; font-size: 0.95rem; line-height: 1.75; }
-.story__back, .story__crumb {
+.story__crumb {
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3947,13 +3947,32 @@ button {
   text-decoration-thickness: 1px;
   transition: color 200ms var(--ease-editorial);
 }
-/* "deeper" on hover: heavier type, thicker line, darker ink */
-.story__back:focus-visible, .story__crumb:focus-visible { font-weight: 700; text-decoration-thickness: 2px; color: #24090A; }
+/* the crumb goes "deeper" on hover: heavier type, thicker line, darker ink */
+.story__crumb:focus-visible { font-weight: 700; text-decoration-thickness: 2px; color: #24090A; }
 @media (hover: hover) {
-  .story__back:hover, .story__crumb:hover { font-weight: 700; text-decoration-thickness: 2px; color: #24090A; }
+  .story__crumb:hover { font-weight: 700; text-decoration-thickness: 2px; color: #24090A; }
 }
-.story__crumb { font-size: inherit; letter-spacing: inherit; text-decoration: none; }
-.story__crumb:hover, .story__crumb:focus-visible { text-decoration: underline; }
+/* back link: same pink underlined link as the other pages ("See full recap", "Read the letter"), grows a little on hover */
+.story__back {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-pink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transition: scale 220ms var(--ease-editorial);
+}
+.story__back:focus-visible { scale: 1.08; }
+@media (hover: hover) {
+  .story__back:hover { scale: 1.08; }
+}
+.story__back--bottom { margin-top: clamp(26px, 3.4vw, 40px); }
+.story__label .story__crumb { font-size: inherit; letter-spacing: inherit; text-decoration-line: none; }
+.story__label .story__crumb:hover, .story__label .story__crumb:focus-visible { text-decoration-line: underline; }
 
 @media (max-width: 900px) {
   .story__holes { display: none; }
