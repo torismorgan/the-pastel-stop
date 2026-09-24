@@ -10,16 +10,15 @@
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#FFFFF1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=League+Spartan:wght@500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=212">
+<link rel="preload" href="asset/fonts/league-spartan-normal-500-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="asset/fonts/poppins-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=213">
 </head>
 <body class="about-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header" id="site-header">
-  <a class="site-header__logo" href="index.html" aria-label="The Pastel Stop — Home">
+  <a class="site-header__logo" href="/" aria-label="The Pastel Stop — Home">
     <svg viewBox="70 60 280 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
       <path class="logo-mark" d="M 154.082031 80.261719 C 137.296875 86.390625 126.566406 101.261719 118.042969 116.359375 C 105.90625 136.640625 91.355469 165.785156 101.171875 189.675781 C 107.898438 205.210938 128.976562 210.800781 143.648438 203.25 C 153.695312 198.578125 157.492188 187.242188 157.882812 176.875 C 160.550781 148.125 140.765625 137.6875 152.152344 111.480469 C 158.960938 94.53125 171.351562 96.097656 174.890625 113.914062 C 176.984375 125.863281 175.941406 137.984375 175.460938 150.011719 C 174.972656 161.378906 176.304688 173.070312 174.109375 184.316406 C 171.03125 197.53125 160.972656 209.855469 183.019531 210.191406 C 190.65625 209.414062 212.316406 213.445312 211.542969 201.597656 C 211.03125 196.078125 207.070312 190.035156 205.988281 184.234375 C 204.335938 176.566406 204.558594 168.476562 204.40625 160.640625 C 203.816406 137.164062 199.949219 110.039062 227.425781 101.074219 C 241.148438 96.25 255.882812 110.304688 246 122.929688 C 238.898438 132.246094 224.71875 132.8125 218.589844 142.710938 C 213.109375 151.371094 218.90625 162.449219 227.5625 166.402344 C 236.960938 171.171875 247.425781 168.960938 257.660156 168.871094 C 262.894531 168.882812 267.742188 169.640625 271.089844 173.058594 C 274.726562 176.59375 275.542969 183.464844 271.121094 186.640625 C 261.5 192.3125 252.152344 180.539062 242.589844 180.699219 C 234.859375 180.25 230.023438 188.460938 232.476562 195.453125 C 234.171875 201.148438 239.011719 205.476562 244.105469 208.269531 C 266.167969 219.910156 303.488281 213.65625 308.609375 185.84375 C 310.519531 173.441406 303.683594 159.660156 292.269531 154.234375 C 284.859375 150.546875 275.925781 150.359375 267.65625 151.039062 C 257.574219 152.132812 250.488281 149.417969 262.179688 143.445312 C 267.839844 140.726562 273.886719 138.363281 277.917969 133.53125 C 287.128906 122.25 283.394531 104.792969 276.246094 93.210938 C 258.699219 65.570312 230.191406 84.796875 204.164062 83.191406 C 187.597656 81.980469 170.65625 73.707031 154.269531 80.191406 Z"/>
       <path class="logo-mark" d="M 330.492188 202.847656 C 330.492188 207.929688 326.183594 212.054688 320.867188 212.054688 C 315.554688 212.054688 311.242188 207.929688 311.242188 202.847656 C 311.242188 197.761719 315.554688 193.640625 320.867188 193.640625 C 326.183594 193.640625 330.492188 197.761719 330.492188 202.847656"/>
@@ -27,11 +26,11 @@
   </a>
 
   <nav class="site-header__nav" aria-label="Primary">
-    <a href="dear-her.html">Dear Her</a>
+    <a href="/dear-her">Dear Her</a>
     <!-- hidden until launch: <a href="#">Things We Love</a> -->
-    <a href="pause-files.html">The Pause Files</a>
-    <a href="events.html">Events</a>
-    <a href="about.html" aria-current="page">About</a>
+    <a href="/pause-files">The Pause Files</a>
+    <a href="/events">Events</a>
+    <a href="/about" aria-current="page">About</a>
   </nav>
 
   <a href="#" class="site-header__cta">Join the Stop</a>
@@ -42,18 +41,18 @@
 </header>
 
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-  <a href="dear-her.html">Dear Her</a>
+  <a href="/dear-her">Dear Her</a>
   <!-- hidden until launch: <a href="#">Things We Love</a> -->
-  <a href="pause-files.html">The Pause Files</a>
-  <a href="events.html">Events</a>
-  <a href="about.html">About</a>
+  <a href="/pause-files">The Pause Files</a>
+  <a href="/events">Events</a>
+  <a href="/about">About</a>
   <a href="#" class="is-cta">Join the Stop</a>
 </nav>
 
 <main id="main">
 
   <section class="about-hero">
-    <img class="about-hero__img" src="asset/about hero.png" alt="Four women sitting together in a wildflower field.">
+    <img class="about-hero__img" src="asset/opt/about-hero.webp" alt="Four women sitting together in a wildflower field." fetchpriority="high">
     <h1 class="about-hero__script">for every version of her</h1>
     <p class="about-hero__eyebrow">About / The Pastel Stop</p>
   </section>
@@ -70,7 +69,7 @@
   </section>
 
   <section class="about-feature">
-    <img class="about-feature__img" src="asset/about 2 pic.png" alt="Three women outdoors against a blue sky, each holding a rose.">
+    <img class="about-feature__img" src="asset/opt/about-2-pic.webp" alt="Three women outdoors against a blue sky, each holding a rose." loading="lazy" decoding="async">
     <div class="about-feature__inner">
       <p class="about-feature__eyebrow">Why We Pause / 002</p>
       <div class="about-feature__row">
@@ -88,15 +87,15 @@
   <section class="about-around">
     <div class="about-around__list">
       <p class="about-around__eyebrow">Around the Stop / 003</p>
-      <a class="about-around__item" href="dear-her.html">
+      <a class="about-around__item" href="/dear-her">
         <h3>Dear Her</h3>
         <p>letters for the things we&rsquo;re all thinking but don&rsquo;t always say out loud.</p>
       </a>
-      <a class="about-around__item" href="pause-files.html">
+      <a class="about-around__item" href="/pause-files">
         <h3>The Pause Files</h3>
         <p>real stories, honest conversations and a place to listen without judgement.</p>
       </a>
-      <a class="about-around__item" href="events.html">
+      <a class="about-around__item" href="/events">
         <h3>Events</h3>
         <p>reasons to leave the group chat and actually see each other.</p>
       </a>
@@ -105,10 +104,10 @@
   </section>
 
   <section class="about-founder">
-    <img class="about-founder__bg" src="asset/founder's back ground.jpg" alt="" aria-hidden="true">
+    <img class="about-founder__bg" src="asset/opt/founders-back-ground.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <div class="about-founder__inner">
-      <img class="about-founder__note" src="asset/founder post card cropped.png" alt="A note from the founder, Oris: I think The Pastel Stop started with a feeling. I wanted somewhere that could hold a little bit of everything — the things we're figuring out, the things we never say out loud, the conversations we keep coming back to, and the moments when we just need to just take a moment and.. breathe. Not somewhere that expects you to have everything together. Just somewhere that meets you wherever you are. The Pastel Stop is still becoming. I think that's kind of the point. We're all becoming too. I just hope every time you stop by, there's something here that makes you feel seen, makes you laugh, gives you an idea, or simply makes your day a little better. Love, Oris — Founder of The Pastel Stop.">
-      <img class="about-founder__photo" src="asset/founders IMAGE.png" alt="Photo of Oris, founder of The Pastel Stop, sitting outdoors in a red dress.">
+      <img class="about-founder__note" src="asset/opt/founder-post-card-cropped.webp" alt="A note from the founder, Oris: I think The Pastel Stop started with a feeling. I wanted somewhere that could hold a little bit of everything — the things we're figuring out, the things we never say out loud, the conversations we keep coming back to, and the moments when we just need to just take a moment and.. breathe. Not somewhere that expects you to have everything together. Just somewhere that meets you wherever you are. The Pastel Stop is still becoming. I think that's kind of the point. We're all becoming too. I just hope every time you stop by, there's something here that makes you feel seen, makes you laugh, gives you an idea, or simply makes your day a little better. Love, Oris — Founder of The Pastel Stop." loading="lazy" decoding="async">
+      <img class="about-founder__photo" src="asset/opt/founders-image.webp" alt="Photo of Oris, founder of The Pastel Stop, sitting outdoors in a red dress." loading="lazy" decoding="async">
     </div>
   </section>
 
@@ -124,10 +123,10 @@
 
     <nav class="site-footer__col js-reveal" aria-label="Explore" data-reveal>
       <h3>Explore</h3>
-      <a href="about.html" aria-current="page">About</a>
-      <a href="events.html">Events</a>
-      <a href="dear-her.html">Dear Her</a>
-      <a href="pause-files.html">The Pause Files</a>
+      <a href="/about" aria-current="page">About</a>
+      <a href="/events">Events</a>
+      <a href="/dear-her">Dear Her</a>
+      <a href="/pause-files">The Pause Files</a>
     </nav>
 
     <div class="site-footer__col js-reveal" data-reveal>
@@ -150,8 +149,8 @@
 
     <nav class="site-footer__col js-reveal" aria-label="Official" data-reveal>
       <h3>Official</h3>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
       <a href="#">Contact</a>
     </nav>
 

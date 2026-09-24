@@ -233,7 +233,7 @@
     } else {
       var fallback = document.createElement("a");
       fallback.className = "article-nav__fallback";
-      fallback.href = "dear-her.html";
+      fallback.href = "/dear-her";
       fallback.textContent = "More from Dear Her";
       navMount.appendChild(fallback);
     }

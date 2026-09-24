@@ -423,7 +423,7 @@
     '<div class="join-modal__backdrop" data-join-close></div>' +
     '<div class="join-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="join-modal-title" tabindex="-1">' +
       '<button class="join-modal__close" type="button" aria-label="Close" data-join-close>&times;</button>' +
-      '<div class="join-modal__media"><img src="asset/waitlist-photo.jpg" alt="" width="1024" height="1536"></div>' +
+      '<div class="join-modal__media"><img src="asset/opt/waitlist-photo.webp" alt="" width="1024" height="1536"></div>' +
       '<div class="join-modal__panel">' +
         '<div class="join-modal__state" data-state="form">' +
           '<h2 class="join-modal__title" id="join-modal-title">join the stop.</h2>' +

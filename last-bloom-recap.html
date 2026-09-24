@@ -10,16 +10,15 @@
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#FFFFF1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=League+Spartan:wght@500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=212">
+<link rel="preload" href="asset/fonts/league-spartan-normal-500-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="asset/fonts/poppins-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css?v=213">
 </head>
 <body class="recap-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header" id="site-header">
-  <a class="site-header__logo" href="index.html" aria-label="The Pastel Stop — Home">
+  <a class="site-header__logo" href="/" aria-label="The Pastel Stop — Home">
     <svg viewBox="70 60 280 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
       <path class="logo-mark" d="M 154.082031 80.261719 C 137.296875 86.390625 126.566406 101.261719 118.042969 116.359375 C 105.90625 136.640625 91.355469 165.785156 101.171875 189.675781 C 107.898438 205.210938 128.976562 210.800781 143.648438 203.25 C 153.695312 198.578125 157.492188 187.242188 157.882812 176.875 C 160.550781 148.125 140.765625 137.6875 152.152344 111.480469 C 158.960938 94.53125 171.351562 96.097656 174.890625 113.914062 C 176.984375 125.863281 175.941406 137.984375 175.460938 150.011719 C 174.972656 161.378906 176.304688 173.070312 174.109375 184.316406 C 171.03125 197.53125 160.972656 209.855469 183.019531 210.191406 C 190.65625 209.414062 212.316406 213.445312 211.542969 201.597656 C 211.03125 196.078125 207.070312 190.035156 205.988281 184.234375 C 204.335938 176.566406 204.558594 168.476562 204.40625 160.640625 C 203.816406 137.164062 199.949219 110.039062 227.425781 101.074219 C 241.148438 96.25 255.882812 110.304688 246 122.929688 C 238.898438 132.246094 224.71875 132.8125 218.589844 142.710938 C 213.109375 151.371094 218.90625 162.449219 227.5625 166.402344 C 236.960938 171.171875 247.425781 168.960938 257.660156 168.871094 C 262.894531 168.882812 267.742188 169.640625 271.089844 173.058594 C 274.726562 176.59375 275.542969 183.464844 271.121094 186.640625 C 261.5 192.3125 252.152344 180.539062 242.589844 180.699219 C 234.859375 180.25 230.023438 188.460938 232.476562 195.453125 C 234.171875 201.148438 239.011719 205.476562 244.105469 208.269531 C 266.167969 219.910156 303.488281 213.65625 308.609375 185.84375 C 310.519531 173.441406 303.683594 159.660156 292.269531 154.234375 C 284.859375 150.546875 275.925781 150.359375 267.65625 151.039062 C 257.574219 152.132812 250.488281 149.417969 262.179688 143.445312 C 267.839844 140.726562 273.886719 138.363281 277.917969 133.53125 C 287.128906 122.25 283.394531 104.792969 276.246094 93.210938 C 258.699219 65.570312 230.191406 84.796875 204.164062 83.191406 C 187.597656 81.980469 170.65625 73.707031 154.269531 80.191406 Z"/>
       <path class="logo-mark" d="M 330.492188 202.847656 C 330.492188 207.929688 326.183594 212.054688 320.867188 212.054688 C 315.554688 212.054688 311.242188 207.929688 311.242188 202.847656 C 311.242188 197.761719 315.554688 193.640625 320.867188 193.640625 C 326.183594 193.640625 330.492188 197.761719 330.492188 202.847656"/>
@@ -27,11 +26,11 @@
   </a>
 
   <nav class="site-header__nav" aria-label="Primary">
-    <a href="dear-her.html">Dear Her</a>
+    <a href="/dear-her">Dear Her</a>
     <!-- hidden until launch: <a href="#">Things We Love</a> -->
-    <a href="pause-files.html">The Pause Files</a>
-    <a href="events.html" aria-current="page">Events</a>
-    <a href="about.html">About</a>
+    <a href="/pause-files">The Pause Files</a>
+    <a href="/events" aria-current="page">Events</a>
+    <a href="/about">About</a>
   </nav>
 
   <a href="#" class="site-header__cta">Join the Stop</a>
@@ -42,11 +41,11 @@
 </header>
 
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-  <a href="dear-her.html">Dear Her</a>
+  <a href="/dear-her">Dear Her</a>
   <!-- hidden until launch: <a href="#">Things We Love</a> -->
-  <a href="pause-files.html">The Pause Files</a>
-  <a href="events.html">Events</a>
-  <a href="about.html">About</a>
+  <a href="/pause-files">The Pause Files</a>
+  <a href="/events">Events</a>
+  <a href="/about">About</a>
   <a href="#" class="is-cta">Join the Stop</a>
 </nav>
 
@@ -54,8 +53,8 @@
 
   <!-- 1. Header: ocean + stamp image, date and place in the bottom corners -->
   <section class="rc-hero">
-    <img class="rc-hero__img" src="asset/hero-ocean.jpg" width="1366" height="1708" alt="" aria-hidden="true">
-    <img class="rc-hero__stamp" src="asset/postcard-hero.png" width="391" height="511" alt="A Last Bloom Of Summer postage stamp floating over a wide turquoise ocean, captioned 'summer, one last time.'">
+    <img class="rc-hero__img" src="asset/opt/hero-ocean.webp" width="1366" height="1708" alt="" aria-hidden="true" fetchpriority="high">
+    <img class="rc-hero__stamp" src="asset/opt/postcard-hero.webp" width="391" height="511" alt="A Last Bloom Of Summer postage stamp floating over a wide turquoise ocean, captioned 'summer, one last time.'">
     <h1 class="visually-hidden">Last Bloom Of Summer &mdash; A Pastel Stop Event</h1>
     <div class="rc-hero__meta">
       <span>August 30, 2026</span>
@@ -68,7 +67,7 @@
     <div class="rc-letter__grid">
       <h2 class="rc-letter__title js-reveal">one last little love letter to summer.</h2>
       <figure class="rc-letter__photo js-reveal js-reveal--scale">
-        <img src="asset/last-summer/ls-15.jpg" width="1050" height="1400" loading="lazy" alt="A centerpiece of yellow gerbera daisies, lemons and blueberries on a blue table runner.">
+        <img src="asset/opt/last-summer-ls-15.webp" width="1050" height="1400" loading="lazy" alt="A centerpiece of yellow gerbera daisies, lemons and blueberries on a blue table runner.">
       </figure>
       <p class="rc-letter__copy js-reveal">Good food, new faces, pretty moments, and memories we&rsquo;ll probably talk about long after the season ends.</p>
     </div>
@@ -76,11 +75,11 @@
 
   <!-- 3. Photo band with envelope, Polaroid and paper card -->
   <section class="rc-cluster">
-    <img class="rc-cluster__bg" src="asset/last-summer/venue bkg.jpg" width="787" height="1400" loading="lazy" alt="" aria-hidden="true">
+    <img class="rc-cluster__bg" src="asset/opt/last-summer-venue-bkg.webp" width="787" height="1400" loading="lazy" alt="" aria-hidden="true">
     <div class="rc-cluster__stage js-reveal">
-      <img class="rc-cluster__env" src="asset/envelope-cutout.png" width="422" height="531" loading="lazy" alt="">
+      <img class="rc-cluster__env" src="asset/opt/envelope-cutout.webp" width="422" height="531" loading="lazy" alt="">
       <figure class="rc-cluster__polaroid">
-        <img src="asset/last-summer/ls-09.jpg" width="1050" height="1400" loading="lazy" alt="Two friends leaning in for a selfie with a white parasol.">
+        <img src="asset/opt/last-summer-ls-09.webp" width="1050" height="1400" loading="lazy" alt="Two friends leaning in for a selfie with a white parasol.">
       </figure>
       <div class="rc-cluster__card">
         <span class="rc-cluster__date">August 30, 2026</span>
@@ -105,11 +104,11 @@
   <section class="rc-split">
     <div class="rc-split__left">
       <figure class="rc-split__small js-reveal js-reveal--scale">
-        <img src="asset/last-summer/ls-06.jpg" width="1050" height="1400" loading="lazy" alt="Two friends hugging and laughing close to the camera.">
+        <img src="asset/opt/last-summer-ls-06.webp" width="1050" height="1400" loading="lazy" alt="Two friends hugging and laughing close to the camera.">
       </figure>
     </div>
     <div class="rc-split__right">
-      <img class="rc-split__bg" src="asset/last-summer/ls-08.jpg" width="1382" height="1400" loading="lazy" alt="White paper parasols resting on a dinner table set with sunflowers and candles.">
+      <img class="rc-split__bg" src="asset/opt/last-summer-ls-08.webp" width="1382" height="1400" loading="lazy" alt="White paper parasols resting on a dinner table set with sunflowers and candles.">
       <div class="rc-split__card js-reveal js-reveal--scale">
         <div class="rc-split__item"><h3>What</h3><p>A Pastel Stop dinner to hold onto summer a little longer.</p></div>
         <div class="rc-split__item"><h3>When</h3><p>August 30, 2026</p></div>
@@ -123,49 +122,49 @@
     <p class="recap-eyebrow rc-polas__label js-reveal">The night, pinned up</p>
     <div class="rc-polas__grid" data-pola-anim>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/whole-crew.png" width="338" height="392" loading="lazy" alt="Polaroid: the whole crew">
+        <img src="asset/opt/polaroids-whole-crew.webp" width="338" height="392" loading="lazy" alt="Polaroid: the whole crew">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/besties.png" width="338" height="392" loading="lazy" alt="Polaroid: besties cheese!!">
+        <img src="asset/opt/polaroids-besties.webp" width="338" height="392" loading="lazy" alt="Polaroid: besties cheese!!">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/pretty-sips.png" width="338" height="392" loading="lazy" alt="Polaroid: pretty sips">
+        <img src="asset/opt/polaroids-pretty-sips.webp" width="338" height="392" loading="lazy" alt="Polaroid: pretty sips">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/the-girlies.png" width="338" height="392" loading="lazy" alt="Polaroid: the girlies">
+        <img src="asset/opt/polaroids-the-girlies.webp" width="338" height="392" loading="lazy" alt="Polaroid: the girlies">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/little-details.png" width="338" height="392" loading="lazy" alt="Polaroid: little details">
+        <img src="asset/opt/polaroids-little-details.webp" width="338" height="392" loading="lazy" alt="Polaroid: little details">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/candid.png" width="338" height="392" loading="lazy" alt="Polaroid: caught candid">
+        <img src="asset/opt/polaroids-candid.webp" width="338" height="392" loading="lazy" alt="Polaroid: caught candid">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/in-her-element.png" width="338" height="392" loading="lazy" alt="Polaroid: in her element">
+        <img src="asset/opt/polaroids-in-her-element.webp" width="338" height="392" loading="lazy" alt="Polaroid: in her element">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/say-cheese.png" width="338" height="392" loading="lazy" alt="Polaroid: say cheese">
+        <img src="asset/opt/polaroids-say-cheese.webp" width="338" height="392" loading="lazy" alt="Polaroid: say cheese">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/sweetest-moment.png" width="338" height="392" loading="lazy" alt="Polaroid: sweetest moment">
+        <img src="asset/opt/polaroids-sweetest-moment.webp" width="338" height="392" loading="lazy" alt="Polaroid: sweetest moment">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/one-last-bloom.png" width="338" height="392" loading="lazy" alt="Polaroid: one last bloom">
+        <img src="asset/opt/polaroids-one-last-bloom.webp" width="338" height="392" loading="lazy" alt="Polaroid: one last bloom">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/in-the-moment.png" width="338" height="392" loading="lazy" alt="Polaroid: in the moment">
+        <img src="asset/opt/polaroids-in-the-moment.webp" width="338" height="392" loading="lazy" alt="Polaroid: in the moment">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/pretty-people.png" width="338" height="392" loading="lazy" alt="Polaroid: pretty people">
+        <img src="asset/opt/polaroids-pretty-people.webp" width="338" height="392" loading="lazy" alt="Polaroid: pretty people">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/okay-enough.png" width="338" height="392" loading="lazy" alt="Polaroid: okay, enough!">
+        <img src="asset/opt/polaroids-okay-enough.webp" width="338" height="392" loading="lazy" alt="Polaroid: okay, enough!">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/no-pictures.png" width="338" height="392" loading="lazy" alt="Polaroid: no pictures!">
+        <img src="asset/opt/polaroids-no-pictures.webp" width="338" height="392" loading="lazy" alt="Polaroid: no pictures!">
       </figure>
       <figure class="rc-polas__item">
-        <img src="asset/polaroids/sweetest-moment-2.png" width="338" height="392" loading="lazy" alt="Polaroid: sweetest moment">
+        <img src="asset/opt/polaroids-sweetest-moment-2.webp" width="338" height="392" loading="lazy" alt="Polaroid: sweetest moment">
       </figure>
     </div>
     <p class="rc-polas__sign js-reveal">summer 2026</p>
@@ -178,11 +177,11 @@
       <p class="rc-close__copy js-reveal">Last Bloom was our little excuse to hold onto summer for one more night.</p>
       <p class="rc-close__copy js-reveal">Somewhere between dinner, pictures, and conversations with people we&rsquo;d only just met, the whole thing started to feel exactly like what The Pastel Stop was supposed to be.</p>
       <figure class="rc-close__photo js-reveal js-reveal--scale">
-        <img src="asset/last-summer/ls-16.jpg" width="1400" height="1050" loading="lazy" alt="Blurred white parasols glowing in a dim hallway.">
+        <img src="asset/opt/last-summer-ls-16.webp" width="1400" height="1050" loading="lazy" alt="Blurred white parasols glowing in a dim hallway.">
       </figure>
       <p class="rc-close__copy js-reveal">Thank you to everyone who pulled up a chair, met someone new, stayed a little longer, and made our first stop one worth remembering.</p>
       <p class="rc-close__hand js-reveal">first stop down. see you at the next one. <svg class="heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></p>
-      <a class="rc-close__cta js-reveal" href="events.html">See what we&rsquo;re doing next <span aria-hidden="true">&rarr;</span></a>
+      <a class="rc-close__cta js-reveal" href="/events">See what we&rsquo;re doing next <span aria-hidden="true">&rarr;</span></a>
     </div>
   </section>
 
@@ -198,10 +197,10 @@
 
     <nav class="site-footer__col js-reveal" aria-label="Explore" data-reveal>
       <h3>Explore</h3>
-      <a href="about.html">About</a>
-      <a href="events.html" aria-current="page">Events</a>
-      <a href="dear-her.html">Dear Her</a>
-      <a href="pause-files.html">The Pause Files</a>
+      <a href="/about">About</a>
+      <a href="/events" aria-current="page">Events</a>
+      <a href="/dear-her">Dear Her</a>
+      <a href="/pause-files">The Pause Files</a>
     </nav>
 
     <div class="site-footer__col js-reveal" data-reveal>
@@ -224,8 +223,8 @@
 
     <nav class="site-footer__col js-reveal" aria-label="Official" data-reveal>
       <h3>Official</h3>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
       <a href="#">Contact</a>
     </nav>
 
