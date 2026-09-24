@@ -2375,7 +2375,8 @@ button {
 
 .events-hero__photo {
   display: block;
-  width: min(88vw, 600px);
+  /* shrinks between tablet and desktop so the overhanging postcard always stays on screen */
+  width: min(600px, calc(61vw - 30px));
   height: auto;
   box-shadow: 0 30px 60px -20px rgba(35, 31, 32, 0.35);
 }
@@ -2384,7 +2385,7 @@ button {
   position: absolute;
   right: -32%;
   bottom: -20%;
-  width: clamp(180px, 46vw, 380px);
+  width: 63%;
   height: auto;
   transform: rotate(-6deg);
   filter: drop-shadow(0 18px 30px rgba(35, 31, 32, 0.3));
