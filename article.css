@@ -962,3 +962,23 @@
   }
 
 }
+
+
+/* "More from Dear Her": ALL CAPS, pink and underlined so it reads as a link; grows a little on hover */
+.article-nav__fallback {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-pink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transition: scale 220ms var(--ease-editorial);
+}
+.article-nav__fallback:focus-visible { scale: 1.08; }
+@media (hover: hover) {
+  .article-nav__fallback:hover { scale: 1.08; }
+}

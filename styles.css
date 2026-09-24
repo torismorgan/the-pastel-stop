@@ -4059,3 +4059,6 @@ button {
 @media (hover: hover) { .legal__more a:hover { scale: 1.05; color: var(--brand-pink); } }
 /* spots that still need real details filled in before launch */
 .legal__todo { background: #FFE98A; color: var(--text-primary); padding: 0 4px; border-radius: 2px; }
+
+/* heart drawn as a shape (the text character turns into an emoji on Apple devices) */
+.heart { display: inline-block; width: 0.8em; height: 0.8em; margin-left: 0.15em; vertical-align: -0.05em; fill: currentColor; }
