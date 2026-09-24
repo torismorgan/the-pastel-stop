@@ -892,9 +892,15 @@ button {
   transition: opacity var(--hover-transition) var(--ease-editorial);
 }
 
-.dearher-letter-link:hover,
-.dearher-letter-link:focus-visible {
-  opacity: 0.8;
+.dearher-heading {
+  transition: opacity var(--reveal-transition) var(--ease-editorial),
+              transform var(--reveal-transition) var(--ease-editorial),
+              scale 320ms var(--ease-editorial),
+              color 320ms var(--ease-editorial);
+}
+.dearher-letter-link:focus-visible .dearher-heading { scale: 1.06; color: var(--brand-pink); }
+@media (hover: hover) {
+  .dearher-letter-link:hover .dearher-heading { scale: 1.06; color: var(--brand-pink); }
 }
 
 .dearher-heading {
@@ -970,6 +976,14 @@ button {
   color: var(--text-primary);
   opacity: 0.9;
   margin: 0;
+}
+
+@media (max-width: 640px) {
+  .site-footer__tagline {
+    font-size: clamp(2.3rem, 10.5vw, 2.9rem);
+    line-height: 1.08;
+    text-wrap: balance;
+  }
 }
 
 .site-footer__top {
@@ -1647,7 +1661,7 @@ button {
 @media (hover: hover) {
   .letters-featured:has(.letters-featured__imagelink:hover) .letters-featured__title a,
   .letters-featured:has(.letters-featured__item:hover) .letters-featured__title a {
-    color: var(--item-accent, #2978CC);
+    color: var(--brand-pink);
     text-decoration: underline;
     text-decoration-thickness: 1.5px;
     text-underline-offset: 3px;
