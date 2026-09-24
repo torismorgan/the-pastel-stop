@@ -700,10 +700,8 @@
 ------------------------------------------------- */
 (function () {
   "use strict";
-  var form = document.getElementById("contact-form");
-  if (!form) return;
-
   var EMAIL = ["hello", "thepastelstop.com"].join("@");
+  // any <span data-email> on the site (contact page, legal pages) becomes the mailto link
   var slots = document.querySelectorAll("[data-email]");
   Array.prototype.forEach.call(slots, function (el) {
     var a = document.createElement("a");
@@ -712,6 +710,9 @@
     el.textContent = "";
     el.appendChild(a);
   });
+
+  var form = document.getElementById("contact-form");
+  if (!form) return;
 
   var nameEl = document.getElementById("contact-name");
   var msgEl = document.getElementById("contact-message");
