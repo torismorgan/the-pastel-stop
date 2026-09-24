@@ -2599,46 +2599,50 @@ button {
   margin: 0 0 18px;
 }
 
-/* 1. Quiet opening — cream/butter, small label, elegant title, small photo */
-.rc-label {
+/* 1. Header — full-bleed ocean + stamp image, date and place in the corners */
+.rc-hero {
+  position: relative;
+  height: 100svh;
+  min-height: 520px;
+  overflow: hidden;
+  background: #A9C5D6;
+}
+.rc-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.rc-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 30%;
+  background: linear-gradient(0deg, rgba(8, 56, 84, 0.42) 0%, rgba(8, 56, 84, 0) 100%);
+  pointer-events: none;
+}
+.rc-hero__meta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 clamp(20px, 4vw, 48px) clamp(20px, 3.5vw, 40px);
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.72rem;
+  font-weight: 700;
+  font-size: clamp(0.66rem, 1.1vw, 0.85rem);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--dearher-ink);
-  margin: 0;
+  color: #FFFDF0;
+  text-shadow: 0 1px 8px rgba(8, 56, 84, 0.55);
 }
-.rc-open {
-  background-color: var(--recap-butter);
-  background-image: var(--grain);
-  padding: clamp(110px, 15vh, 150px) clamp(20px, 5vw, 64px) clamp(28px, 4vw, 44px);
-  text-align: center;
-}
-.rc-open__title {
-  font-family: var(--font-script);
-  font-weight: 400;
-  font-size: clamp(3.4rem, 9vw, 7.6rem);
-  line-height: 1.02;
-  color: var(--recap-blue);
-  margin: clamp(14px, 2vw, 22px) 0 clamp(20px, 3vw, 36px);
-}
-.rc-open__photo {
-  width: clamp(150px, 17vw, 210px);
-  margin: 0 auto clamp(48px, 8vw, 96px);
-  padding: 8px 8px 30px;
-  background: #FFFFFF;
-  rotate: -3deg;
-  box-shadow: 0 20px 40px -18px rgba(35, 31, 32, 0.45);
-}
-.rc-open__photo img { display: block; width: 100%; height: auto; }
-.rc-open__meta { display: flex; justify-content: space-between; gap: 16px; }
 
-/* 2. Full-width ocean + stamp break */
-.rc-ocean { background: #A9C5D6; line-height: 0; }
-.rc-ocean img { display: block; width: 100%; height: auto; }
-
-/* 3. Love letter — small story moment, big cream field */
+/* 2. Love letter — small story moment, big cream field */
 .rc-letter {
   background-color: var(--background-primary);
   background-image: var(--grain);
@@ -2970,8 +2974,7 @@ button {
 }
 
 @media (max-width: 640px) {
-  .rc-ocean img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 50%; }
-  .rc-open__meta { flex-direction: column; align-items: center; gap: 8px; }
+  .rc-hero { height: 86svh; min-height: 480px; }
   .recap-bloom { padding-top: 56px; padding-bottom: 72px; }
   .bloom-row { font-size: 27vw; }
   .bloom-row:nth-child(n+8) { display: block; }
