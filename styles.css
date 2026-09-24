@@ -3720,7 +3720,7 @@ button {
 }
 .pause-hand {
   display: block;
-  width: clamp(190px, 16.1vw, 400px);
+  width: clamp(160px, 13vw, 330px);
   height: auto;
   color: var(--pause-cream);
 }
@@ -3774,7 +3774,7 @@ button {
     aspect-ratio: 413 / 539;
   }
   .pause-hero__note { margin: 36px 0 0; gap: 18px; }
-  .pause-hand { width: min(62vw, 270px); }
+  .pause-hand { width: min(50vw, 205px); }
   .pause-hero__link { font-size: 0.9rem; }
   .pause-hero__tag { margin-top: auto; padding-top: 44px; font-size: clamp(0.5rem, 3.05vw, 0.66rem); letter-spacing: 0.06em; white-space: nowrap; text-align: center; }
 }
