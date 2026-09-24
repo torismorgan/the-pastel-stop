@@ -582,7 +582,9 @@
   /* automatic discovery popup */
   var alreadyJoined = read("localStorage", K_JOINED) === "1";
   var alreadyShown = read("sessionStorage", K_AUTO_SHOWN) === "1";
-  if (!alreadyJoined && !alreadyShown && pageViews >= MIN_PAGES) {
+  /* never pop up on top of someone who is writing their story */
+  var onStoryPage = document.body.classList.contains("story-page");
+  if (!alreadyJoined && !alreadyShown && !onStoryPage && pageViews >= MIN_PAGES) {
     var ticking = false;
     var onScroll = function () {
       if (ticking) return;
@@ -604,4 +606,85 @@
     };
     window.addEventListener("scroll", onScroll, { passive: true });
   }
+})();
+
+/* -------------------------------------------------
+   Share Your Story form (share-your-story.html)
+   Nothing is stored until STORY_ENDPOINT points at a real service. Until then
+   the page tells visitors submissions are not open yet instead of pretending
+   their story was saved. Add ?demo to the URL to preview the thank-you state.
+------------------------------------------------- */
+(function () {
+  "use strict";
+  var form = document.getElementById("story-form");
+  if (!form) return;
+
+  var STORY_ENDPOINT = "";
+
+  var text = document.getElementById("story-text");
+  var count = document.getElementById("story-count");
+  var consent = document.getElementById("story-consent");
+  var errorEl = document.getElementById("story-error");
+  var done = document.getElementById("story-done");
+  var doneCopy = document.getElementById("story-done-copy");
+  var btn = form.querySelector(".story__button");
+  var btnHtml = btn.innerHTML;
+
+  function updateCount() { count.textContent = text.value.length + "/" + text.maxLength; }
+  text.addEventListener("input", function () { updateCount(); showError(""); });
+  consent.addEventListener("change", function () { showError(""); });
+  updateCount();
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.hidden = !msg;
+  }
+  function showDone(message) {
+    if (message) doneCopy.textContent = message;
+    form.hidden = true;
+    done.hidden = false;
+    done.focus();
+    if (done.scrollIntoView) done.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var story = text.value.trim();
+    if (story.length < 10) {
+      showError("please write a little more before you submit.");
+      text.focus();
+      return;
+    }
+    if (!consent.checked) {
+      showError("please tick the box so we know you\u2019re okay with it being shared anonymously.");
+      consent.focus();
+      return;
+    }
+    showError("");
+    var want = (form.querySelector('input[name="want"]:checked') || {}).value || "advice";
+
+    if (!STORY_ENDPOINT) {
+      if (window.console) console.warn("[TPS] Share Your Story is not connected to anything yet: nothing was sent or saved.");
+      if (/(^|[?&])demo(=|&|$)/.test(location.search)) { showDone(); return; }
+      showError("story submissions aren\u2019t open just yet, so nothing was sent. please check back soon.");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Sending\u2026";
+    fetch(STORY_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ story: story, want: want, consent: true })
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("bad status");
+        showDone();
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.innerHTML = btnHtml;
+        showError("something went wrong, and your story wasn\u2019t sent. please try again.");
+      });
+  });
 })();
