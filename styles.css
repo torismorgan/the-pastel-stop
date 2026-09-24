@@ -2740,7 +2740,7 @@ button {
 }
 .rc-split__left { display: flex; align-items: center; justify-content: center; padding: clamp(40px, 6vw, 80px); }
 .rc-split__small { width: min(62%, 300px); margin: 0; }
-.rc-split__small img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; }
+.rc-split__small img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 0; }
 .rc-split__right { position: relative; min-height: clamp(420px, 46vw, 640px); overflow: hidden; }
 .rc-split__bg {
   position: absolute;
@@ -2855,7 +2855,7 @@ button {
   height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 0;
 }
 .rc-letter__copy {
   grid-column: 8 / span 4;
@@ -2916,7 +2916,7 @@ button {
   width: 100%;
   height: auto;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 0;
   box-shadow: 0 26px 50px -22px rgba(20, 40, 70, 0.55);
 }
 .bloom-photo--a { margin-top: clamp(28px, 6vw, 90px); }
@@ -2970,7 +2970,7 @@ button {
 }
 .wall-item { position: relative; margin-bottom: 0; }
 .wall-item img { display: block; width: 100%; height: auto; }
-.wall-item--plain img { border-radius: 10px; }
+.wall-item--plain img { border-radius: 0; }
 .wall-item--print, .wall-item--polaroid {
   background: #FFFFFF;
   box-shadow: 0 16px 30px -14px rgba(35, 31, 32, 0.4);
@@ -3023,7 +3023,7 @@ button {
 }
 .recap-quiet__col { max-width: 340px; margin: 0 auto; text-align: center; }
 .recap-quiet__photo { margin: 0; }
-.recap-quiet__photo img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.recap-quiet__photo img { display: block; width: 100%; height: auto; border-radius: 0; }
 .recap-quiet__photo--small { width: 58%; margin: 0 auto clamp(40px, 6vw, 64px); }
 .recap-quiet__photo--wide { width: 100%; margin: clamp(48px, 7vw, 80px) auto 0; }
 .recap-quiet__text {
