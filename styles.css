@@ -2493,14 +2493,34 @@ button {
   display: grid;
   grid-template-columns: 0.82fr 1fr;
   gap: clamp(32px, 5vw, 64px);
-  margin-top: clamp(28px, 4vw, 44px);
+  margin-top: clamp(36px, 5vw, 64px);
   align-items: center;
 }
 
 .events-featured__image {
   border-radius: 8px;
+  position: relative;
   overflow: hidden;
   aspect-ratio: 5 / 4;
+}
+
+/* Pink sticker-style tag on the image, in place of the lone filter pill */
+.events-featured__badge {
+  position: absolute;
+  top: clamp(14px, 2vw, 22px);
+  left: clamp(14px, 2vw, 22px);
+  z-index: 2;
+  rotate: -5deg;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: var(--brand-pink);
+  border-radius: 999px;
+  padding: 9px 20px;
+  box-shadow: 0 8px 16px -6px rgba(35, 31, 32, 0.4);
 }
 
 .events-featured__image img {
@@ -2545,7 +2565,14 @@ button {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--brand-pink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transition: text-underline-offset 220ms var(--ease-editorial);
 }
+.events-featured__link span { display: inline-block; transition: transform 220ms var(--ease-editorial); }
+.events-featured__link:hover, .events-featured__link:focus-visible { text-underline-offset: 9px; }
+.events-featured__link:hover span, .events-featured__link:focus-visible span { transform: translateX(6px); }
 
 @media (max-width: 900px) {
   .events-intro__row {
