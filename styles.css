@@ -2577,11 +2577,11 @@ button {
 --------------------------------------------------------- */
 .recap-page {
   --font-mono: "Space Mono", "Courier New", monospace;
-  --recap-butter: #FBF4C8;
+  --recap-butter: #F6EFD3;
   --recap-wall: #F0EBD8;
   --recap-blue: #3A98E8;
   --recap-sky: #6DB9F7;
-  --recap-cream: #FFF6C9;
+  --recap-cream: #FAF4DC;
   --rc-h: clamp(600px, 56vw, 1000px);
   --grain-card: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
