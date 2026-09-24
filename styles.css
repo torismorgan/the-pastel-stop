@@ -1687,6 +1687,31 @@ button {
   color: var(--text-secondary);
 }
 
+.letters-featured__read {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  margin-top: 16px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-pink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transform-origin: left center;
+  transition: scale 220ms var(--ease-editorial);
+}
+@media (min-width: 901px) {
+  .letters-featured__read { transform-origin: center; }
+}
+.letters-featured__read:focus-visible { scale: 1.08; }
+@media (hover: hover) {
+  .letters-featured__read:hover { scale: 1.08; }
+}
+
 .letters-more {
   background: var(--background-primary);
   padding: clamp(40px, 6vw, 64px) clamp(20px, 5vw, 64px) clamp(64px, 8vw, 100px);
