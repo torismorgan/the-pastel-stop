@@ -2633,7 +2633,7 @@ button {
   justify-content: space-between;
   gap: 16px;
   padding: 0 clamp(20px, 4vw, 48px) clamp(20px, 3.5vw, 40px);
-  font-family: var(--font-display);
+  font-family: var(--font-mono);
   font-weight: 700;
   font-size: clamp(0.66rem, 1.1vw, 0.85rem);
   letter-spacing: 0.16em;
@@ -2686,9 +2686,9 @@ button {
   grid-row: 2;
   align-self: start;
   margin: clamp(24px, 4vw, 56px) 0 0;
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
-  line-height: 1.85;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.9;
   color: var(--dearher-ink);
 }
 
@@ -2885,9 +2885,9 @@ button {
 .recap-quiet__photo--small { width: 58%; margin: 0 auto clamp(40px, 6vw, 64px); }
 .recap-quiet__photo--wide { width: 100%; margin: clamp(48px, 7vw, 80px) auto 0; }
 .recap-quiet__text {
-  font-family: var(--font-ui);
-  font-size: 0.95rem;
-  line-height: 1.85;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.95;
   color: var(--dearher-ink);
   margin: 0;
 }
@@ -2931,9 +2931,9 @@ button {
   margin: 0 0 22px;
 }
 .rc-close__copy {
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
-  line-height: 1.85;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.9;
   color: var(--dearher-ink);
   max-width: 36ch;
   margin: 0 0 14px;
