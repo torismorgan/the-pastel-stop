@@ -1278,6 +1278,22 @@ button {
   margin: 0;
 }
 
+.site-footer__disclosure {
+  flex-basis: 100%;
+  font-size: 0.72rem;
+  opacity: 0.75;
+}
+
+.stop-section__note {
+  margin: clamp(20px, 3vw, 32px) 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--dearher-ink);
+  opacity: 0.7;
+  text-align: center;
+}
+
 .site-footer__wordmark-wrap {
   position: relative;
   margin: clamp(6px, 1vw, 12px) calc(-1 * clamp(24px, 5vw, 64px)) 0;
