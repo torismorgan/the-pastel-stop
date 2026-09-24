@@ -2497,18 +2497,19 @@ button {
   align-items: center;
 }
 
+.events-featured__media { position: relative; }
+
 .events-featured__image {
   border-radius: 8px;
-  position: relative;
   overflow: hidden;
   aspect-ratio: 5 / 4;
 }
 
-/* Pink sticker-style tag on the image, in place of the lone filter pill */
+/* Pink sticker-style tag: sits on the image's right edge, crossing it horizontally */
 .events-featured__badge {
   position: absolute;
-  top: clamp(14px, 2vw, 22px);
-  left: clamp(14px, 2vw, 22px);
+  top: 74%;
+  right: calc(-1 * clamp(12px, 2vw, 26px));
   z-index: 2;
   rotate: -5deg;
   font-family: var(--font-ui);
@@ -2558,21 +2559,27 @@ button {
 }
 
 .events-featured__link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-ui);
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--brand-pink);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
-  transition: text-underline-offset 220ms var(--ease-editorial);
+  border: 2px solid var(--brand-pink);
+  border-radius: 999px;
+  padding: 12px 24px;
+  transition: background 220ms var(--ease-editorial), color 220ms var(--ease-editorial);
 }
 .events-featured__link span { display: inline-block; transition: transform 220ms var(--ease-editorial); }
-.events-featured__link:hover, .events-featured__link:focus-visible { text-underline-offset: 9px; }
-.events-featured__link:hover span, .events-featured__link:focus-visible span { transform: translateX(6px); }
+.events-featured__link:focus-visible { background: var(--brand-pink); color: #FFFFFF; }
+.events-featured__link:focus-visible span { transform: translateX(5px); }
+@media (hover: hover) {
+  .events-featured__link:hover { background: var(--brand-pink); color: #FFFFFF; }
+  .events-featured__link:hover span { transform: translateX(5px); }
+}
 
 @media (max-width: 900px) {
   .events-intro__row {
