@@ -2992,27 +2992,53 @@ button {
 }
 
 /* 4. The night, pinned up — scrapbook, varied treatments */
-/* 7. Polaroid grid — 3 across, 5 down */
-.rc-polas {
-  background-color: var(--background-primary);
-  background-image: var(--grain);
-  padding: clamp(64px, 9vw, 120px) clamp(20px, 5vw, 64px) clamp(80px, 11vw, 140px);
+/* Soft edge where one section meets the next, so same-toned sections still read as separate */
+.rc-split, .rc-polas, .rc-close { position: relative; }
+.rc-split::before, .rc-polas::before, .rc-close::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 14px;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(63, 53, 45, 0.13), rgba(63, 53, 45, 0));
+  border-top: 1px solid rgba(63, 53, 45, 0.1);
 }
-.rc-polas__label { text-align: center; margin-bottom: clamp(40px, 6vw, 72px); }
+
+/* 7. Polaroid grid — 3 across, 5 down, over the beach photo */
+.rc-polas {
+  background-color: #C9D3D2;
+  background-image: url("asset/ocean bkg.png");
+  background-size: cover;
+  background-position: 50% 50%;
+  padding: clamp(48px, 6.5vw, 88px) clamp(20px, 5vw, 64px) clamp(56px, 7vw, 96px);
+}
+.rc-polas__label { text-align: center; margin-bottom: clamp(28px, 4vw, 48px); }
 .rc-polas__grid {
-  max-width: 1040px;
+  max-width: 880px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(20px, 4vw, 56px) clamp(16px, 3.4vw, 48px);
+  gap: clamp(16px, 3vw, 40px) clamp(14px, 2.8vw, 36px);
   justify-items: center;
 }
-.rc-polas__item { margin: 0; width: 100%; max-width: 338px; }
+.rc-polas__item { margin: 0; width: 100%; max-width: 272px; }
 .rc-polas__item img {
   display: block;
   width: 100%;
   height: auto;
-  box-shadow: 0 14px 28px -16px rgba(35, 31, 32, 0.4);
+  box-shadow: 0 14px 28px -14px rgba(35, 31, 32, 0.45);
+}
+.rc-polas__sign {
+  margin: clamp(36px, 5vw, 64px) 0 0;
+  text-align: center;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  line-height: 1;
+  color: var(--text-primary);
 }
 @media (hover: hover) {
   .rc-polas__item { position: relative; }
