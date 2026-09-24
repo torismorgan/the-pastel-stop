@@ -3727,7 +3727,7 @@ button {
 .pause-hero__link {
   font-family: "Space Mono", "Courier New", monospace;
   font-size: clamp(1rem, 1.5vw, 1.4rem);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--pause-cream);
@@ -3737,9 +3737,10 @@ button {
   transform-origin: left center;
   transition: scale 220ms var(--ease-editorial);
 }
-.pause-hero__link:focus-visible { scale: 1.08; }
+/* regular + underlined by default; bold (and a slight grow) only on hover. Space Mono is monospaced, so bold doesn't change the width. */
+.pause-hero__link:focus-visible { font-weight: 700; scale: 1.08; }
 @media (hover: hover) {
-  .pause-hero__link:hover { scale: 1.08; }
+  .pause-hero__link:hover { font-weight: 700; scale: 1.08; }
 }
 
 .pause-hero__tag {
