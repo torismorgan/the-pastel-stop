@@ -2563,10 +2563,10 @@ button {
 
 @media (max-width: 640px) {
   .events-intro__title {
-    font-size: min(9.8vw, 3.2rem);
+    font-size: clamp(3rem, 15vw, 4.4rem);
   }
-  .events-intro__title-break {
-    display: inline;
+  .events-featured__title {
+    font-size: clamp(1.9rem, 8vw, 2.4rem);
   }
 }
 
