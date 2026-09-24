@@ -1212,10 +1212,14 @@ button {
   }
 }
 
-@media (max-width: 560px) {
+/* phones and small windows: the footer stacks in rows instead of two side-by-side columns */
+@media (max-width: 760px) {
   .site-footer__top {
     grid-template-columns: 1fr;
   }
+}
+
+@media (max-width: 560px) {
   .site-footer__wordmark {
     font-size: 13.5vw;
     padding: 0 12px;
