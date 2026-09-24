@@ -2838,29 +2838,16 @@ button {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: min(60%, 380px);
-  aspect-ratio: 2 / 3;
+  width: min(66%, 420px);
+  aspect-ratio: 424 / 644;
   translate: -50% -50%;
   rotate: -2deg;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 14% 11% 13%;
-  background-color: var(--recap-card);
-  background-image: var(--grain-card);
-  box-shadow: inset 0 0 0 1px rgba(63, 53, 45, 0.05), inset 0 0 26px rgba(150, 125, 70, 0.07), 0 1px 2px rgba(35, 31, 32, 0.22), 0 10px 18px -6px rgba(35, 31, 32, 0.35), 0 34px 56px -18px rgba(35, 31, 32, 0.6);
-}
-.rc-split__card::before {
-  content: "";
-  position: absolute;
-  top: -18px;
-  right: 12%;
-  width: 14px;
-  height: 46px;
-  border: 2px solid #A9AFB5;
-  border-radius: 9px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0) 60%);
-  box-shadow: 1px 2px 3px rgba(35, 31, 32, 0.25);
+  /* the paper (with its own clip and shadow) is one image; keep text inside the paper and clear of the clip */
+  padding: 15% 22% 15% 12%;
+  background: url("asset/paper-clip-card.png") center / 100% 100% no-repeat;
 }
 .rc-split__item h3, .rc-list__item h3 {
   font-family: var(--font-mono);
@@ -3289,7 +3276,7 @@ button {
   .rc-letter__grid { display: flex; flex-direction: column; }
   .rc-split { grid-template-columns: 1fr; }
   .rc-split__right { order: 1; min-height: 560px; }
-  .rc-split__card { width: min(62%, 300px); }
+  .rc-split__card { width: min(70%, 320px); }
   .rc-split__left { order: 2; padding: 0 clamp(20px, 8vw, 64px) clamp(56px, 12vw, 96px); justify-content: flex-start; }
   .rc-split__small { margin-top: -18vw; width: min(52%, 260px); position: relative; z-index: 2; }
   .rc-list__grid { grid-template-columns: 1fr; }
