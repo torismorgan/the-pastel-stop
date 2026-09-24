@@ -2577,7 +2577,7 @@ button {
 --------------------------------------------------------- */
 .recap-page {
   --font-mono: "Space Mono", "Courier New", monospace;
-  --recap-butter: #F6EFD3;
+  --recap-butter: var(--background-primary);
   --recap-wall: #F0EBD8;
   --recap-blue: #3A98E8;
   --recap-sky: #6DB9F7;
