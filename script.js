@@ -690,3 +690,52 @@
       });
   });
 })();
+
+
+/* -------------------------------------------------
+   Contact page (contact.html)
+   No server needed yet: the form opens the visitor's email app with the message
+   filled in. The address is put together here so it is not sitting in the page
+   source for spam bots to collect.
+------------------------------------------------- */
+(function () {
+  "use strict";
+  var form = document.getElementById("contact-form");
+  if (!form) return;
+
+  var EMAIL = ["hello", "thepastelstop.com"].join("@");
+  var slots = document.querySelectorAll("[data-email]");
+  Array.prototype.forEach.call(slots, function (el) {
+    var a = document.createElement("a");
+    a.href = "mailto:" + EMAIL;
+    a.textContent = EMAIL;
+    el.textContent = "";
+    el.appendChild(a);
+  });
+
+  var nameEl = document.getElementById("contact-name");
+  var msgEl = document.getElementById("contact-message");
+  var errorEl = document.getElementById("contact-error");
+  var done = document.getElementById("contact-done");
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.hidden = !msg;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = nameEl.value.trim();
+    var msg = msgEl.value.trim();
+    if (!name) { showError("Add your name so we know who to reply to."); nameEl.focus(); return; }
+    if (!msg) { showError("Write us a little something first."); msgEl.focus(); return; }
+    showError("");
+    var topic = (form.querySelector('input[name="topic"]:checked') || {}).value || "Hello";
+    var subject = topic + " — from " + name;
+    var body = msg + "\n\n— " + name;
+    window.location.href =
+      "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    done.hidden = false;
+    done.focus();
+  });
+})();

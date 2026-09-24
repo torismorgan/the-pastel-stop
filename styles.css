@@ -4195,3 +4195,39 @@ button {
 
 /* heart drawn as a shape (the text character turns into an emoji on Apple devices) */
 .heart { display: inline-block; width: 0.8em; height: 0.8em; margin-left: 0.15em; vertical-align: -0.05em; fill: currentColor; }
+
+
+/* Contact page: reuses the Share Your Story paper look */
+.contact__input {
+  display: block;
+  width: 100%;
+  padding: 16px 20px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--story-ink);
+  background: transparent;
+  border: 1px solid var(--story-line);
+  border-radius: 0;
+}
+.contact__input:focus, .contact__input:focus-visible { outline: none; border-color: var(--story-ink); box-shadow: 0 0 0 1px var(--story-ink); }
+.contact__options { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.contact__textarea { min-height: 150px; padding-bottom: 24px; }
+.contact__done[hidden] { display: none; }
+.contact__done { padding: clamp(8px, 2vw, 24px) 0 clamp(24px, 3vw, 36px); }
+.contact__done:focus { outline: none; }
+.contact__direct {
+  margin-top: clamp(40px, 5vw, 64px);
+  padding-top: clamp(24px, 3vw, 34px);
+  border-top: 1px solid var(--story-line);
+  display: grid;
+  gap: 12px;
+}
+.contact__line { margin: 0; font-size: 0.8rem; line-height: 1.7; color: var(--story-soft); }
+.contact__line a { color: var(--story-ink); text-decoration: underline; text-underline-offset: 4px; }
+.contact__line a:hover, .contact__line a:focus-visible { color: var(--brand-pink); }
+@media (max-width: 760px) {
+  .contact__options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 340px) {
+  .contact__options { grid-template-columns: 1fr; }
+}

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About — thepastelstop.</title>
-<meta name="description" content="For every version of her — the story behind The Pastel Stop.">
+<title>Contact — thepastelstop.</title>
+<meta name="description" content="Questions, feedback, collabs, event ideas, or just a hello. We read everything.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="shortcut icon" href="favicon.ico">
@@ -14,7 +14,7 @@
 <link rel="preload" href="asset/fonts/poppins-normal-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css?v=220">
 </head>
-<body class="about-page">
+<body class="story-page contact-page">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header" id="site-header">
@@ -28,9 +28,9 @@
   <nav class="site-header__nav" aria-label="Primary">
     <a href="/dear-her">Dear Her</a>
     <!-- hidden until launch: <a href="#">Things We Love</a> -->
-    <a href="/pause-files">The Pause Files</a>
+    <a href="/pause-files" aria-current="page">The Pause Files</a>
     <a href="/events">Events</a>
-    <a href="/about" aria-current="page">About</a>
+    <a href="/about">About</a>
   </nav>
 
   <a href="#" class="site-header__cta">Join the Stop</a>
@@ -43,7 +43,7 @@
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
   <a href="/dear-her">Dear Her</a>
   <!-- hidden until launch: <a href="#">Things We Love</a> -->
-  <a href="/pause-files">The Pause Files</a>
+  <a href="/pause-files" aria-current="page">The Pause Files</a>
   <a href="/events">Events</a>
   <a href="/about">About</a>
   <a href="#" class="is-cta">Join the Stop</a>
@@ -51,63 +51,78 @@
 
 <main id="main">
 
-  <section class="about-hero">
-    <img class="about-hero__img" src="asset/opt/about-hero.webp" alt="Four women sitting together in a wildflower field." fetchpriority="high">
-    <h1 class="about-hero__script">for every version of her</h1>
-    <p class="about-hero__eyebrow">About / The Pastel Stop</p>
-  </section>
+  <section class="story contact" aria-labelledby="contact-title">
+    <span class="story__holes" aria-hidden="true"></span>
 
-  <section class="about-intro">
-    <p class="about-intro__eyebrow">What Is The Stop / 001</p>
-    <h2 class="about-intro__title">a place to pause,<br>without standing still.</h2>
-    <p class="about-intro__body">
-      The Pastel Stop is a space for women figuring life out in real time.<br>
-      The changing, the questioning, the starting over, the becoming — and all the little moments in between.<br>
-      Come for the stories, stay for the conversations, take what you need.<br>
-      There&rsquo;s no right way to be here.
-    </p>
-  </section>
+    <div class="story__top">
+      <p class="story__label">Contact</p>
+      <p class="story__tag">Questions &middot; Feedback &middot; Hellos</p>
+    </div>
 
-  <section class="about-feature">
-    <img class="about-feature__img" src="asset/opt/about-2-pic.webp" alt="Three women outdoors against a blue sky, each holding a rose." loading="lazy" decoding="async">
-    <div class="about-feature__inner">
-      <p class="about-feature__eyebrow">Why We Pause / 002</p>
-      <div class="about-feature__row">
-        <h2 class="about-feature__statement">life is<br>already<br>serious<br>enough.</h2>
-        <div class="about-feature__copy">
-          <p>We wanted somewhere that could hold all of it. The good days. The confusing ones. The &ldquo;what am I even doing&rdquo; ones. The tiny wins we almost forget to celebrate.</p>
-          <p>A place that doesn&rsquo;t ask you to have everything figured out before you arrive.</p>
-          <p>Because sometimes you need advice. Sometimes you need a story that sounds a little like yours. And sometimes you just need somewhere that feels good to be.</p>
-        </div>
+    <div class="story__column">
+      <div class="story__intro">
+        <h1 class="story__title" id="contact-title">say hi.</h1>
+        <p class="story__lead">we read everything.</p>
       </div>
-      <p class="about-feature__script">Whatever version of you showed up today, she&rsquo;s welcome here.</p>
-    </div>
-  </section>
 
-  <section class="about-around">
-    <div class="about-around__list">
-      <p class="about-around__eyebrow">Around the Stop / 003</p>
-      <a class="about-around__item" href="/dear-her">
-        <h3>Dear Her</h3>
-        <p>letters for the things we&rsquo;re all thinking but don&rsquo;t always say out loud.</p>
-      </a>
-      <a class="about-around__item" href="/pause-files">
-        <h3>The Pause Files</h3>
-        <p>real stories, honest conversations and a place to listen without judgement.</p>
-      </a>
-      <a class="about-around__item" href="/events">
-        <h3>Events</h3>
-        <p>reasons to leave the group chat and actually see each other.</p>
-      </a>
-    </div>
-    <h2 class="about-around__statement">a little bit of<br>everything,<br>just like us.</h2>
-  </section>
+      <form class="story__form" id="contact-form" novalidate>
 
-  <section class="about-founder">
-    <img class="about-founder__bg" src="asset/opt/founders-back-ground.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
-    <div class="about-founder__inner">
-      <img class="about-founder__note" src="asset/opt/founder-post-card-cropped.webp" alt="A note from the founder, Oris: I think The Pastel Stop started with a feeling. I wanted somewhere that could hold a little bit of everything — the things we're figuring out, the things we never say out loud, the conversations we keep coming back to, and the moments when we just need to just take a moment and.. breathe. Not somewhere that expects you to have everything together. Just somewhere that meets you wherever you are. The Pastel Stop is still becoming. I think that's kind of the point. We're all becoming too. I just hope every time you stop by, there's something here that makes you feel seen, makes you laugh, gives you an idea, or simply makes your day a little better. Love, Oris — Founder of The Pastel Stop." loading="lazy" decoding="async">
-      <img class="about-founder__photo" src="asset/opt/founders-image.webp" alt="Photo of Oris, founder of The Pastel Stop, sitting outdoors in a red dress." loading="lazy" decoding="async">
+        <div class="story__field">
+          <label class="story__q" for="contact-name">Your name</label>
+          <input class="contact__input" id="contact-name" name="name" type="text" maxlength="80" autocomplete="name" required>
+        </div>
+
+        <fieldset class="story__field story__choices">
+          <legend class="story__q">What&rsquo;s it about?</legend>
+          <div class="story__options contact__options">
+            <label class="story__option">
+              <input type="radio" name="topic" value="Just saying hi" checked>
+              <span class="story__dot" aria-hidden="true"></span>
+              <span>Just saying hi</span>
+            </label>
+            <label class="story__option">
+              <input type="radio" name="topic" value="Feedback">
+              <span class="story__dot" aria-hidden="true"></span>
+              <span>Feedback</span>
+            </label>
+            <label class="story__option">
+              <input type="radio" name="topic" value="Collab or press">
+              <span class="story__dot" aria-hidden="true"></span>
+              <span>Collab or press</span>
+            </label>
+            <label class="story__option">
+              <input type="radio" name="topic" value="Event idea">
+              <span class="story__dot" aria-hidden="true"></span>
+              <span>Event idea</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="story__field">
+          <label class="story__q" for="contact-message">Your message</label>
+          <div class="story__box">
+            <textarea class="story__textarea contact__textarea" id="contact-message" name="message" maxlength="1500" rows="4" required placeholder="say it however you like&hellip;"></textarea>
+          </div>
+        </div>
+
+        <p class="story__error" id="contact-error" role="alert" hidden></p>
+
+        <div class="story__submit">
+          <button class="story__button" type="submit">Send it <span aria-hidden="true">&rarr;</span></button>
+          <p class="story__note">This opens your email app with everything filled in &mdash; just press send.</p>
+        </div>
+      </form>
+
+      <div class="contact__done" id="contact-done" hidden tabindex="-1">
+        <h2 class="story__title story__title--done">check your email app.</h2>
+        <p class="story__done-copy">Your message is ready to go &mdash; press send there. Nothing opened? Write to us at <span data-email></span> instead.</p>
+      </div>
+
+      <div class="contact__direct">
+        <p class="contact__line">Or email us straight: <span data-email><span class="contact__noscript">hello [at] thepastelstop [dot] com</span></span></p>
+        <p class="contact__line">Find us <a href="https://www.instagram.com/thepastelstop/" target="_blank" rel="noopener noreferrer">@thepastelstop</a> on Instagram, <a href="https://www.tiktok.com/@thepastelstop" target="_blank" rel="noopener noreferrer">TikTok</a> and <a href="https://www.pinterest.com/thepastelstop/" target="_blank" rel="noopener noreferrer">Pinterest</a>. We usually reply within a few days.</p>
+        <p class="contact__line">Got a story for The Pause Files? <a href="/share-your-story">Share it here &rarr;</a></p>
+      </div>
     </div>
   </section>
 
@@ -123,10 +138,10 @@
 
     <nav class="site-footer__col js-reveal" aria-label="Explore" data-reveal>
       <h3>Explore</h3>
-      <a href="/about" aria-current="page">About</a>
+      <a href="/about">About</a>
       <a href="/events">Events</a>
       <a href="/dear-her">Dear Her</a>
-      <a href="/pause-files">The Pause Files</a>
+      <a href="/pause-files" aria-current="page">The Pause Files</a>
     </nav>
 
     <div class="site-footer__col js-reveal" data-reveal>
@@ -151,7 +166,7 @@
       <h3>Official</h3>
       <a href="/privacy">Privacy</a>
       <a href="/terms">Terms</a>
-      <a href="/contact">Contact</a>
+      <a href="/contact" aria-current="page">Contact</a>
     </nav>
 
     <div class="site-footer__newsletter js-reveal" data-reveal>
