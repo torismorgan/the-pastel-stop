@@ -1040,32 +1040,24 @@ button {
 
 .site-footer__socials {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
 }
 
+/* icon + word, laid out like the other footer links */
 .site-footer__social {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  aspect-ratio: 1 / 1;
-  flex-shrink: 0;
-  border-radius: 50%;
-  border: 1.5px solid var(--text-primary);
+  gap: 10px;
+  width: fit-content;
   color: var(--text-primary);
-  transition: background-color 220ms var(--ease-editorial), color 220ms var(--ease-editorial);
 }
 
 .site-footer__social svg {
-  width: 17px;
-  height: 17px;
-}
-
-.site-footer__social:hover,
-.site-footer__social:focus-visible {
-  background: var(--text-primary);
-  color: var(--background-primary);
+  width: 16px;
+  height: 16px;
+  flex: none;
 }
 
 .site-footer__newsletter p {
@@ -1212,23 +1204,26 @@ button {
   }
 }
 
-/* phones and small windows: Explore and Official share the first row; Follow Along and Join the Stop each get their own full-width row below */
+/* phones: three columns like the reference (Explore | Social | Official), Join the Stop on its own row below; left aligned.
+   Columns take only the width they need and spread across the row, so nothing is jammed together. */
 @media (max-width: 760px) {
   .site-footer__top {
-    grid-template-columns: 1fr 1fr;
-    gap: 34px 20px;
+    grid-template-columns: repeat(3, max-content);
+    justify-content: space-between;
+    gap: 40px 12px;
   }
-  .site-footer__top > :nth-child(3),
-  .site-footer__top > :nth-child(4) {
-    grid-column: 1 / -1;
-  }
-  /* centred on phones */
-  .site-footer__col { align-items: center; text-align: center; }
-  .site-footer__socials { justify-content: center; }
-  .site-footer__newsletter { text-align: center; }
-  .site-footer__newsletter h3 { margin-left: auto; margin-right: auto; }
-  .site-footer__checkbox { justify-content: center; text-align: left; }
-  .site-footer__bottom { justify-content: center; text-align: center; }
+  .site-footer__top > :nth-child(1) { order: 1; }
+  .site-footer__top > :nth-child(3) { order: 2; }
+  .site-footer__top > :nth-child(2) { order: 3; }
+  .site-footer__top > :nth-child(4) { order: 4; grid-column: 1 / -1; }
+  .site-footer__col, .site-footer__socials { gap: 16px; }
+  .site-footer__social { gap: 7px; }
+}
+
+@media (max-width: 360px) {
+  .site-footer__top { column-gap: 8px; }
+  .site-footer__col a, .site-footer__social { font-size: 0.66rem; }
+  .site-footer__social svg { width: 14px; height: 14px; }
 }
 
 @media (max-width: 560px) {
