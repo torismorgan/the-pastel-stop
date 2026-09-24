@@ -2659,13 +2659,13 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: 50% 42%;
-  filter: grayscale(0.9) brightness(0.68) contrast(1.06);
+  filter: saturate(0.62) brightness(0.84) contrast(1.06);
 }
 .rc-cluster::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(24, 30, 36, 0.22);
+  background: radial-gradient(ellipse 75% 85% at 50% 48%, rgba(20, 28, 40, 0.06) 0%, rgba(20, 28, 40, 0.5) 100%);
   pointer-events: none;
 }
 .rc-cluster__stage {
