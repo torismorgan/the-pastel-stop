@@ -3776,5 +3776,5 @@ button {
   .pause-hero__note { margin: 36px 0 0; gap: 18px; }
   .pause-hand { width: min(50vw, 205px); }
   .pause-hero__link { font-size: 0.9rem; }
-  .pause-hero__tag { margin-top: auto; padding-top: 44px; font-size: clamp(0.5rem, 3.05vw, 0.66rem); letter-spacing: 0.06em; white-space: nowrap; text-align: center; }
+  .pause-hero__tag { margin-top: 64px; padding-top: 0; font-size: clamp(0.5rem, 3.05vw, 0.66rem); letter-spacing: 0.06em; white-space: nowrap; text-align: center; }
 }
