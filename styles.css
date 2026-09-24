@@ -3084,6 +3084,7 @@ button {
 }
 @media (max-width: 640px) {
   .rc-polas__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rc-polas__item:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc(50% - 8px); }
 }
 
 .recap-wall {
@@ -3262,7 +3263,10 @@ button {
 @media (max-width: 640px) {
   .recap-page { --rc-h: 740px; }
   .rc-cluster__stage { width: 96%; }
-  .rc-hero { height: var(--rc-h); }
+  .rc-hero { height: 560px; }
+  .rc-cluster__date, .rc-cluster__sign { font-size: 3.1cqw; }
+  .rc-cluster__script { font-size: 7.4cqw; }
+  .rc-hero__img { object-position: 50% 100%; }
   .recap-bloom { padding-top: 56px; padding-bottom: 72px; }
   .bloom-row { font-size: 27vw; }
   .bloom-row:nth-child(n+8) { display: block; }
