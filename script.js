@@ -36,7 +36,16 @@
   var menuToggle = document.getElementById("menu-toggle");
   var mobileNav = document.getElementById("mobile-nav");
 
+  /* hamburger <-> simple X while the menu is open */
+  var ICON_MENU = "M3 6h18M3 12h18M3 18h18";
+  var ICON_CLOSE = "M5 5l14 14M19 5L5 19";
+  function setMenuIcon(isOpen) {
+    var path = menuToggle.querySelector("path");
+    if (path) path.setAttribute("d", isOpen ? ICON_CLOSE : ICON_MENU);
+  }
+
   function closeMenu() {
+    setMenuIcon(false);
     mobileNav.classList.remove("is-open");
     header.classList.remove("nav-open");
     menuToggle.setAttribute("aria-expanded", "false");
@@ -44,6 +53,7 @@
   }
 
   function openMenu() {
+    setMenuIcon(true);
     mobileNav.classList.add("is-open");
     header.classList.add("nav-open");
     menuToggle.setAttribute("aria-expanded", "true");

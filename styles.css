@@ -1677,10 +1677,9 @@ button {
 @media (hover: hover) {
   .letters-featured:has(.letters-featured__imagelink:hover) .letters-featured__title a,
   .letters-featured:has(.letters-featured__item:hover) .letters-featured__title a {
-    color: var(--brand-pink);
     text-decoration: underline;
-    text-decoration-thickness: 1.5px;
-    text-underline-offset: 3px;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
   }
   .letters-featured:has(.letters-featured__imagelink:hover) .letters-featured__image img,
   .letters-featured:has(.letters-featured__item:hover) .letters-featured__image img { scale: 1.04; }
