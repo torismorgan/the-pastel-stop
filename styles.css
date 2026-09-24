@@ -2578,12 +2578,13 @@ button {
 .recap-page {
   --font-mono: "Space Mono", "Courier New", monospace;
   --recap-butter: var(--background-primary);
+  --recap-card: #F8F1CE;
   --recap-wall: #F0EBD8;
   --recap-blue: #3A98E8;
   --recap-sky: #6DB9F7;
   --recap-cream: #FAF4DC;
   --rc-h: clamp(600px, 56vw, 1000px);
-  --grain-card: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+  --grain-card: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.38'/%3E%3C/svg%3E");
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   background: var(--background-primary);
 }
@@ -2719,9 +2720,9 @@ button {
   justify-content: space-between;
   padding: 10cqw 3cqw 9cqw;
   text-align: center;
-  background-color: var(--recap-butter);
+  background-color: var(--recap-card);
   background-image: var(--grain-card);
-  box-shadow: 0 18px 34px -14px rgba(35, 31, 32, 0.5);
+  box-shadow: inset 0 0 0 1px rgba(63,53,45,0.06), inset 0 0 30px rgba(150,125,70,0.1), 0 18px 34px -14px rgba(35,31,32,0.5);
 }
 .rc-cluster__date, .rc-cluster__sign {
   font-family: var(--font-mono);
@@ -2789,19 +2790,23 @@ button {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: min(72%, 340px);
+  width: min(60%, 380px);
+  aspect-ratio: 2 / 3;
   translate: -50% -50%;
-  rotate: 3deg;
-  padding: clamp(22px, 3vw, 34px) clamp(20px, 2.8vw, 32px);
-  background-color: var(--recap-butter);
-  background-image: var(--grain);
-  box-shadow: 0 22px 44px -18px rgba(35, 31, 32, 0.55);
+  rotate: -2deg;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14% 11% 13%;
+  background-color: var(--recap-card);
+  background-image: var(--grain-card);
+  box-shadow: inset 0 0 0 1px rgba(63, 53, 45, 0.06), inset 0 0 34px rgba(150, 125, 70, 0.1), 0 22px 44px -18px rgba(35, 31, 32, 0.55);
 }
 .rc-split__card::before {
   content: "";
   position: absolute;
-  top: -16px;
-  left: 14%;
+  top: -18px;
+  right: 12%;
   width: 14px;
   height: 46px;
   border: 2px solid #A9AFB5;
@@ -2809,7 +2814,6 @@ button {
   background: linear-gradient(90deg, rgba(255,255,255,0.5), rgba(255,255,255,0) 60%);
   box-shadow: 1px 2px 3px rgba(35, 31, 32, 0.25);
 }
-.rc-split__item + .rc-split__item { margin-top: clamp(16px, 2.2vw, 24px); }
 .rc-split__item h3, .rc-list__item h3 {
   font-family: var(--font-mono);
   font-weight: 700;
@@ -2819,6 +2823,8 @@ button {
   color: var(--dearher-ink);
   margin: 0 0 6px;
 }
+.rc-split__card .rc-split__item h3 { font-size: 0.88rem; }
+.rc-split__card .rc-split__item p { font-size: 0.8rem; }
 .rc-split__item p, .rc-list__item p {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -3222,7 +3228,8 @@ button {
   .rc-split { grid-auto-rows: auto; min-height: var(--rc-h); }
   .rc-letter__grid { display: flex; flex-direction: column; }
   .rc-split { grid-template-columns: 1fr; }
-  .rc-split__right { order: 1; min-height: 520px; }
+  .rc-split__right { order: 1; min-height: 560px; }
+  .rc-split__card { width: min(62%, 300px); }
   .rc-split__left { order: 2; padding: 0 clamp(20px, 8vw, 64px) clamp(56px, 12vw, 96px); justify-content: flex-start; }
   .rc-split__small { margin-top: -18vw; width: min(52%, 260px); position: relative; z-index: 2; }
   .rc-list__grid { grid-template-columns: 1fr; }
