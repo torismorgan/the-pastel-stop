@@ -2688,7 +2688,7 @@ button {
   font-size: clamp(0.66rem, 1.1vw, 0.85rem);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #FFFDF0;
+  color: var(--season-soft);
   text-shadow: 0 1px 8px rgba(8, 56, 84, 0.55);
 }
 
