@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&family=League+Spartan:wght@500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=94">
+<link rel="stylesheet" href="styles.css?v=97">
 </head>
 <body class="recap-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -57,22 +57,6 @@
     </div>
   </section>
 
-  <!-- 2. Photo band with a layered envelope, Polaroid and paper card -->
-  <section class="rc-cluster">
-    <img class="rc-cluster__bg" src="asset/last-summer/band-windows.jpg" width="1350" height="590" loading="lazy" alt="" aria-hidden="true">
-    <div class="rc-cluster__stage">
-      <img class="rc-cluster__env js-reveal" src="asset/ENV NO BACK.png" width="765" height="538" loading="lazy" alt="">
-      <figure class="rc-cluster__polaroid js-reveal js-reveal--scale">
-        <img src="asset/last-summer/ls-09.jpg" width="1050" height="1400" loading="lazy" alt="Two friends leaning in for a selfie with a white parasol.">
-      </figure>
-      <div class="rc-cluster__card js-reveal js-reveal--scale">
-        <span class="rc-cluster__date">August 30, 2026</span>
-        <span class="rc-cluster__script">summer, one last time.</span>
-        <span class="rc-cluster__sign">The Pastel Stop</span>
-      </div>
-    </div>
-  </section>
-
   <!-- 3. Love letter — heading over a small photo, text beside it -->
   <section class="rc-letter">
     <div class="rc-letter__grid">
@@ -84,21 +68,51 @@
     </div>
   </section>
 
-  <!-- 4. Sparse asymmetric photos + handwritten observations -->
-  <section class="rc-scatter">
-    <div class="rc-scatter__grid">
-      <figure class="rc-scatter__a js-reveal js-reveal--scale">
-        <img src="asset/last-summer/ls-01.jpg" width="1050" height="1400" loading="lazy" alt="A guest in a pale yellow dress laughing beside the welcome sign.">
-      </figure>
-      <p class="rc-scatter__note rc-scatter__note--a js-reveal">the best kind of crowd.</p>
-      <figure class="rc-scatter__b js-reveal js-reveal--scale">
+  <!-- 3. Split: small photo left, large photo right with a clipped paper card -->
+  <section class="rc-split">
+    <div class="rc-split__left">
+      <figure class="rc-split__small js-reveal js-reveal--scale">
         <img src="asset/last-summer/ls-06.jpg" width="1050" height="1400" loading="lazy" alt="Two friends hugging and laughing close to the camera.">
       </figure>
-      <p class="rc-scatter__note rc-scatter__note--b js-reveal">good food, better company.</p>
+    </div>
+    <div class="rc-split__right">
+      <img class="rc-split__bg" src="asset/last-summer/ls-24.jpg" width="787" height="1400" loading="lazy" alt="Dessert and drink tables set up beside tall windows.">
+      <div class="rc-split__card js-reveal js-reveal--scale">
+        <div class="rc-split__item"><h3>What</h3><p>A Pastel Stop dinner to hold onto summer a little longer.</p></div>
+        <div class="rc-split__item"><h3>When</h3><p>August 30, 2026</p></div>
+        <div class="rc-split__item"><h3>Where</h3><p>Lethbridge, AB</p></div>
+      </div>
     </div>
   </section>
 
-  <!-- 5. LAST BLOOM typography band (the one bold interruption) -->
+  <!-- 4. Script heading over short mono blocks -->
+  <section class="rc-list">
+    <h2 class="rc-list__title js-reveal">the little things deserved their moment too.</h2>
+    <div class="rc-list__grid" data-reveal-group data-reveal-stagger="120">
+      <div class="rc-list__item js-reveal" data-reveal><h3>The Night</h3><p>One last gathering to hold onto summer a little longer.</p></div>
+      <div class="rc-list__item js-reveal" data-reveal><h3>The People</h3><p>New faces, and conversations with people we&rsquo;d only just met.</p></div>
+      <div class="rc-list__item js-reveal" data-reveal><h3>The Table</h3><p>A table set for everyone, parasols and all.</p></div>
+      <div class="rc-list__item js-reveal" data-reveal><h3>The Memory</h3><p>Good food, better company, and a night worth remembering.</p></div>
+    </div>
+  </section>
+
+  <!-- 5. Photo band with envelope, Polaroid and paper card -->
+  <section class="rc-cluster">
+    <img class="rc-cluster__bg" src="asset/last-summer/venue bkg.jpg" width="787" height="1400" loading="lazy" alt="" aria-hidden="true">
+    <div class="rc-cluster__stage">
+      <img class="rc-cluster__env js-reveal" src="asset/envelope-cutout.png" width="422" height="531" loading="lazy" alt="">
+      <figure class="rc-cluster__polaroid js-reveal js-reveal--scale">
+        <img src="asset/last-summer/ls-09.jpg" width="1050" height="1400" loading="lazy" alt="Two friends leaning in for a selfie with a white parasol.">
+      </figure>
+      <div class="rc-cluster__card js-reveal js-reveal--scale">
+        <span class="rc-cluster__date">August 30, 2026</span>
+        <span class="rc-cluster__script">summer, one last time.</span>
+        <span class="rc-cluster__sign">The Pastel Stop</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. LAST BLOOM typography band (the one bold interruption) -->
   <section class="recap-bloom" aria-label="Last Bloom">
     <div class="recap-bloom__type" aria-hidden="true">
       <div class="bloom-row" style="--shift:-6%"><span>LAST BLOOM</span> <span>LAST BLOOM</span> <span>LAST BLOOM</span> <span>LAST BLOOM</span></div>
@@ -125,7 +139,7 @@
     <p class="bloom-hand js-reveal">one more night of summer. &hearts;</p>
   </section>
 
-  <!-- 6. The night, pinned up — the expressive scrapbook moment -->
+  <!-- 7. The night, pinned up — the expressive scrapbook moment -->
   <section class="recap-wall" aria-label="Photos from the night">
     <p class="recap-eyebrow recap-wall__label js-reveal">The night, pinned up</p>
     <div class="recap-wall__grid">
@@ -146,11 +160,12 @@
         <figure class="wall-item wall-item--plain js-reveal js-reveal--scale" data-reveal style="--start:7;--span:5;--row:1;--lift:7rem;--tilt:0deg">
           <img src="asset/last-summer/ls-23.jpg" width="787" height="1400" loading="lazy" alt="Two guests in yellow dresses sitting side by side, smiling.">
         </figure>
+        <p class="wall-note js-reveal" data-reveal style="--start:3;--span:4;--row:2;--tilt:2deg">the best kind of crowd.</p>
       </div>
 
       <div class="wall-comp" data-reveal-group data-reveal-stagger="160">
         <figure class="wall-item wall-item--plain js-reveal js-reveal--scale" data-reveal style="--start:1;--span:4;--row:1;--lift:0rem;--tilt:0deg">
-          <img src="asset/last-summer/ls-19.jpg" width="787" height="1400" loading="lazy" alt="Dessert tables set up beside tall windows overlooking the hills.">
+          <img src="asset/last-summer/ls-07.jpg" width="787" height="1400" loading="lazy" alt="Two friends raising their glasses in a cheers by the window at night.">
         </figure>
         <figure class="wall-item wall-item--polaroid js-reveal js-reveal--scale" data-reveal style="--start:6;--span:4;--row:1;--lift:3rem;--tilt:-3deg">
           <img src="asset/last-summer/ls-22.jpg" width="787" height="1400" loading="lazy" alt="Two friends holding a white parasol and a pink drink.">
@@ -158,7 +173,6 @@
         <figure class="wall-item wall-item--print js-reveal js-reveal--scale" data-reveal style="--start:10;--span:3;--row:1;--lift:8rem;--tilt:4deg">
           <img src="asset/last-summer/ls-27.jpg" width="1050" height="1400" loading="lazy" alt="The welcome sign wrapped in lemons, greenery and warm string lights.">
         </figure>
-        <p class="wall-note js-reveal" data-reveal style="--start:4;--span:6;--row:2;--tilt:-2deg">a table set for everyone, parasols and all.</p>
       </div>
 
       <div class="wall-comp" data-reveal-group data-reveal-stagger="160">
@@ -177,7 +191,7 @@
     </div>
   </section>
 
-  <!-- 7. Quiet editorial story -->
+  <!-- 8. Quiet editorial story -->
   <section class="recap-quiet">
     <div class="recap-quiet__col">
       <figure class="recap-quiet__photo recap-quiet__photo--small js-reveal js-reveal--scale">
@@ -191,7 +205,7 @@
     </div>
   </section>
 
-  <!-- 8. Minimal close -->
+  <!-- 9. Minimal close -->
   <section class="rc-close">
     <div class="rc-close__grid">
       <figure class="rc-close__photo js-reveal js-reveal--scale">
