@@ -3849,7 +3849,7 @@ button {
   letter-spacing: -0.01em;
   text-transform: lowercase;
 }
-.story-hand { display: block; width: clamp(110px, 10.5vw, 165px); height: auto; margin: 4px 0 0 2px; color: var(--story-ink); }
+.story__lead { margin: 10px 0 0; font-family: var(--font-ui); font-style: italic; font-weight: 500; font-size: clamp(1.15rem, 1.8vw, 1.6rem); color: var(--story-ink); }
 .story__intro { margin-bottom: clamp(30px, 4vw, 52px); }
 
 .story__field { margin: 0 0 clamp(30px, 4vw, 46px); padding: 0; border: 0; min-width: 0; }
@@ -3913,15 +3913,17 @@ button {
 
 .story__submit { display: flex; flex-direction: column; align-items: center; gap: 18px; }
 .story__button {
-  font-family: inherit;
-  font-size: 0.95rem;
-  letter-spacing: 0.1em;
+  /* same type as the "Join the Stop" popup button */
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: clamp(0.85rem, 1.15vw, 0.98rem);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--background-primary);
   background: var(--story-ink);
   border: 0;
   border-radius: 0;
-  padding: 18px clamp(32px, 5vw, 56px);
+  padding: 15px clamp(28px, 3.4vw, 44px);
   cursor: pointer;
   transition: background 200ms var(--ease-editorial);
 }
