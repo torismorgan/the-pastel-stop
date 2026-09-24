@@ -2673,49 +2673,50 @@ button {
   z-index: 1;
   container-type: inline-size;
   flex: 0 0 auto;
-  width: min(92%, 680px);
-  aspect-ratio: 1 / 0.7;
+  width: 56%;
+  aspect-ratio: 1 / 0.7476;
   margin: 0 auto;
 }
+/* Positions are % of the stage, measured from the reference cluster. */
 .rc-cluster__env {
   position: absolute;
-  left: 22%;
-  top: 12%;
-  width: 46%;
+  left: 4.7%;
+  top: 0;
+  width: 58.7%;
   height: auto;
   filter: drop-shadow(0 16px 26px rgba(35, 31, 32, 0.4));
 }
 .rc-cluster__polaroid {
   position: absolute;
-  left: 3%;
-  top: 4%;
-  width: 41%;
+  left: 4.1%;
+  top: 12.1%;
+  width: 51.8%;
   margin: 0;
-  padding: 2.4cqw 2.4cqw 7cqw;
+  padding: 3cqw 3cqw 6.5cqw;
   background: #FFFFFF;
-  rotate: -8deg;
+  rotate: -12deg;
   box-shadow: 0 18px 34px -14px rgba(35, 31, 32, 0.5);
 }
 .rc-cluster__polaroid img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 0.86;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center 30%;
 }
 .rc-cluster__card {
   position: absolute;
-  left: 55%;
-  top: 5%;
-  width: 32%;
-  aspect-ratio: 1 / 1.5;
-  rotate: 6deg;
+  left: 54.9%;
+  top: 15.7%;
+  width: 40.7%;
+  aspect-ratio: 2 / 3;
+  rotate: 8deg;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 4.5cqw 2cqw 4cqw;
+  padding: 10cqw 3cqw 9cqw;
   text-align: center;
   background-color: var(--recap-butter);
   background-image: var(--grain);
@@ -2723,14 +2724,14 @@ button {
 }
 .rc-cluster__date, .rc-cluster__sign {
   font-family: var(--font-mono);
-  font-size: 1.9cqw;
+  font-size: 1.85cqw;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-primary);
 }
 .rc-cluster__script {
   font-family: var(--font-script);
-  font-size: 4.6cqw;
+  font-size: 5.4cqw;
   line-height: 1.15;
   color: var(--text-primary);
 }
@@ -3126,6 +3127,7 @@ button {
 .rc-close__cta:hover span, .rc-close__cta:focus-visible span { transform: translateX(6px); }
 
 @media (max-width: 900px) {
+  .rc-cluster__stage { width: 84%; }
   .recap-page { --rc-h: 560px; }
   .rc-split { grid-auto-rows: auto; min-height: var(--rc-h); }
   .rc-letter__grid, .rc-close__grid { display: flex; flex-direction: column; }
@@ -3145,6 +3147,7 @@ button {
 
 @media (max-width: 640px) {
   .recap-page { --rc-h: 740px; }
+  .rc-cluster__stage { width: 96%; }
   .rc-hero { height: var(--rc-h); }
   .recap-bloom { padding-top: 56px; padding-bottom: 72px; }
   .bloom-row { font-size: 27vw; }
