@@ -3726,7 +3726,7 @@ button {
 }
 .pause-hero__link {
   font-family: "Space Mono", "Courier New", monospace;
-  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  font-size: clamp(0.9rem, 1.3vw, 1.2rem);
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3776,6 +3776,6 @@ button {
   }
   .pause-hero__note { margin: 36px 0 0; gap: 18px; }
   .pause-hand { width: min(50vw, 205px); }
-  .pause-hero__link { font-size: 0.9rem; }
+  .pause-hero__link { font-size: 0.85rem; }
   .pause-hero__tag { margin-top: 64px; padding-top: 0; font-size: clamp(0.5rem, 3.05vw, 0.66rem); letter-spacing: 0.06em; white-space: nowrap; text-align: center; }
 }
