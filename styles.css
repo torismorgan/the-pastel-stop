@@ -3435,9 +3435,9 @@ button {
 .join-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(63, 53, 45, 0.5);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  background: rgba(63, 53, 45, 0.45);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
   opacity: 0;
   transition: opacity 240ms var(--ease-editorial);
 }
@@ -3446,8 +3446,8 @@ button {
   position: relative;
   display: grid;
   grid-template-columns: 0.94fr 1.06fr;
-  width: min(1100px, 100%);
-  height: min(640px, calc(100svh - 32px));
+  width: min(1100px, 82vw);
+  height: min(640px, 80svh);
   background: var(--background-primary);
   box-shadow: 0 40px 90px -30px rgba(35, 31, 32, 0.7);
   overflow: hidden;
@@ -3579,15 +3579,17 @@ button {
 }
 
 @media (max-width: 760px) {
-  /* Mobile: full-screen card. Big photo on top, sign-up panel underneath. */
-  .join-modal { padding: 0; align-items: stretch; }
+  /* Mobile: a floating card (about 80% of the screen) with the page dimmed and blurred behind it.
+     Big photo on top, sign-up panel underneath. */
+  .join-modal { padding: 6vw; align-items: center; }
   .join-modal__dialog {
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(150px, 1fr) auto;
+    grid-template-rows: minmax(190px, 1fr) auto;
     width: 100%;
-    height: 100svh;
-    max-height: none;
-    margin: 0;
+    max-width: 440px;
+    height: auto;
+    max-height: 82svh;
+    margin: 0 auto;
     transform: translateY(24px);
   }
   .join-modal__media img { object-position: 50% 8%; }
