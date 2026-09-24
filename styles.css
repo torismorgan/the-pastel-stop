@@ -2659,13 +2659,13 @@ button {
   height: 100%;
   object-fit: cover;
   object-position: 50% 42%;
-  filter: saturate(0.72) brightness(0.96);
+  filter: grayscale(0.9) brightness(0.68) contrast(1.06);
 }
 .rc-cluster::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(251, 244, 200, 0.16);
+  background: rgba(24, 30, 36, 0.22);
   pointer-events: none;
 }
 .rc-cluster__stage {
@@ -2673,7 +2673,7 @@ button {
   z-index: 1;
   container-type: inline-size;
   flex: 0 0 auto;
-  width: 56%;
+  width: 58%;
   aspect-ratio: 1 / 0.7476;
   margin: 0 auto;
 }
@@ -2727,13 +2727,40 @@ button {
   font-size: 1.85cqw;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-primary);
+  color: var(--recap-blue);
 }
 .rc-cluster__script {
   font-family: var(--font-script);
   font-size: 5.4cqw;
   line-height: 1.15;
-  color: var(--text-primary);
+  color: var(--recap-blue);
+}
+
+/* Entrance: each piece arrives from a different side and settles into its tilt. */
+.rc-cluster__env, .rc-cluster__polaroid, .rc-cluster__card {
+  transition: translate 1100ms var(--ease-editorial) var(--d, 0ms),
+              rotate 1100ms var(--ease-editorial) var(--d, 0ms),
+              opacity 700ms ease var(--d, 0ms);
+}
+.rc-cluster__env { --d: 0ms; }
+.rc-cluster__polaroid { --d: 240ms; }
+.rc-cluster__card { --d: 480ms; }
+.rc-cluster__stage.js-reveal:not(.is-revealed) .rc-cluster__env {
+  translate: 0 24cqw;
+  opacity: 0;
+}
+.rc-cluster__stage.js-reveal:not(.is-revealed) .rc-cluster__polaroid {
+  translate: -48cqw 5cqw;
+  rotate: -28deg;
+  opacity: 0;
+}
+.rc-cluster__stage.js-reveal:not(.is-revealed) .rc-cluster__card {
+  translate: 48cqw -5cqw;
+  rotate: 24deg;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rc-cluster__env, .rc-cluster__polaroid, .rc-cluster__card { transition: none; }
 }
 
 /* 3. Split — small photo left, big photo right with a clipped paper card */
