@@ -3769,7 +3769,7 @@ button {
   .pause-file {
     translate: none;
     height: auto;
-    width: min(100%, 430px);
+    width: min(85%, 366px);
     margin: 0 auto;
     aspect-ratio: 413 / 539;
   }
