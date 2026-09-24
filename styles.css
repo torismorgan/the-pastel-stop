@@ -3662,8 +3662,8 @@ button {
 .pause-file {
   position: absolute;
   left: 49.1%;
-  top: 22.4%;
-  height: min(72%, 38.5vw);
+  top: 21.5%;
+  height: min(68%, 36.5vw);
   aspect-ratio: 413 / 539;
   translate: -50% 0;
   container-type: inline-size;
@@ -3712,7 +3712,7 @@ button {
 .pause-hero__note {
   position: absolute;
   left: 8.1%;
-  bottom: 7.5%;
+  bottom: 11%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -3746,7 +3746,7 @@ button {
 .pause-hero__tag {
   position: absolute;
   right: 10.5%;
-  bottom: 7.5%;
+  bottom: 11%;
   margin: 0;
   font-family: "Space Mono", "Courier New", monospace;
   font-size: clamp(0.6rem, 0.8vw, 0.78rem);
