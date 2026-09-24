@@ -1199,9 +1199,10 @@ button {
 
 @media (max-width: 980px) {
   .site-footer__top {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 24px;
   }
+  .site-footer__top > :nth-child(4) { grid-column: 1 / -1; }
 }
 
 /* phones: three columns like the reference (Explore | Social | Official), Join the Stop on its own row below; left aligned.
@@ -1212,10 +1213,6 @@ button {
     justify-content: space-between;
     gap: 40px 12px;
   }
-  .site-footer__top > :nth-child(1) { order: 1; }
-  .site-footer__top > :nth-child(3) { order: 2; }
-  .site-footer__top > :nth-child(2) { order: 3; }
-  .site-footer__top > :nth-child(4) { order: 4; grid-column: 1 / -1; }
   .site-footer__col, .site-footer__socials { gap: 16px; }
   .site-footer__social { gap: 7px; }
 }
