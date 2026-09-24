@@ -2443,7 +2443,8 @@ button {
 .events-hero {
   position: relative;
   height: 90svh;
-  min-height: 560px;
+  /* tall enough for the photo plus the postcard hanging off its corner, so the card is never cut off */
+  min-height: 770px;
   overflow: hidden;
 }
 
@@ -2473,7 +2474,7 @@ button {
 .events-hero__photo {
   display: block;
   /* shrinks between tablet and desktop so the overhanging postcard always stays on screen */
-  width: min(600px, calc(61vw - 30px));
+  width: min(600px, calc(59vw - 34px));
   height: auto;
   box-shadow: 0 30px 60px -20px rgba(35, 31, 32, 0.35);
 }
