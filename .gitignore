@@ -3,3 +3,6 @@
 .DS_Store
 
 /asset/photos last summer/
+
+# Biro Script: desktop-licence font, not for redistribution (the site uses an outlined SVG, not the font file)
+/asset/fonts/biro_script/
