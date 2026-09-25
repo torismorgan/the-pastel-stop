@@ -1,7 +1,22 @@
 {
   "name": "the-pastel-stop",
+  "main": "src/worker.js",
   "compatibility_date": "2026-09-04",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "binding": "ASSETS",
+    // only these paths run the Worker; every page and image is served straight from assets
+    "run_worker_first": ["/api/*", "/admin", "/admin/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "pastel-stop",
+      "database_id": "db3e546b-3763-4a4e-beb0-bfbfc5e9305d"
+    }
+  ],
+  "vars": {
+    // MailerLite group new subscribers are added to (not a secret). Leave "" to add them without a group.
+    "MAILERLITE_GROUP_ID": ""
   }
 }

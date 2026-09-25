@@ -6,3 +6,8 @@
 
 # Biro Script: desktop-licence font, not for redistribution (the site uses an outlined SVG, not the font file)
 /asset/fonts/biro_script/
+
+# Cloudflare local dev: secrets and local database never go in the repo
+.dev.vars
+.wrangler/
+node_modules/

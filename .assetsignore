@@ -4,3 +4,10 @@
 .assetsignore
 wrangler.jsonc
 .DS_Store
+src
+node_modules
+.wrangler
+.dev.vars
+package.json
+package-lock.json
+/asset/noise overlay rotated.png
