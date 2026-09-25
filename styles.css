@@ -1256,6 +1256,19 @@ button {
   margin: 0;
 }
 
+.site-footer__form-error {
+  margin: 10px 0 0;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #A3324F;
+}
+.site-footer__form-error:empty { display: none; }
+
+/* Turnstile's occasional check box (invisible for most people) */
+.tps-turnstile { margin-top: 12px; }
+
 .site-footer__divider {
   height: 1px;
   background: var(--text-primary);

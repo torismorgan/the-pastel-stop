@@ -17,6 +17,6 @@
   ],
   "vars": {
     // MailerLite group new subscribers are added to (not a secret). Leave "" to add them without a group.
-    "MAILERLITE_GROUP_ID": ""
+    "MAILERLITE_GROUP_ID": "199540437257553462"
   }
 }

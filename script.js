@@ -1,3 +1,102 @@
+/* -------------------------------------------------
+   Forms -> backend (window.TPS)
+   Every form that saves something goes through TPS.post(): it runs Cloudflare
+   Turnstile (the invisible spam check) and then POSTs JSON to our own /api/...
+   Worker. Nothing is faked: if the backend says no, the visitor sees an error.
+------------------------------------------------- */
+(function () {
+  "use strict";
+
+  /* Turnstile SITE key (the public one; safe to keep in the page). The secret key lives
+     only in Cloudflare and is never put in this file. */
+  var SITE_KEY = "0x4AAAAAAFCx5aI75wUmXYqh";
+
+  var loading = null;
+  function load() {
+    if (loading) return loading;
+    loading = new Promise(function (resolve, reject) {
+      if (window.turnstile) { resolve(window.turnstile); return; }
+      var el = document.createElement("script");
+      el.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      el.async = true;
+      el.onload = function () { resolve(window.turnstile); };
+      el.onerror = function () { loading = null; reject(new Error("turnstile-load")); };
+      document.head.appendChild(el);
+    });
+    return loading;
+  }
+
+  function getToken(form) {
+    return load().then(function (ts) {
+      return new Promise(function (resolve, reject) {
+        if (!SITE_KEY) { reject(new Error("no-site-key")); return; }
+        var box = document.createElement("div");
+        box.className = "tps-turnstile";
+        form.appendChild(box);
+        var id;
+        var timer = setTimeout(function () { cleanup(); reject(new Error("turnstile-timeout")); }, 25000);
+        function cleanup() {
+          clearTimeout(timer);
+          try { ts.remove(id); } catch (e) {}
+          if (box.parentNode) box.parentNode.removeChild(box);
+        }
+        id = ts.render(box, {
+          sitekey: SITE_KEY,
+          appearance: "interaction-only",
+          callback: function (token) { cleanup(); resolve(token); },
+          "error-callback": function () { cleanup(); reject(new Error("turnstile-error")); }
+        });
+      });
+    });
+  }
+
+  /* an invisible field that only bots fill in */
+  function trap(form) {
+    if (!form || form.querySelector('input[name="website"]')) return;
+    var wrap = document.createElement("div");
+    wrap.setAttribute("aria-hidden", "true");
+    wrap.style.cssText = "position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;";
+    var input = document.createElement("input");
+    input.type = "text";
+    input.name = "website";
+    input.tabIndex = -1;
+    input.autocomplete = "off";
+    wrap.appendChild(input);
+    form.appendChild(wrap);
+  }
+
+  /* resolves with the parsed JSON reply; rejects with an Error whose .status is the HTTP status (0 = couldn't reach us) */
+  function post(path, data, form) {
+    var honey = form.querySelector('input[name="website"]');
+    return getToken(form).then(function (token) {
+      data.token = token;
+      if (honey) data.website = honey.value;
+      return fetch(path, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data)
+      });
+    }).then(function (res) {
+      if (!res.ok) { var err = new Error("bad-status"); err.status = res.status; throw err; }
+      return res.json().catch(function () { return {}; });
+    });
+  }
+
+  /* friendly text for a failed post; `what` is e.g. "sign you up" */
+  function failText(err, what) {
+    if (err && err.status === 503) return "this isn\u2019t open just yet, so nothing was saved. please check back soon.";
+    if (err && err.status === 400) return "that didn\u2019t look right. please check it and try again.";
+    return "something went wrong and we couldn\u2019t " + what + ". please try again.";
+  }
+
+  window.TPS = { post: post, trap: trap, warm: function () { load().catch(function () {}); }, failText: failText };
+
+  /* get the spam check ready the first time someone touches any form */
+  document.addEventListener("focusin", function (e) {
+    if (e.target && e.target.closest && e.target.closest("form")) window.TPS.warm();
+  });
+})();
+
 (function () {
   "use strict";
 
@@ -280,15 +379,36 @@
   ------------------------------------------------- */
   var newsletterForm = document.querySelector(".site-footer__form");
   if (newsletterForm) {
+    window.TPS.trap(newsletterForm);
     newsletterForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      var wrap = newsletterForm.querySelector(".site-footer__input-wrap");
-      var checkbox = newsletterForm.querySelector(".site-footer__checkbox");
-      var message = document.createElement("p");
-      message.className = "site-footer__form-success";
-      message.textContent = "You're on the list — welcome to the Stop.";
-      wrap.replaceWith(message);
-      if (checkbox) checkbox.remove();
+      var emailInput = newsletterForm.querySelector('input[type="email"]');
+      var btn = newsletterForm.querySelector("button[type=submit]");
+      var errorEl = newsletterForm.querySelector(".site-footer__form-error");
+      if (!errorEl) {
+        errorEl = document.createElement("p");
+        errorEl.className = "site-footer__form-error";
+        errorEl.setAttribute("role", "alert");
+        newsletterForm.appendChild(errorEl);
+      }
+      errorEl.textContent = "";
+      btn.disabled = true;
+      window.TPS.post("/api/subscribe", { email: emailInput.value.trim(), source: location.pathname }, newsletterForm)
+        .then(function () {
+          try { localStorage.setItem("tps_joined", "1"); } catch (err) {}
+          var wrap = newsletterForm.querySelector(".site-footer__input-wrap");
+          var checkbox = newsletterForm.querySelector(".site-footer__checkbox");
+          var message = document.createElement("p");
+          message.className = "site-footer__form-success";
+          message.textContent = "Almost there \u2014 check your email to confirm your spot.";
+          wrap.replaceWith(message);
+          if (checkbox) checkbox.remove();
+          errorEl.remove();
+        })
+        .catch(function (err) {
+          btn.disabled = false;
+          errorEl.textContent = window.TPS.failText(err, "sign you up");
+        });
     });
   }
 
@@ -386,11 +506,6 @@
 (function () {
   "use strict";
 
-  /* Where sign-ups are sent. Leave empty until an email service (Mailchimp, Klaviyo,
-     Formspree, etc.) is connected: with it empty the form only shows the success
-     message and nothing is stored anywhere. */
-  var SIGNUP_ENDPOINT = "";
-
   var SCROLL_TRIGGER = 0.38;
   var MIN_PAGES = 2;
   var CLOSE_MS = 240;
@@ -438,9 +553,9 @@
           '<p class="join-modal__note">no spam. just the good stuff.</p>' +
         '</div>' +
         '<div class="join-modal__state" data-state="success" hidden>' +
-          '<h2 class="join-modal__title">you&rsquo;re in.</h2>' +
+          '<h2 class="join-modal__title">almost there.</h2>' +
           '<p class="join-modal__kicker">saved you a seat.</p>' +
-          '<p class="join-modal__body">thank you for joining the stop. keep an eye on your inbox &mdash; stories, events and little life updates are on their way.</p>' +
+          '<p class="join-modal__body">check your inbox for a quick email and tap the link to confirm. after that, stories, events and little life updates are on their way.</p>' +
           '<p class="join-modal__note">see you at the next stop. <svg class="heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></p>' +
         '</div>' +
       '</div>' +
@@ -449,6 +564,7 @@
 
   var dialog = root.querySelector(".join-modal__dialog");
   var form = root.querySelector(".join-modal__form");
+  window.TPS.trap(form);
   var input = root.querySelector(".join-modal__input");
   var errorEl = root.querySelector(".join-modal__error");
   var submitBtn = root.querySelector(".join-modal__submit");
@@ -555,28 +671,16 @@
     var label = submitBtn.innerHTML;
     submitBtn.textContent = "Saving\u2026";
 
-    if (!SIGNUP_ENDPOINT) {
-      if (window.console) console.warn("[TPS] Signup form is not connected to an email service yet: nothing was saved.");
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = label;
-      showSuccess();
-      return;
-    }
-    fetch(SIGNUP_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ email: email, source: location.pathname })
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error("bad status");
+    window.TPS.post("/api/subscribe", { email: email, source: location.pathname }, form)
+      .then(function () {
         submitBtn.disabled = false;
         submitBtn.innerHTML = label;
         showSuccess();
       })
-      .catch(function () {
+      .catch(function (err) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = label;
-        showError("something went wrong. please try again.");
+        showError(window.TPS.failText(err, "sign you up"));
       });
   });
   input.addEventListener("input", function () { if (!errorEl.hidden) showError(""); });
@@ -612,16 +716,14 @@
 
 /* -------------------------------------------------
    Share Your Story form (share-your-story.html)
-   Nothing is stored until STORY_ENDPOINT points at a real service. Until then
-   the page tells visitors submissions are not open yet instead of pretending
-   their story was saved. Add ?demo to the URL to preview the thank-you state.
+   Stories go to /api/story and wait in a private review queue (pending) until
+   they are approved. Add ?demo to the URL to preview the thank-you state.
 ------------------------------------------------- */
 (function () {
   "use strict";
   var form = document.getElementById("story-form");
   if (!form) return;
-
-  var STORY_ENDPOINT = "";
+  window.TPS.trap(form);
 
   var text = document.getElementById("story-text");
   var count = document.getElementById("story-count");
@@ -665,28 +767,16 @@
     showError("");
     var want = (form.querySelector('input[name="want"]:checked') || {}).value || "advice";
 
-    if (!STORY_ENDPOINT) {
-      if (window.console) console.warn("[TPS] Share Your Story is not connected to anything yet: nothing was sent or saved.");
-      if (/(^|[?&])demo(=|&|$)/.test(location.search)) { showDone(); return; }
-      showError("story submissions aren\u2019t open just yet, so nothing was sent. please check back soon.");
-      return;
-    }
+    if (/(^|[?&])demo(=|&|$)/.test(location.search)) { showDone(); return; } // ?demo previews the thank-you screen only
 
     btn.disabled = true;
     btn.textContent = "Sending\u2026";
-    fetch(STORY_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
-      body: JSON.stringify({ story: story, want: want, consent: true })
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error("bad status");
-        showDone();
-      })
-      .catch(function () {
+    window.TPS.post("/api/story", { story: story, want: want, consent: true }, form)
+      .then(function () { showDone(); })
+      .catch(function (err) {
         btn.disabled = false;
         btn.innerHTML = btnHtml;
-        showError("something went wrong, and your story wasn\u2019t sent. please try again.");
+        showError(window.TPS.failText(err, "send your story"));
       });
   });
 })();
