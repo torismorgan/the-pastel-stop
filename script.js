@@ -328,7 +328,7 @@
           groupObserver.unobserve(group);
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -4% 0px" }
     );
     revealGroups.forEach(function (group) {
       groupObserver.observe(group);
@@ -343,7 +343,7 @@
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -4% 0px" }
     );
     revealSingles.forEach(function (el) {
       singleObserver.observe(el);

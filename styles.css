@@ -635,6 +635,29 @@ button {
   transform: translateX(6px);
 }
 
+/* small "there's more below" arrow at the bottom of the home hero */
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  z-index: 3;
+  translate: -50% 0;
+  width: 44px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  color: var(--season-soft);
+  animation: hero-scroll-bob 2.2s ease-in-out infinite;
+}
+.hero__scroll svg { width: 24px; height: 24px; }
+@keyframes hero-scroll-bob {
+  0%, 100% { transform: translateY(0); opacity: 0.75; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll { animation: none; }
+}
+
 .hero__controls {
   position: absolute;
   left: 50%;
@@ -867,9 +890,11 @@ button {
     overflow-x: auto;
     scroll-snap-type: x proximity;
     padding-bottom: 8px;
-    margin: 0 -24px;
-    padding-left: 24px;
-    padding-right: 24px;
+    /* bleed to the screen edges while the first card still lines up with the page margin */
+    margin: 0 calc(-1 * clamp(24px, 5vw, 64px));
+    padding-left: clamp(24px, 5vw, 64px);
+    padding-right: clamp(24px, 5vw, 64px);
+    scroll-padding-inline: clamp(24px, 5vw, 64px);
   }
   .stop-card {
     scroll-snap-align: start;
@@ -4230,4 +4255,13 @@ button {
 }
 @media (max-width: 340px) {
   .contact__options { grid-template-columns: 1fr; }
+}
+
+
+/* Phones: keep the hero a bit shorter than the screen so "currently at the stop" peeks in below it,
+   and lift the slide dots above the scroll arrow. */
+@media (max-width: 760px) {
+  .hero { height: 84svh; min-height: 480px; }
+  .hero__controls { bottom: 40px; }
+  .stop-section { padding-top: 44px; }
 }
