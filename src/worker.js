@@ -340,7 +340,7 @@ function page(title, body) {
 <style>
 :root{--ink:#3F170E;--pink:#ED86C3;--cream:#FFFFF1;--line:rgba(63,23,14,.28)}
 *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.6 "Courier New",monospace;padding:32px 20px 80px}
-main,.login,body>h1{max-width:760px;margin-inline:auto}body>*{max-width:760px;margin-inline:auto}
+body{max-width:800px;margin:0 auto}
 h1{font:800 2rem/1.1 system-ui,sans-serif;text-transform:lowercase;margin:0 0 20px}
 .bar{display:flex;justify-content:space-between;align-items:center;gap:12px}
 nav{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 24px}.tab{padding:8px 14px;border:1px solid var(--line);color:var(--ink);text-decoration:none;text-transform:uppercase;font-size:.75rem;letter-spacing:.08em}.tab.on{background:var(--ink);color:var(--cream)}
