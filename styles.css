@@ -1475,7 +1475,7 @@ button {
    forces every envelope transition down to 1ms, which must stay the fastest of all.) */
 @media (prefers-reduced-motion: no-preference) {
   .envelope.is-closing .envelope__letter {
-    transition-duration: 800ms;
+    transition-duration: 2000ms;
   }
 }
 

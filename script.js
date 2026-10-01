@@ -285,9 +285,9 @@
   ------------------------------------------------- */
   var envelope = document.getElementById("envelope");
   if (envelope) {
-    // matches .envelope.is-closing .envelope__letter's own "transition-duration: 800ms" —
+    // matches .envelope.is-closing .envelope__letter's own "transition-duration: 2000ms" —
     // the letter needs to finish sliding down before the flap visually swings shut over it.
-    var LETTER_RETREAT_MS = 800;
+    var LETTER_RETREAT_MS = 2000;
     var envelopeCloseTimer;
     var toggleEnvelope = function () {
       var opening = !envelope.classList.contains("is-open");
