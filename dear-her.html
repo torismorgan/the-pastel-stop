@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#FFFFF1">
 <link rel="preload" href="asset/fonts/league-spartan-normal-500-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="asset/fonts/poppins-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="styles.css?v=226">
+<link rel="stylesheet" href="styles.css?v=229">
 </head>
 <body class="dear-her-page">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -59,8 +59,16 @@
       <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the letter">
 
         <div class="envelope__back-frame">
-          <img class="envelope__back-img envelope__back-img--closed" src="asset/opt/lace-closed-env-v2.webp" alt="Click to read">
+          <img class="envelope__back-img envelope__back-img--closed" src="asset/opt/lace-closed-env-v4.webp" alt="">
           <img class="envelope__back-img envelope__back-img--open" src="asset/opt/env-open-lace.webp" alt="">
+        </div>
+
+        <div class="envelope__cue" aria-hidden="true">
+          <span class="envelope__cue-text">Click to Read</span>
+          <svg class="envelope__cue-arrow" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 6c24 4 36 18 24 38" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 40l12 4-4-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
 
         <div class="envelope__letter-clip">
@@ -306,6 +314,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=21"></script>
+<script src="script.js?v=22"></script>
 </body>
 </html>

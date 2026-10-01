@@ -285,10 +285,27 @@
   ------------------------------------------------- */
   var envelope = document.getElementById("envelope");
   if (envelope) {
+    // matches .envelope__letter's own "transition: top 6000ms" — the letter needs to finish
+    // sliding back down and out of sight before the flap visually swings shut over it.
+    var LETTER_RETREAT_MS = 6000;
+    var envelopeCloseTimer;
     var toggleEnvelope = function () {
       var opening = !envelope.classList.contains("is-open");
-      envelope.classList.toggle("is-open", opening);
-      envelope.setAttribute("aria-label", opening ? "Close the letter" : "Open the letter");
+      clearTimeout(envelopeCloseTimer);
+      if (opening) {
+        envelope.classList.remove("is-closing");
+        envelope.classList.add("is-open");
+        envelope.setAttribute("aria-label", "Close the letter");
+      } else {
+        // letter retreats first (flap/pocket/seal stay put via .is-closing); the flap
+        // only closes once that retreat has actually finished.
+        envelope.classList.remove("is-open");
+        envelope.classList.add("is-closing");
+        envelope.setAttribute("aria-label", "Open the letter");
+        envelopeCloseTimer = setTimeout(function () {
+          envelope.classList.remove("is-closing");
+        }, reducedMotion ? 0 : LETTER_RETREAT_MS);
+      }
     };
     envelope.addEventListener("click", toggleEnvelope);
     envelope.addEventListener("keydown", function (e) {

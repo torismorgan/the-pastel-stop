@@ -1517,6 +1517,60 @@ button {
   transition: opacity 1ms linear;
 }
 
+/* "Click to Read" cue: real text + a little hand-drawn arrow, instead of baking faint
+   text into the envelope photo. Sits over the closed flap and gives a gentle wiggle
+   to catch the eye; it fades out the moment the envelope opens. */
+.envelope__cue {
+  position: absolute;
+  left: 50%;
+  /* .envelope__back-img is bottom-anchored and narrower than its box (aspect-ratio
+     705/824 vs. the photo's own 700/482), so the top ~41% of this box is empty —
+     this % is measured against the actual paper, not the box. */
+  top: 54%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--brand-pink);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 0%;
+  transition: opacity 200ms linear;
+  animation: envelope-cue-wiggle 3.2s ease-in-out 1s infinite;
+}
+
+.envelope__cue-text {
+  font-family: var(--font-script);
+  font-size: clamp(1.5rem, 4.6vw, 2.1rem);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.envelope__cue-arrow {
+  width: clamp(24px, 4.6vw, 32px);
+  height: auto;
+  margin-top: 2px;
+}
+
+/* .is-closing: a short-lived in-between state (set from JS) that keeps the flap/pocket/seal
+   looking open while the letter slides back down out of view; only once the letter has fully
+   retreated does the flap actually swing shut. Mirrors the order things happen when opening. */
+.envelope.is-open .envelope__cue,
+.envelope.is-closing .envelope__cue {
+  opacity: 0;
+}
+
+@keyframes envelope-cue-wiggle {
+  0%, 8%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  2% { transform: translate(-50%, -50%) rotate(-4deg); }
+  4% { transform: translate(-50%, -50%) rotate(4deg); }
+  6% { transform: translate(-50%, -50%) rotate(-2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .envelope__cue { animation: none; }
+}
+
 /* Default state: closed envelope, letter tucked out of sight */
 .envelope__back-img--closed {
   opacity: 1;
@@ -1528,19 +1582,23 @@ button {
   transition: opacity 1ms linear;
 }
 
-.envelope.is-open .envelope__back-img--closed {
+.envelope.is-open .envelope__back-img--closed,
+.envelope.is-closing .envelope__back-img--closed {
   opacity: 0;
 }
 
-.envelope.is-open .envelope__back-img--open {
+.envelope.is-open .envelope__back-img--open,
+.envelope.is-closing .envelope__back-img--open {
   opacity: 1;
 }
 
-.envelope.is-open .envelope__pocket {
+.envelope.is-open .envelope__pocket,
+.envelope.is-closing .envelope__pocket {
   opacity: 1;
 }
 
-.envelope.is-open .envelope__seal {
+.envelope.is-open .envelope__seal,
+.envelope.is-closing .envelope__seal {
   opacity: 1;
 }
 
