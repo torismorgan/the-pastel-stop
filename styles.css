@@ -1414,9 +1414,7 @@ button {
   --letter-reveal-boundary: 35%;
 }
 
-.envelope.is-open {
-  cursor: default;
-}
+/* stays clickable after opening too, so a second click/tap closes it back up */
 
 .envelope:focus-visible {
   outline: 2px solid var(--season-primary);
@@ -1594,7 +1592,7 @@ button {
   }
   /* stops as soon as the last line ("This is our safe space.") clears the front flap */
   .envelope.is-open .envelope__letter {
-    top: -25%;
+    top: -8%;
   }
   .letter__title {
     font-size: 2rem;

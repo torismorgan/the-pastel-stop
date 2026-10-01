@@ -285,18 +285,16 @@
   ------------------------------------------------- */
   var envelope = document.getElementById("envelope");
   if (envelope) {
-    var openEnvelope = function () {
-      if (envelope.classList.contains("is-open")) return;
-      envelope.classList.add("is-open");
-      envelope.removeAttribute("role");
-      envelope.removeAttribute("aria-label");
-      envelope.tabIndex = -1;
+    var toggleEnvelope = function () {
+      var opening = !envelope.classList.contains("is-open");
+      envelope.classList.toggle("is-open", opening);
+      envelope.setAttribute("aria-label", opening ? "Close the letter" : "Open the letter");
     };
-    envelope.addEventListener("click", openEnvelope);
+    envelope.addEventListener("click", toggleEnvelope);
     envelope.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        openEnvelope();
+        toggleEnvelope();
       }
     });
   }
