@@ -5,8 +5,9 @@
   "assets": {
     "directory": "./",
     "binding": "ASSETS",
-    // only these paths run the Worker; every page and image is served straight from assets
-    "run_worker_first": ["/api/*", "/admin", "/admin/*"]
+    // the Worker sees every request now (needed so it can gate pages behind WAITLIST_MODE);
+    // it passes almost everything straight through to env.ASSETS.fetch() unchanged
+    "run_worker_first": ["/*"]
   },
   "d1_databases": [
     {
@@ -17,6 +18,10 @@
   ],
   "vars": {
     // MailerLite group new subscribers are added to (not a secret). Leave "" to add them without a group.
-    "MAILERLITE_GROUP_ID": "199540437257553462"
+    "MAILERLITE_GROUP_ID": "199540437257553462",
+    // Pre-launch gate: "true" shows waitlist.html for every page except /admin, /privacy and
+    // /terms. Set to "false" (or delete the line) and redeploy to open the real site — every
+    // real page is untouched underneath and needs no further changes.
+    "WAITLIST_MODE": "true"
   }
 }

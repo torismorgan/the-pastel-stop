@@ -4318,3 +4318,162 @@ button {
   .hero { height: 84svh; min-height: 480px; }
   .stop-section { padding-top: 44px; }
 }
+
+/* ---------------------------------------------------------
+   Waitlist (waitlist.html) — pre-launch "coming soon" gate
+   Same two-part shape as the real homepage: full hero photo with the
+   wordmark, then a plain content section underneath.
+--------------------------------------------------------- */
+
+/* the hero reuses .hero/.hero__media/.hero__scrim/.hero__content/.hero__title as-is
+   (no carousel here, just a single still image) — these two rules fill in the
+   centered/large-title look that .hero__slide--1 normally provides on the homepage */
+.waitlist-hero .hero__content { align-items: center; text-align: center; }
+.waitlist-hero .hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.4rem, 13vw, 10rem);
+  line-height: 0.95;
+  color: var(--season-soft);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.waitlist {
+  background: var(--background-primary);
+  padding: clamp(64px, 10vw, 120px) clamp(24px, 5vw, 64px) clamp(80px, 11vw, 130px);
+  text-align: center;
+}
+
+.waitlist__stage {
+  max-width: 520px;
+  margin: 0 auto;
+  color: var(--text-primary);
+}
+
+.waitlist__kicker {
+  margin: 0 0 6px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-pink);
+}
+
+.waitlist__tagline {
+  margin: 0;
+  font-family: var(--font-script);
+  font-size: clamp(1.3rem, 2.8vw, 1.7rem);
+  color: var(--brand-pink);
+}
+
+.waitlist__body {
+  margin: clamp(18px, 3vh, 28px) auto 0;
+  max-width: 42ch;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  line-height: 1.65;
+  opacity: 0.85;
+}
+
+.waitlist__form { margin-top: clamp(24px, 4vh, 36px); }
+
+.waitlist__input-wrap {
+  display: flex;
+  border: 1.5px solid var(--text-primary);
+}
+
+.waitlist__input {
+  flex: 1;
+  min-width: 0;
+  font-family: "Space Mono", "Courier New", monospace;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background: transparent;
+  border: 0;
+  padding: 16px 18px;
+}
+.waitlist__input::placeholder { color: rgba(63, 53, 45, 0.5); }
+.waitlist__input:focus, .waitlist__input:focus-visible { outline: none; }
+
+.waitlist__submit {
+  flex: none;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--background-primary);
+  background: var(--text-primary);
+  border: 0;
+  padding: 0 clamp(18px, 3vw, 26px);
+  cursor: pointer;
+  transition: background 200ms var(--ease-editorial);
+  white-space: nowrap;
+}
+.waitlist__submit:hover, .waitlist__submit:focus-visible { background: #57493F; }
+.waitlist__submit:disabled { opacity: 0.7; cursor: default; }
+
+.waitlist__error {
+  margin: 10px 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: #B23A5E;
+}
+.waitlist__error[hidden] { display: none; }
+
+.waitlist__done { margin-top: clamp(24px, 4vh, 36px); }
+.waitlist__done:focus { outline: none; }
+.waitlist__done-title {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.6rem;
+}
+.waitlist__done-body {
+  margin: 0;
+  max-width: 40ch;
+  margin-inline: auto;
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.waitlist__socials {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: clamp(32px, 5vh, 44px);
+}
+.waitlist__socials a {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: var(--text-primary);
+  border: 1.5px solid rgba(63, 53, 45, 0.35);
+  border-radius: 50%;
+  transition: border-color 200ms var(--ease-editorial), color 200ms var(--ease-editorial);
+}
+.waitlist__socials svg { width: 18px; height: 18px; }
+.waitlist__socials a:hover, .waitlist__socials a:focus-visible {
+  border-color: var(--brand-pink);
+  color: var(--brand-pink);
+}
+
+.waitlist__fineprint {
+  margin: clamp(20px, 3vh, 28px) 0 0;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  opacity: 0.7;
+}
+.waitlist__fineprint a { color: var(--text-primary); text-decoration: underline; text-underline-offset: 3px; }
+.waitlist__fineprint a:hover, .waitlist__fineprint a:focus-visible { color: var(--brand-pink); }
+
+@media (max-width: 420px) {
+  .waitlist__input-wrap { flex-direction: column; }
+  .waitlist__submit { padding: 14px; }
+}

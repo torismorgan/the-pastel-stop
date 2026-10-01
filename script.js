@@ -113,21 +113,25 @@
     header.classList.toggle("is-scrolled", scrolled);
   }
 
-  var ticking = false;
-  window.addEventListener(
-    "scroll",
-    function () {
-      if (!ticking) {
-        window.requestAnimationFrame(function () {
-          updateHeader();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    },
-    { passive: true }
-  );
-  updateHeader();
+  // pages without the normal nav (e.g. waitlist.html) have no #site-header at all — an
+  // uncaught error here would otherwise halt every script below this point on the page
+  if (header) {
+    var ticking = false;
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            updateHeader();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
+    updateHeader();
+  }
 
   /* -------------------------------------------------
      Mobile nav
@@ -135,49 +139,52 @@
   var menuToggle = document.getElementById("menu-toggle");
   var mobileNav = document.getElementById("mobile-nav");
 
-  /* hamburger <-> simple X while the menu is open */
-  var ICON_MENU = "M3 6h18M3 12h18M3 18h18";
-  var ICON_CLOSE = "M5 5l14 14M19 5L5 19";
-  function setMenuIcon(isOpen) {
-    var path = menuToggle.querySelector("path");
-    if (path) path.setAttribute("d", isOpen ? ICON_CLOSE : ICON_MENU);
+  // pages without the normal nav (e.g. waitlist.html) have neither element
+  if (menuToggle && mobileNav) {
+    /* hamburger <-> simple X while the menu is open */
+    var ICON_MENU = "M3 6h18M3 12h18M3 18h18";
+    var ICON_CLOSE = "M5 5l14 14M19 5L5 19";
+    var setMenuIcon = function (isOpen) {
+      var path = menuToggle.querySelector("path");
+      if (path) path.setAttribute("d", isOpen ? ICON_CLOSE : ICON_MENU);
+    };
+
+    var closeMenu = function () {
+      setMenuIcon(false);
+      mobileNav.classList.remove("is-open");
+      header.classList.remove("nav-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open menu");
+    };
+
+    var openMenu = function () {
+      setMenuIcon(true);
+      mobileNav.classList.add("is-open");
+      header.classList.add("nav-open");
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", "Close menu");
+    };
+
+    menuToggle.addEventListener("click", function () {
+      var isOpen = mobileNav.classList.contains("is-open");
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mobileNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && mobileNav.classList.contains("is-open")) {
+        closeMenu();
+        menuToggle.focus();
+      }
+    });
   }
-
-  function closeMenu() {
-    setMenuIcon(false);
-    mobileNav.classList.remove("is-open");
-    header.classList.remove("nav-open");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open menu");
-  }
-
-  function openMenu() {
-    setMenuIcon(true);
-    mobileNav.classList.add("is-open");
-    header.classList.add("nav-open");
-    menuToggle.setAttribute("aria-expanded", "true");
-    menuToggle.setAttribute("aria-label", "Close menu");
-  }
-
-  menuToggle.addEventListener("click", function () {
-    var isOpen = mobileNav.classList.contains("is-open");
-    if (isOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  mobileNav.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", closeMenu);
-  });
-
-  window.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && mobileNav.classList.contains("is-open")) {
-      closeMenu();
-      menuToggle.focus();
-    }
-  });
 
   /* -------------------------------------------------
      Hero carousel (homepage only)
@@ -844,4 +851,50 @@
     done.hidden = false;
     done.focus();
   });
+})();
+
+/* -------------------------------------------------
+   Waitlist page (waitlist.html) — pre-launch "coming soon" gate
+------------------------------------------------- */
+(function () {
+  "use strict";
+  var form = document.getElementById("waitlist-form");
+  if (!form) return;
+  window.TPS.trap(form);
+
+  var input = document.getElementById("waitlist-email");
+  var errorEl = document.getElementById("waitlist-error");
+  var submitBtn = form.querySelector(".waitlist__submit");
+  var done = document.getElementById("waitlist-done");
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.hidden = !msg;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = input.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      showError("please enter a valid email.");
+      input.focus();
+      return;
+    }
+    showError("");
+    submitBtn.disabled = true;
+    var label = submitBtn.textContent;
+    submitBtn.textContent = "Joining…";
+    window.TPS.post("/api/subscribe", { email: email, source: "waitlist" }, form)
+      .then(function () {
+        form.hidden = true;
+        done.hidden = false;
+        done.focus();
+      })
+      .catch(function (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = label;
+        showError(window.TPS.failText(err, "join the list"));
+      });
+  });
+  input.addEventListener("input", function () { if (!errorEl.hidden) showError(""); });
 })();

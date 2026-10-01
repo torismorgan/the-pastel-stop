@@ -5,12 +5,41 @@
  *   POST /api/story       Pause Files story   -> D1 (status "pending")
  *   GET  /api/stories     approved stories    -> JSON
  *   /admin                private review page (passphrase)
+ *   (everything, while WAITLIST_MODE is on)   pre-launch gate, see below
  *
  * Secrets (set in Cloudflare, never in this repo):
  *   TURNSTILE_SECRET_KEY, MAILERLITE_API_KEY, ADMIN_PASSPHRASE
- * Plain variable (wrangler.jsonc):
+ * Plain variables (wrangler.jsonc):
  *   MAILERLITE_GROUP_ID   optional: which MailerLite group new subscribers join
+ *   WAITLIST_MODE         "true" while pre-launch: every page request serves waitlist.html
+ *                          instead, except /admin, /privacy and /terms. Flip to "false" (or
+ *                          remove it) and redeploy to open the real site — nothing else
+ *                          needs to change, every real page stays exactly as it is underneath.
  */
+
+// paths that still work normally while WAITLIST_MODE is on
+const GATE_EXEMPT_PREFIXES = ["/admin", "/privacy", "/terms", "/api"];
+
+function isPageRequest(path) {
+  // "page" routes have no file extension (pretty URLs) or end in .html; images/css/js/fonts pass straight through
+  return !/\.[a-z0-9]+$/i.test(path);
+}
+
+function isGateExempt(path) {
+  return GATE_EXEMPT_PREFIXES.some((p) => path === p || path.startsWith(p + "/"));
+}
+
+async function waitlistGate(request, env) {
+  const gateUrl = new URL(request.url);
+  // the clean URL, not "/waitlist.html" — the asset layer 307-redirects .html requests
+  // to their pretty-URL form, and env.ASSETS.fetch() doesn't follow that automatically
+  gateUrl.pathname = "/waitlist";
+  const res = await env.ASSETS.fetch(new Request(gateUrl, request));
+  const headers = new Headers(res.headers);
+  headers.set("Cache-Control", "no-store");
+  headers.set("X-Robots-Tag", "noindex, nofollow");
+  return new Response(res.body, { status: res.status, headers });
+}
 
 const WANTS = ["advice", "second-opinion", "vent"];
 const STORY_MIN = 10;
@@ -41,6 +70,9 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
     try {
+      if (env.WAITLIST_MODE === "true" && isPageRequest(path) && !isGateExempt(path)) {
+        return await waitlistGate(request, env);
+      }
       if (path === "/api/subscribe") return await subscribe(request, env);
       if (path === "/api/story") return await submitStory(request, env);
       if (path === "/api/stories") return await approvedStories(request, env);
