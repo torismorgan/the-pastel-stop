@@ -1470,6 +1470,15 @@ button {
   transition: top 6000ms var(--ease-editorial);
 }
 
+/* Closing is quicker than opening: the reveal can take its time, but dismissing should
+   feel immediate. (Left out of the reduced-motion case on purpose — that case already
+   forces every envelope transition down to 1ms, which must stay the fastest of all.) */
+@media (prefers-reduced-motion: no-preference) {
+  .envelope.is-closing .envelope__letter {
+    transition-duration: 800ms;
+  }
+}
+
 .letter__title {
   font-family: var(--font-script);
   font-weight: 400;
@@ -1531,12 +1540,12 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: var(--brand-pink);
+  color: #7B3B52;
   pointer-events: none;
   transform: translate(-50%, -50%);
   transform-origin: 50% 0%;
   transition: opacity 200ms linear;
-  animation: envelope-cue-wiggle 3.2s ease-in-out 1s infinite;
+  animation: envelope-cue-wiggle 2.4s ease-in-out 0.6s infinite;
 }
 
 .envelope__cue-text {
