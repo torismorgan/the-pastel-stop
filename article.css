@@ -60,7 +60,7 @@
     This is a SQUARE image used as subtle surface detail.
     It will TILE instead of stretching across the hero.
   */
-  --hero-texture: url("asset/dear-her/001/background-square.png");
+  --hero-texture: none; /* was a texture file that was never added; re-point this to one if you ever make it */
 
   /* Keep subtle */
   --hero-texture-opacity: 0.07;
