@@ -17,6 +17,11 @@
  *                          needs to change, every real page stays exactly as it is underneath.
  */
 
+// pages that moved: old address -> new address (permanent redirect, keeps any ranking/links)
+const MOVED = {
+  "/article-001": "/we-are-all-gonna-be-okay"
+};
+
 // paths that still work normally while WAITLIST_MODE is on
 const GATE_EXEMPT_PREFIXES = ["/admin", "/privacy", "/terms", "/api"];
 
@@ -70,6 +75,8 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
     try {
+      const moved = MOVED[path.replace(/\/+$/, "")];
+      if (moved) return Response.redirect(new URL(moved, url).toString() + url.search, 301);
       if (env.WAITLIST_MODE === "true" && isPageRequest(path) && !isGateExempt(path)) {
         return await waitlistGate(request, env);
       }

@@ -26,6 +26,11 @@
   var data = window.ARTICLE_DATA;
   if (!data) return;
 
+  // Pages are prerendered by tools/prerender-article.mjs so the text is in the HTML itself
+  // (search engines, link previews, anything without JavaScript). Nothing left to do then.
+  var bodyMount = document.getElementById("article-body");
+  if (bodyMount && bodyMount.children.length) return;
+
   var MONTHS = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
