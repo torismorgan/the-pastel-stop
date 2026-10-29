@@ -42,6 +42,7 @@ const render = {
   emphasizedParagraph: (b) => `<p class="article-block article-block--emphasized"><span>${inline(b.text)}</span></p>`,
   pullQuote: (b) => `<p class="article-block article-block--pull-quote">${esc(b.text)}</p>`,
   largeStatement: (b) => `<p class="article-block article-block--statement js-reveal">${esc(b.text)}<span class="article-block__underline"></span></p>`,
+  subheading: (b) => `<h2 class="article-block article-block--subheading">${esc(b.text)}</h2>`,
   handwrittenAnnotation: (b) => `<p class="article-block article-block--handwritten">${esc(b.text)}</p>`,
   editorialSpacer: () => `<div class="article-block article-block--spacer"></div>`,
   imageWithCaption: (b) =>
@@ -62,6 +63,10 @@ const dateText = `${parseInt(d, 10)} ${MONTHS[parseInt(m, 10) - 1]} ${y}`;
 const meta = [data.category, dateText, readTime].map((t, i) => `<span>${i === 1 ? `<time datetime="${y}-${m}-${d}">${esc(t)}</time>` : esc(t)}</span>`).join("");
 const body = blocks.map((b) => (render[b.type] ? render[b.type](b) : "")).join("");
 const signoff = data.signoff ? `<p class="article-signoff__from">From,</p><p class="article-signoff__ending">the girl who ${esc(data.signoff)}</p>` : "";
+
+const cta = data.cta
+  ? `<p class="article-cta__text">${esc(data.cta.text)}</p><a class="article-cta__link" href="${escAttr(data.cta.href)}">${esc(data.cta.linkText)} &rarr;</a>`
+  : "";
 
 let nav = data.category ? `<p class="article-nav__category">${esc(data.category)}</p>` : "";
 const link = (a, cls, label) => `<a class="article-nav__link article-nav__link--${cls}" href="${escAttr(a.url)}"><span class="article-nav__link-label">${label}</span>${esc(a.title)}</a>`;
@@ -99,6 +104,7 @@ fill("meta", meta);
 fill("body", body);
 fill("signoff", signoff);
 fill("nav", nav);
+if (data.cta || html.includes("<!--prerender:cta-->")) fill("cta", cta);
 fill("jsonld", `\n<script type="application/ld+json">\n${JSON.stringify(jsonld)}\n</script>\n`);
 
 writeFileSync(file, html);

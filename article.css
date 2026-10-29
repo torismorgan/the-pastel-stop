@@ -981,3 +981,77 @@
 @media (hover: hover) {
   .article-nav__fallback:hover { scale: 1.08; }
 }
+
+
+/* -----------------------------------------------------------
+   SUBHEADING (an h2 inside the letter: helps readers skim and
+   tells search engines what each part is about)
+----------------------------------------------------------- */
+
+.article-block--subheading {
+  margin:
+    clamp(52px, 7vw, 76px)
+    0
+    20px;
+
+  font-family: var(--font-display);
+
+  font-size: clamp(1.3rem, 2.6vw, 1.6rem);
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.005em;
+
+  color: var(--dearher-ink);
+}
+
+
+/* -----------------------------------------------------------
+   CLOSING CALL TO ACTION (after the signoff)
+----------------------------------------------------------- */
+
+.article-cta {
+  width: min(100%, 680px);
+
+  margin:
+    clamp(48px, 7vw, 72px)
+    auto
+    0
+    0;
+}
+
+.article-cta:empty {
+  display: none;
+}
+
+.article-cta__text {
+  margin: 0 0 14px;
+
+  font-family: var(--font-ui);
+
+  font-size: 0.98rem;
+
+  line-height: 1.7;
+
+  color: var(--article-text);
+}
+
+.article-cta__link {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-pink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transition: scale 220ms var(--ease-editorial);
+}
+.article-cta__link:focus-visible { scale: 1.08; }
+@media (hover: hover) {
+  .article-cta__link:hover { scale: 1.08; }
+}

@@ -124,6 +124,12 @@
       p.appendChild(underline);
       return p;
     },
+    subheading: function (block) {
+      var h = document.createElement("h2");
+      h.className = "article-block article-block--subheading";
+      h.textContent = block.text;
+      return h;
+    },
     handwrittenAnnotation: function (block) {
       var p = document.createElement("p");
       p.className = "article-block article-block--handwritten";
@@ -199,6 +205,20 @@
 
     signoffMount.appendChild(from);
     signoffMount.appendChild(ending);
+  }
+
+  // ---- Closing call to action (after the signoff) ----
+  var ctaMount = document.getElementById("article-cta");
+  if (ctaMount && data.cta) {
+    var ctaText = document.createElement("p");
+    ctaText.className = "article-cta__text";
+    ctaText.textContent = data.cta.text;
+    var ctaLink = document.createElement("a");
+    ctaLink.className = "article-cta__link";
+    ctaLink.href = data.cta.href;
+    ctaLink.textContent = data.cta.linkText + " \u2192";
+    ctaMount.appendChild(ctaText);
+    ctaMount.appendChild(ctaLink);
   }
 
   // ---- Post-article nav: prev/next/related, or a quiet fallback ----
