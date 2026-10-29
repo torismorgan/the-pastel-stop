@@ -22,6 +22,6 @@
     // Pre-launch gate: "true" shows waitlist.html for every page except /admin, /privacy and
     // /terms. Set to "false" (or delete the line) and redeploy to open the real site — every
     // real page is untouched underneath and needs no further changes.
-    "WAITLIST_MODE": "true"
+    "WAITLIST_MODE": "false"
   }
 }
