@@ -19,7 +19,16 @@
 
 // pages that moved: old address -> new address (permanent redirect, keeps any ranking/links)
 const MOVED = {
-  "/article-001": "/we-are-all-gonna-be-okay"
+  "/article-001": "/we-are-all-gonna-be-okay",
+  // addresses from the old Shopify site that still show up in search results
+  "/pages/contact": "/contact",
+  "/pages/contact-us": "/contact",
+  "/pages/about": "/about",
+  "/pages/about-us": "/about",
+  "/policies/privacy-policy": "/privacy",
+  "/pages/privacy-policy": "/privacy",
+  "/policies/terms-of-service": "/terms",
+  "/pages/terms-of-service": "/terms"
 };
 
 // paths that still work normally while WAITLIST_MODE is on
