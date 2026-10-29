@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /waitlist
+
+Sitemap: https://thepastelstop.com/sitemap.xml
