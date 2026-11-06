@@ -1557,7 +1557,7 @@ button {
   align-items: center;
   color: #FFFFFF;
   /* white script with a subtle brand-pink glow */
-  text-shadow: 0 0 8px rgba(237, 134, 195, 0.7), 0 0 20px rgba(237, 134, 195, 0.45);
+  text-shadow: 0 0 14px rgba(237, 134, 195, 0.9), 0 0 32px rgba(237, 134, 195, 0.75), 0 0 60px rgba(237, 134, 195, 0.5);
   cursor: pointer;
   transform: translate(-50%, calc(-100% - 22px));
   transition: opacity 200ms linear;
