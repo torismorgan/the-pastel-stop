@@ -1676,6 +1676,26 @@ button {
   .letter__body { font-size: 0.55rem; line-height: 1.25; margin-bottom: 5px; }
 }
 
+/* laptops and desktops: end the hero a little early so the top of the next section shows at
+   the bottom of the first screen, a hint that there is more to scroll to. The envelope is
+   pinned near the bottom of the hero (its box has an empty top third, so it can rise freely)
+   and the hero never gets shorter than the envelope plus its "Click to Read" cue need. */
+@media (min-width: 901px) {
+  .letter-hero {
+    height: calc(100svh - 120px);
+    min-height: calc(clamp(300px, 37vw, 560px) * 0.69 + 250px);
+  }
+  .letter-hero__stage {
+    align-items: flex-end;
+    padding-top: 0;
+    padding-bottom: 34px;
+  }
+  /* (section.letters-intro: needs the extra specificity to beat the base rule further down) */
+  section.letters-intro {
+    padding-top: clamp(24px, 2.4vw, 34px);
+  }
+}
+
 @media (min-width: 641px) and (max-width: 900px) {
   .envelope {
     width: clamp(420px, 58vw, 520px);
