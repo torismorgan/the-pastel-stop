@@ -3964,15 +3964,14 @@ button {
 }
 
 .pause-hero__note {
+  /* desktop: the wrapper dissolves so the handwriting sits bottom-left and the link
+     bottom-right; phones put it back as a stacked, centred column (see max-width: 760px) */
+  display: contents;
+}
+.pause-hand {
   position: absolute;
   left: 8.1%;
   bottom: 11%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(14px, 2.2vw, 26px);
-}
-.pause-hand {
   display: block;
   width: clamp(160px, 13vw, 330px);
   height: auto;
@@ -3988,7 +3987,10 @@ button {
   text-decoration: underline;
   text-underline-offset: 7px;
   text-decoration-thickness: 2px;
-  transform-origin: left center;
+  position: absolute;
+  right: 10.5%;
+  bottom: 11%;
+  transform-origin: right center;
   transition: scale 220ms var(--ease-editorial);
 }
 /* regular + underlined by default; bold (and a slight grow) only on hover. Space Mono is monospaced, so bold doesn't change the width. */
@@ -3998,14 +4000,20 @@ button {
 }
 
 .pause-hero__tag {
+  /* top-right, on the same line as the "The Pause Files / 001" label */
   position: absolute;
   right: 10.5%;
-  bottom: 11%;
+  top: 20.6%;
   margin: 0;
   font-family: "Space Mono", "Courier New", monospace;
-  font-size: clamp(0.6rem, 0.8vw, 0.78rem);
+  font-size: clamp(0.66rem, 0.92vw, 0.85rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* narrower laptops: let the top-right tag wrap onto two lines so it keeps clear of the paper */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .pause-hero__tag { max-width: 20vw; text-align: right; line-height: 1.6; }
 }
 
 @media (max-width: 760px) {
@@ -4029,10 +4037,10 @@ button {
     aspect-ratio: 413 / 539;
   }
   /* one centre line top to bottom: label, paper, handwriting, button, tag */
-  .pause-hero__note { margin: 40px 0 0; gap: 26px; align-items: center; }
-  .pause-hand { width: min(64vw, 250px); }
+  .pause-hero__note { display: flex; flex-direction: column; margin: 40px 0 0; gap: 26px; align-items: center; }
+  .pause-hand { position: static; width: min(64vw, 250px); }
   /* centred, plain underlined link (no box) */
-  .pause-hero__link { font-size: 0.95rem; transform-origin: center; }
+  .pause-hero__link { position: static; font-size: 0.95rem; transform-origin: center; }
   .pause-hero__tag { margin-top: 56px; padding-top: 0; font-size: clamp(0.5rem, 3.05vw, 0.66rem); letter-spacing: 0.06em; white-space: nowrap; text-align: center; }
 }
 
