@@ -1580,6 +1580,24 @@ button {
   .envelope__cue { animation: none; }
 }
 
+/* Whole-envelope hop: two soft bounces as the page opens, then a small reminder every few
+   seconds while the letter is still closed, so people notice it can be clicked. Uses the
+   individual `translate` property so it never fights any other transform. Stops the moment
+   the envelope is opened (or hovered/focused) and never runs with reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .envelope:not(.is-open):not(.is-closing):not(:hover):not(:focus-visible) {
+    animation: envelope-bounce 5s ease-in-out 0.7s infinite;
+  }
+}
+
+@keyframes envelope-bounce {
+  0%, 18%, 100% { translate: 0 0; }
+  4%  { translate: 0 -12px; }
+  8%  { translate: 0 0; }
+  12% { translate: 0 -6px; }
+  16% { translate: 0 0; }
+}
+
 /* Default state: closed envelope, letter tucked out of sight */
 .envelope__back-img--closed {
   opacity: 1;
