@@ -867,7 +867,7 @@
 
   .article-hero__title {
     font-size:
-      clamp(3.1rem, 14vw, 4.8rem);
+      clamp(3.8rem, 17.5vw, 5.6rem);
 
     max-width: 7ch;
 
