@@ -968,7 +968,7 @@
 
   /* intro on the left, date and reading time stacked on the right (like the card) */
   .article-hero__inner {
-    column-gap: 22px;
+    column-gap: 40px;
   }
 
   .article-hero__subtitle {
@@ -977,13 +977,14 @@
     margin: 0;
     max-width: none;
     text-align: left;
-    font-size: 0.74rem;
-    line-height: 1.7;
+    font-size: 0.7rem;
+    line-height: 1.75;
   }
 
   .article-hero__meta {
     grid-row: 4;
     grid-column: 2;
+    align-self: end;
     width: auto;
     margin: 0;
     flex-direction: column;
