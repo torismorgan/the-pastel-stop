@@ -1489,7 +1489,7 @@ button {
 }
 
 .letter__body {
-  font-family: var(--font-ui);
+  font-family: "Space Mono", "Courier New", monospace;
   font-size: clamp(0.62rem, 0.86vw, 0.74rem);
   line-height: 1.35;
   color: var(--text-primary);
@@ -1502,7 +1502,7 @@ button {
 }
 
 .letter__eyebrow {
-  font-family: var(--font-mono);
+  font-family: "Space Mono", "Courier New", monospace;
   font-size: clamp(0.46rem, 0.62vw, 0.56rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1652,6 +1652,12 @@ button {
     transition-duration: 1ms;
     transition-delay: 0ms;
   }
+}
+
+/* common 13-14 inch laptop windows: Space Mono runs wider, so trim the top a touch */
+@media (min-width: 1201px) and (max-width: 1400px) {
+  .envelope__letter { padding-top: 26px; }
+  .letter__body { line-height: 1.3; }
 }
 
 /* smaller laptops: the envelope is narrower so the letter wraps to more lines; trim the
