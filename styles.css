@@ -1526,23 +1526,30 @@ button {
   transition: opacity 1ms linear;
 }
 
-/* "Click to Read" cue: real text + a little hand-drawn arrow, instead of baking faint
-   text into the envelope photo. Sits over the closed flap in a vivid blue so it
-   pops; it stays still (the envelope itself bounces) and fades out the moment the envelope opens. */
+/* Wraps the envelope and its cue so the cue can sit on the page (the sky) just above the
+   envelope instead of on the card. The wrapper shrink-wraps to the envelope's width. */
+.envelope-wrap {
+  position: relative;
+}
+
+/* "Click to Read" cue: real text + a little hand-drawn arrow, sitting on the sky just above
+   the envelope and pointing down at it. It stays still (only the envelope bounces) and
+   fades out the moment the envelope opens. */
 .envelope__cue {
   position: absolute;
   left: 50%;
   /* .envelope__back-img is bottom-anchored and narrower than its box (aspect-ratio
-     705/824 vs. the photo's own 700/482), so the top ~41% of this box is empty —
-     this % is measured against the actual paper, not the box. */
-  top: 54%;
+     705/824 vs. the photo's own 700/482), so the top ~41% of the box is empty sky — the
+     paper's top edge is at 41%; the cue sits just above that line. */
+  top: 41%;
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #1F6FEB;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
+  color: #FFFFFF;
+  text-shadow: 0 1px 14px rgba(31, 111, 235, 0.45);
+  cursor: pointer;
+  transform: translate(-50%, calc(-100% - 22px));
   transition: opacity 200ms linear;
 }
 
@@ -1562,28 +1569,31 @@ button {
 /* .is-closing: a short-lived in-between state (set from JS) that keeps the flap/pocket/seal
    looking open while the letter slides back down out of view; only once the letter has fully
    retreated does the flap actually swing shut. Mirrors the order things happen when opening. */
-.envelope.is-open .envelope__cue,
-.envelope.is-closing .envelope__cue {
+.envelope.is-open + .envelope__cue,
+.envelope.is-closing + .envelope__cue {
+  pointer-events: none;
   opacity: 0;
 }
 
 
-/* Whole-envelope hop: two soft bounces as the page opens, then a small reminder every few
-   seconds while the letter is still closed, so people notice it can be clicked. Uses the
-   individual `translate` property so it never fights any other transform. Stops the moment
-   the envelope is opened (or hovered/focused) and never runs with reduced motion. */
+/* Whole-envelope hop: one clear set of three shrinking bounces when the page opens, then it
+   stays still. script.js adds .is-greeting shortly after load and removes it when the
+   animation ends (or the letter is opened). Uses the individual `translate` property so it
+   never fights any other transform; never runs with reduced motion. */
 @media (prefers-reduced-motion: no-preference) {
-  .envelope:not(.is-open):not(.is-closing):not(:hover):not(:focus-visible) {
-    animation: envelope-bounce 5s ease-in-out 0.7s infinite;
+  .envelope.is-greeting {
+    animation: envelope-bounce 1.6s ease-in-out 1;
   }
 }
 
 @keyframes envelope-bounce {
-  0%, 18%, 100% { translate: 0 0; }
-  4%  { translate: 0 -12px; }
-  8%  { translate: 0 0; }
-  12% { translate: 0 -6px; }
-  16% { translate: 0 0; }
+  0%, 100% { translate: 0 0; }
+  15% { translate: 0 -14px; }
+  30% { translate: 0 0; }
+  45% { translate: 0 -8px; }
+  60% { translate: 0 0; }
+  75% { translate: 0 -3px; }
+  90% { translate: 0 0; }
 }
 
 /* Default state: closed envelope, letter tucked out of sight */

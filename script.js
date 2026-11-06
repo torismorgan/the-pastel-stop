@@ -314,7 +314,20 @@
         }, reducedMotion ? 0 : LETTER_RETREAT_MS);
       }
     };
+    // one short bounce shortly after the page opens so people notice it can be clicked
+    // (CSS keeps it off for reduced motion); it never repeats
+    var stopGreeting = function () { envelope.classList.remove("is-greeting"); };
+    envelope.addEventListener("animationend", stopGreeting);
+    envelope.addEventListener("click", stopGreeting);
+    if (!reducedMotion) {
+      setTimeout(function () {
+        if (!envelope.classList.contains("is-open")) envelope.classList.add("is-greeting");
+      }, 700);
+    }
     envelope.addEventListener("click", toggleEnvelope);
+    // the cue sits on the sky above the envelope, so tapping it opens the letter too
+    var envelopeCue = document.querySelector(".envelope__cue");
+    if (envelopeCue) envelopeCue.addEventListener("click", toggleEnvelope);
     envelope.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
