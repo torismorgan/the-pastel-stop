@@ -296,13 +296,9 @@
     // the letter needs to finish sliding down before the flap visually swings shut over it.
     var LETTER_RETREAT_MS = 2000;
     var envelopeCloseTimer;
-    // the "Open your letter" link inside the letter: only tabbable while the letter is out
-    var letterLink = document.getElementById("letter-open");
-    if (letterLink) letterLink.addEventListener("click", function (e) { e.stopPropagation(); });
     var toggleEnvelope = function () {
       var opening = !envelope.classList.contains("is-open");
       clearTimeout(envelopeCloseTimer);
-      if (letterLink) letterLink.setAttribute("tabindex", opening ? "0" : "-1");
       if (opening) {
         envelope.classList.remove("is-closing");
         envelope.classList.add("is-open");

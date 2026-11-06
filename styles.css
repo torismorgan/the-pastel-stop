@@ -1510,25 +1510,6 @@ button {
   margin: 0 0 clamp(10px, 1.6vw, 16px);
 }
 
-/* the link to the first letter: the clip layer ignores the pointer, so this opts back in */
-.letter__open {
-  display: inline-block;
-  margin-top: clamp(12px, 1.8vw, 18px);
-  font-family: var(--font-mono);
-  font-size: clamp(0.5rem, 0.66vw, 0.6rem);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-primary);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 1.5px;
-  pointer-events: auto;
-  cursor: pointer;
-}
-.letter__open:hover,
-.letter__open:focus-visible { color: var(--brand-pink); }
-
 .envelope__pocket {
   position: absolute;
   bottom: 0;
@@ -1673,6 +1654,15 @@ button {
   }
 }
 
+/* smaller laptops: the envelope is narrower so the letter wraps to more lines; trim the
+   top of the letter so the sign-off still clears the front flap */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .envelope__letter { padding-top: 22px; }
+  .letter__title { font-size: 2.3rem; margin-bottom: 14px; }
+  .letter__eyebrow { margin-bottom: 8px; }
+  .letter__body { line-height: 1.3; }
+}
+
 @media (min-width: 641px) and (max-width: 900px) {
   .envelope {
     width: clamp(420px, 58vw, 520px);
@@ -1704,7 +1694,7 @@ button {
     padding-top: 120px;
     padding-bottom: 50px;
   }
-  /* stops as soon as the last line (the "Open your letter" link) clears the front flap */
+  /* stops as soon as the last line (the "With love" sign-off) clears the front flap */
   .envelope.is-open .envelope__letter {
     top: -8%;
   }
