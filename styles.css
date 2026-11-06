@@ -3973,7 +3973,7 @@ button {
   left: 8.1%;
   bottom: 11%;
   display: block;
-  width: clamp(160px, 13vw, 330px);
+  width: clamp(210px, 18vw, 440px);
   height: auto;
   color: var(--pause-cream);
 }
@@ -4038,7 +4038,7 @@ button {
   }
   /* one centre line top to bottom: label, paper, handwriting, button, tag */
   .pause-hero__note { display: flex; flex-direction: column; margin: 40px 0 0; gap: 26px; align-items: center; }
-  .pause-hand { position: static; width: min(64vw, 250px); }
+  .pause-hand { position: static; width: min(76vw, 300px); }
   /* centred, plain underlined link (no box) */
   .pause-hero__link { position: static; font-size: 0.95rem; transform-origin: center; }
   .pause-hero__tag { margin-top: 56px; padding-top: 0; font-size: clamp(0.5rem, 3.05vw, 0.66rem); letter-spacing: 0.06em; white-space: nowrap; text-align: center; }
