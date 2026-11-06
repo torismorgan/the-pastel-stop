@@ -1682,13 +1682,16 @@ button {
    and the hero never gets shorter than the envelope plus its "Click to Read" cue need. */
 @media (min-width: 901px) {
   .letter-hero {
-    height: calc(100svh - 120px);
-    min-height: calc(clamp(300px, 37vw, 560px) * 0.69 + 250px);
+    /* tight on short windows, but on tall screens give the envelope real breathing room
+       below it (it was cramped against the bottom edge) */
+    --env-pad: clamp(34px, calc(34px + (100svh - 650px) * 0.38), 160px);
+    height: calc(100svh - 80px);
+    min-height: calc(clamp(300px, 37vw, 560px) * 0.69 + 216px + var(--env-pad));
   }
   .letter-hero__stage {
     align-items: flex-end;
     padding-top: 0;
-    padding-bottom: 34px;
+    padding-bottom: var(--env-pad);
   }
   /* (section.letters-intro: needs the extra specificity to beat the base rule further down) */
   section.letters-intro {
