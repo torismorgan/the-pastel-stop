@@ -4018,9 +4018,9 @@ button {
     align-items: stretch;
     padding: 132px 24px 34px;
   }
-  .pause-hero__eyebrow, .pause-hero__note, .pause-hero__tag { position: relative; }
+  .pause-hero__eyebrow, .pause-hero__note, .pause-hero__tag { position: relative; left: auto; right: auto; top: auto; bottom: auto; }
   .pause-file { position: relative; left: auto; top: auto; }
-  .pause-hero__eyebrow { font-size: 0.72rem; margin: 0 0 22px; }
+  .pause-hero__eyebrow { font-size: 0.72rem; margin: 0 0 22px; text-align: center; }
   .pause-file {
     translate: none;
     height: auto;
@@ -4028,10 +4028,25 @@ button {
     margin: 0 auto;
     aspect-ratio: 413 / 539;
   }
-  .pause-hero__note { margin: 36px 0 0; gap: 18px; }
-  .pause-hand { width: min(50vw, 205px); }
-  .pause-hero__link { font-size: 0.9rem; }
-  .pause-hero__tag { margin-top: 64px; padding-top: 0; font-size: clamp(0.5rem, 3.05vw, 0.66rem); letter-spacing: 0.06em; white-space: nowrap; text-align: center; }
+  /* one centre line top to bottom: label, paper, handwriting, button, tag */
+  .pause-hero__note { margin: 40px 0 0; gap: 26px; align-items: center; }
+  .pause-hand { width: min(64vw, 250px); }
+  /* the link becomes a square-cornered outline button so it has presence when centred */
+  .pause-hero__link {
+    display: block;
+    width: min(100%, 300px);
+    box-sizing: border-box;
+    padding: 16px 20px;
+    border: 2px solid var(--pause-cream);
+    font-size: 0.88rem;
+    text-align: center;
+    text-decoration: none;
+    transform-origin: center;
+    transition: background-color 180ms ease, color 180ms ease, scale 220ms var(--ease-editorial);
+  }
+  .pause-hero__link:focus-visible { background: var(--pause-cream); color: #3F170E; scale: 1; }
+  .pause-hero__link:active { background: var(--pause-cream); color: #3F170E; }
+  .pause-hero__tag { margin-top: 56px; padding-top: 0; font-size: clamp(0.5rem, 3.05vw, 0.66rem); letter-spacing: 0.06em; white-space: nowrap; text-align: center; }
 }
 
 /* ---------------------------------------------------------
