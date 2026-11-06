@@ -1490,7 +1490,7 @@ button {
 
 .letter__body {
   font-family: "Space Mono", "Courier New", monospace;
-  font-size: clamp(0.62rem, 0.86vw, 0.74rem);
+  font-size: clamp(0.58rem, 0.8vw, 0.69rem);
   line-height: 1.35;
   color: var(--text-primary);
   max-width: 40ch;
@@ -1673,7 +1673,7 @@ button {
 @media (min-width: 901px) and (max-width: 1000px) {
   .envelope__letter { padding-top: 14px; }
   .letter__title { font-size: 1.9rem; margin-bottom: 10px; }
-  .letter__body { font-size: 0.58rem; line-height: 1.25; margin-bottom: 5px; }
+  .letter__body { font-size: 0.55rem; line-height: 1.25; margin-bottom: 5px; }
 }
 
 @media (min-width: 641px) and (max-width: 900px) {
@@ -1716,7 +1716,7 @@ button {
     margin: 0 0 18px;
   }
   .letter__body {
-    font-size: 0.58rem;
+    font-size: 0.55rem;
     line-height: 1.28;
     margin: 0 auto 5px;
   }
