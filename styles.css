@@ -1676,27 +1676,48 @@ button {
   .letter__body { font-size: 0.55rem; line-height: 1.25; margin-bottom: 5px; }
 }
 
-/* laptops and desktops: end the hero a little early so the top of the next section shows at
-   the bottom of the first screen, a hint that there is more to scroll to. The envelope is
-   pinned near the bottom of the hero (its box has an empty top third, so it can rise freely)
-   and the hero never gets shorter than the envelope plus its "Click to Read" cue need. */
+/* laptops and desktops: end the hero a little early so just the top edge of the next section
+   peeks in at the bottom of the first screen (a hint that there is more to scroll to).
+   The envelope sits low in the hero (hero = 90svh, like the Events page), and on shorter windows it scales down just enough that
+   the opened letter (which rises ~120px below the top) never reaches the menu bar. */
 @media (min-width: 901px) {
   .letter-hero {
-    /* tight on short windows, but on tall screens give the envelope real breathing room
-       below it (it was cramped against the bottom edge) */
-    --env-pad: clamp(34px, calc(34px + (100svh - 650px) * 0.38), 160px);
-    height: calc(100svh - 80px);
-    min-height: calc(clamp(300px, 37vw, 560px) * 0.69 + 216px + var(--env-pad));
+    --peek: 10svh; /* same as the Events page: hero is 90svh tall */
+    --env-gap: clamp(36px, 5svh, 60px);
+    height: calc(100svh - var(--peek));
+    min-height: 520px;
   }
   .letter-hero__stage {
     align-items: flex-end;
     padding-top: 0;
-    padding-bottom: var(--env-pad);
+    padding-bottom: var(--env-gap);
   }
-  /* (section.letters-intro: needs the extra specificity to beat the base rule further down) */
+  .envelope {
+    width: clamp(300px, min(37vw, (100svh - var(--peek) - var(--env-gap) - 120px) / 1.122), 560px);
+  }
+  /* keep the next section's text just below the fold, so only its plain background shows
+     (section.letters-intro: needs the extra specificity to beat the base rule further down) */
   section.letters-intro {
-    padding-top: clamp(24px, 2.4vw, 34px);
+    padding-top: calc(10svh + 28px);
   }
+}
+
+/* desktop: when the window is short the envelope scales down, so the letter's text scales
+   down with it (measured against the envelope's own width, not the window's) */
+@media (min-width: 901px) {
+  .envelope { container-type: inline-size; }
+}
+@container (max-width: 520px) {
+  .envelope__letter { left: 13%; width: 74%; padding-top: 20px; }
+  .letter__body { font-size: 0.6rem; line-height: 1.28; margin-bottom: 7px; }
+  .letter__title { font-size: 2rem; margin-bottom: 16px; }
+  .letter__eyebrow { margin-bottom: 12px; }
+}
+@container (max-width: 440px) {
+  .envelope__letter { padding-top: 14px; }
+  .letter__body { font-size: 0.55rem; line-height: 1.25; margin-bottom: 5px; }
+  .letter__title { font-size: 1.7rem; margin-bottom: 12px; }
+  .letter__eyebrow { margin-bottom: 8px; }
 }
 
 @media (min-width: 641px) and (max-width: 900px) {
