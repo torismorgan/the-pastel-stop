@@ -1527,8 +1527,8 @@ button {
 }
 
 /* "Click to Read" cue: real text + a little hand-drawn arrow, instead of baking faint
-   text into the envelope photo. Sits over the closed flap and gives a gentle wiggle
-   to catch the eye; it fades out the moment the envelope opens. */
+   text into the envelope photo. Sits over the closed flap in a vivid blue so it
+   pops; it stays still (the envelope itself bounces) and fades out the moment the envelope opens. */
 .envelope__cue {
   position: absolute;
   left: 50%;
@@ -1540,12 +1540,10 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #7B3B52;
+  color: #1F6FEB;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  transform-origin: 50% 0%;
   transition: opacity 200ms linear;
-  animation: envelope-cue-wiggle 2.4s ease-in-out 0.6s infinite;
 }
 
 .envelope__cue-text {
@@ -1569,16 +1567,6 @@ button {
   opacity: 0;
 }
 
-@keyframes envelope-cue-wiggle {
-  0%, 8%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
-  2% { transform: translate(-50%, -50%) rotate(-4deg); }
-  4% { transform: translate(-50%, -50%) rotate(4deg); }
-  6% { transform: translate(-50%, -50%) rotate(-2deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .envelope__cue { animation: none; }
-}
 
 /* Whole-envelope hop: two soft bounces as the page opens, then a small reminder every few
    seconds while the letter is still closed, so people notice it can be clicked. Uses the
